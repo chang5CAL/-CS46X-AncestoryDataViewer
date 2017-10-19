@@ -1,0 +1,100 @@
+\documentclass[onecolumn, draftclsnofoot, 10pt, compsoc]{IEEEtran}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{setspace}
+
+\usepackage{geometry}
+\geometry{textheight=9.5in, textwidth=7in}
+
+% 1. Fill in these details
+\def \CapstoneTeamName{		Team Ancestry Data Viewer}
+\def \CapstoneTeamNumber{		22}
+\def \GroupMemberOne{			YongPing Li}
+\def \GroupMemberTwo{			Monica Sek}
+\def \GroupMemberThree{			Le-Chuan Chang}
+\def \CapstoneProjectName{		Ancestry Data Viewer}
+\def \CapstoneSponsorCompany{	}
+\def \CapstoneSponsorPerson{		Ashley McGrath}
+
+% 2. Uncomment the appropriate line below so that the document type works
+\def \DocType{		Problem Statement
+				%Requirements Document
+				%Technology Review
+				%Design Document
+				%Progress Report
+				}
+			
+\newcommand{\NameSigPair}[1]{\par
+\makebox[2.75in][r]{#1} \hfil 	\makebox[3.25in]{\makebox[2.25in]{\hrulefill} \hfill		\makebox[.75in]{\hrulefill}}
+\par\vspace{-12pt} \textit{\tiny\noindent
+\makebox[2.75in]{} \hfil		\makebox[3.25in]{\makebox[2.25in][r]{Signature} \hfill	\makebox[.75in][r]{Date}}}}
+% 3. If the document is not to be signed, uncomment the RENEWcommand below
+%\renewcommand{\NameSigPair}[1]{#1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{titlepage}
+    \pagenumbering{gobble}
+    \begin{singlespace}
+    	%\includegraphics[height=4cm]{coe_v_spot1}
+        \hfill 
+        % 4. If you have a logo, use this includegraphics command to put it on the coversheet.
+        %\includegraphics[height=4cm]{CompanyLogo}   
+        \par\vspace{.2in}
+        \centering
+        \scshape{
+            \huge CS Capstone \DocType \par
+            {\large\today}\par
+            \vspace{.5in}
+            \textbf{\Huge\CapstoneProjectName}\par
+            \vfill
+            {\large Prepared for}\par
+            \Huge \CapstoneSponsorCompany\par
+            \vspace{5pt}
+            {\Large\NameSigPair{\CapstoneSponsorPerson}\par}
+            {\large Prepared by }\par
+            Group\CapstoneTeamNumber\par
+            % 5. comment out the line below this one if you do not wish to name your team
+            %\CapstoneTeamName\par 
+            \vspace{5pt}
+            {\Large
+                \NameSigPair{\GroupMemberOne}\par
+                \NameSigPair{\GroupMemberTwo}\par
+                \NameSigPair{\GroupMemberThree}\par
+            }
+            \vspace{20pt}
+        }
+        \begin{abstract}
+        % 6. Fill in your abstract    
+        	Our problem is to develop an application for viewing and managing genealogical data. The requirements include full tree view, direct lineage view, and more. From those views, at least one 2D view and one 3D VR view. Our solution is to develop an application to extract data from GEDCOM file and create the required views. The application can present other people's relationship respect to a selected person. Highlight a common person in both families when the user selects two people. There are filters for viewing closely at parts of the views. User can upload images and comment for their relative when using our application. We will have classmate use and provide feedback for determining whether the application meets the expectations. 
+        \end{abstract}     
+    \end{singlespace}
+\end{titlepage}
+\newpage
+\pagenumbering{arabic}
+%\tableofcontents
+% 7. uncomment this (if applicable). Consider adding a page break.
+%\listoffigures
+%\listoftables
+\clearpage
+
+% 8. now you write!
+\section{The problem to be solve!}
+\begin{singlespace}
+
+Our problem is to develop an application for viewing and managing genealogical data. The application to develop provide multiple ways to view the data and these views include full tree view, direct lineage view, and more. The views can be in 2D view or 3D VR view and the application will provide at least one for each view. The application will also have the functionality of determining the closest common ancestor when the user provide two names that are searchable from the ancestry data. Users only have to provide their own GEDCOM file for the application and the application will provide the views and functionalities to the users. Users with VR headset are able to access the 3D VR views while the other users can only access the 2D views. The application will run on Linus and Windows operating system.
+
+\end{singlespace}
+\section{Our solution!}
+\begin{singlespace}
+
+We are given a GEDCOM file to be used in our application. GEDCOM file is specialized for storing genealogical data. We have to run the GEDCOM file through our application, create the cool views and features for the user to view and use. The application will be able to retrieve information from GEDCOM file. The information is then used to develop the 2D and 3D views. For searching the connection between two people in a family, we look for their common names of people related to each of the two people. Basically, look for common names in the previous generations or the next generations, the application could determine the relationship between the two people the user searched. To improve on this, we could layout everyone's relation to a selected person when they are selected. When the user selected two people, we highlight the path to their common ancestor, children or grandchildren. In the 2D view interface, the user needs to click on the names for selection. In the 3D RV interface, the user will use their controller for selecting people, and they can move around, zoom in and out.We could create a filter for searching people who're only directly related to the selected person.There can be another filter for whether you want to look at previous generations of the selected person or the next generations. The problem was viewing and managing genealogical data, so we should also have ways for managing and manipulating the data once the GEDCOM file is converted by our application. The user should be able to add and remove people from the views we have. Once a person is removed, their children and grandchild, etc. will also be removed. When adding a person into the genealogical data, the user provide the name and other information about the person into the application. A major functionality to this application is to have the ability to upload photos correspond to people's names on the application, and have to ability to make comments about the user's relatives. These comments will be saved. The comment box can be used for multiple purposes including memo of best memories you have with that person, what their favorite food and drink is, etc.
+
+\end{singlespace}
+
+\section{Performance metrics!}
+\begin{singlespace}
+There isn't any application that's related to ancestry data viewing in 3D. Therefore, there's nothing for our application to compare it to, but we would like our application to be able to do its job in within 5 second when dealing with large GEDCOM files that has the genealogical data of 100 people. The application isn't slow, doesn't lag, and it's user friendly. We will have classmates to test out our application. If over 90 percent of our classmates say that the application meets the above criteria then the application is consider user friendly and performances well. 
+\end{singlespace}
+
+\end{document}
