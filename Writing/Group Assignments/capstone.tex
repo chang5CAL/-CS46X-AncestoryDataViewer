@@ -1,0 +1,109 @@
+\documentclass[onecolumn, draftclsnofoot,10pt, compsoc]{IEEEtran}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{setspace}
+
+\usepackage{geometry}
+\geometry{textheight=9.5in, textwidth=7in}
+
+% 1. Fill in these details
+\def \CapstoneTeamName{		Ancestry Data Viewer}
+\def \GroupMemberOne{			Le-Chuan Justin Chang}
+\def \GroupMemberTwo{			Monica Sek}
+\def \GroupMemberThree{			Yong Ping Li}
+\def \CapstoneProjectName{		Ancestry Data Viewer}
+\def \CapstoneSponsorCompany{	Cheap Robots, Inc}
+\def \CapstoneSponsorPerson{		Ashley McGrath}
+
+% 2. Uncomment the appropriate line below so that the document type works
+\def \DocType{		Problem Statement
+				%Requirements Document
+				%Technology Review
+				%Design Document
+				%Progress Report
+				}
+			
+\newcommand{\NameSigPair}[1]{\par
+\makebox[2.75in][r]{#1} \hfil 	\makebox[3.25in]{\makebox[2.25in]{\hrulefill} \hfill		\makebox[.75in]{\hrulefill}}
+\par\vspace{-12pt} \textit{\tiny\noindent
+\makebox[2.75in]{} \hfil		\makebox[3.25in]{\makebox[2.25in][r]{Signature} \hfill	\makebox[.75in][r]{Date}}}}
+% 3. If the document is not to be signed, uncomment the RENEWcommand below
+%\renewcommand{\NameSigPair}[1]{#1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{titlepage}
+    \pagenumbering{gobble}
+    \begin{singlespace}
+    	\includegraphics[height=4cm]{coe_v_spot1}
+        \hfill 
+        % 4. If you have a logo, use this includegraphics command to put it on the coversheet.
+        %\includegraphics[height=4cm]{CompanyLogo}   
+        \par\vspace{.2in}
+        \centering
+        \scshape{
+            \huge CS Capstone \DocType \par
+            {\large\today}\par
+            \vspace{.5in}
+            \textbf{\Huge\CapstoneProjectName}\par
+            \vfill
+            {\large Prepared for}\par
+            \Huge \CapstoneSponsorCompany\par
+            \vspace{5pt}
+            {\Large\NameSigPair{\CapstoneSponsorPerson}\par}
+            {\large Prepared by }\par
+            Group 22\par
+            % 5. comment out the line below this one if you do not wish to name your team
+            \CapstoneTeamName\par 
+            \vspace{5pt}
+            {\Large
+                \NameSigPair{\GroupMemberOne}\par
+                \NameSigPair{\GroupMemberTwo}\par
+                \NameSigPair{\GroupMemberThree}\par
+            }
+            \vspace{20pt}
+        }
+        \begin{abstract}
+        % 6. Fill in your abstract    
+        The goal of this project is to create a program that will open genealogical data, stored in the format of GEDCOM files, and show the data contained in a clear and easy to read manner. The user should be able to view their inputted family tree as a whole graph, or be able to zoom in to a specific person. Additionally, the application should be capable of switching to VR if the user has a VR headset and wants to use it. Finally, the application should be capable of finding the nearest common ancestor between two given family members if the ancestor exists.
+        \end{abstract}     
+    \end{singlespace}
+\end{titlepage}
+\newpage
+\pagenumbering{arabic}
+%\tableofcontents
+% 7. uncomment this (if applicable). Consider adding a page break.
+%\listoffigures
+%\listoftables
+%\clearpage
+
+% 8. now you write!
+\section{Problem}
+The GEDCOM file format is difficult to read in plain text, yet there is no well known, standardized reader to open and view it. This makes it hard to view a family's data when it is contained within a GEDCOM file, which is problematic since GEDCOM files are most widely accepted for storing a family tree into a computer file. The GEDCOM file format is fairly common, so it is reasonable to not want to replace it, especially since it is possible to read it normally, due to the fact that it is possible to write a program that can read it and display it in a visually pleasing and clear format. 
+
+Another issue with how the GEDCOM file is formatted is that it doesn't necessarily keep a family tree in order. This is understandable, due to the fact that parents can have children later in their lives, and people can marry late, so if it is kept up-to-date by someone who isn't interested in keeping the format readable for others, a person from a generation might not be included with everyone else of that generation. This would make simply reading a GEDCOM file significantly more confusing than it normally would be, which, due to the formatting already included in the file, is already fairly complicated. 
+
+Finally, GEDCOM files don't allow users to search for common points of relation. While it is reasonably simple to search for a specific person in a GEDCOM file by using control + F and typing their name, it is much more difficult to find the nearest point that a person and their third cousin are related, or even if they aren't related by blood and their third cousin married into the family.
+
+
+\section{Solution}
+In order to solve the problems presented above, a new application dedicated to reading and formatting GEDCOM files into a readable format should be created. To solve the problem with how difficult reading a GEDCOM file is to read in plain text, the application should be capable of parsing GEDCOM files and outputting all pertinent data into a human-readable format.
+
+Additionally, in order to maintain readability, and to keep the data clear and visually pleasing, when the data is outputted, the application should output all data in the form of an undirected graph, with the parents being the parent node of the children, and the progenitors of the family tree as the root nodes. Another feature that should be implemented is VR. VR should be implemented along with normal application view, in order to increase interest and allow the user to view their data more closely. For VR implementation, the same undirected graph that was used for normal application view should be generated, but it should generate the graph in 3D, so the viewer can orbit the tree and zoom in to specified nodes as they desire.
+
+To solve the issue of finding where a certain common ancestor is between two given people, the application should include the functionality to travel up and store their parent nodes, until a parent node appears twice, which would indicate that the nearest common ancestor has been found. Once they are found, the application will output the name of common ancestor and allow the viewer to zoom to them. If no such ancestor exists, then a message indicating such should be output instead. Another feature to allow the user to find relatives easier would be a view that highlights relatives of a given person.
+
+
+\section{Metrics}
+
+The most important metric for the created application should be that every feature is completed, and can be run with no errors. Additionally, the application should be capable of running on Windows 10 and Ubuntu Linux with no issues.
+
+For the graph, it should be capable of generating a graph from a given GEDCOM file. The graph should have every family member in the right order, so that a family's child should be below their parents, and so on, and the graph should have no overlap, so that every node is readable as long as the viewer zooms in on it to read it. The graph view should also be capable of zooming on to specific nodes, so that the user is capable of reading what is written about them in the GEDCOM file.
+
+For searching for the nearest common ancestor, the application should be capable of correctly finding either the nearest common ancestor, and allowing the viewer to zoom in on them, or finding that there is no ancestor, and outputting that there is no connection between the given people. The search should also fail and output that no such person exists if the user attempts to input people who do not exist on the GEDCOM file.
+
+For VR integration, the graph should be in 3D, and have every feature mentioned above. There should be no restrictions on VR that are not also in the application view, barring unforeseen errors with operating systems.
+
+Other metrics that the application should be measured by is ease of use, and aesthetics. The application should be fairly intuitive to use for anyone who is reasonably computer literate, and the application should be, at worst, nondescript, so that the user isn't concerned about how cluttered or how gaudy the application appears.
+
+\end{document}
