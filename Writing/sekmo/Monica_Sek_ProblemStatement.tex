@@ -1,0 +1,40 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Problem Statement}
+
+\author{Monica Sek}
+\date{October 09, 2017}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+
+\begin{document}
+
+\maketitle
+
+\begin{class}
+CS461 - Senior Capstone
+\end{class}
+
+\begin{term}
+Fall 2017
+\end{term}
+
+\begin{abstract}
+This program will take a GEDCOM file and provide an ancestry tree based on the information given. It should be accessible on two interfaces. A 2D mode that can be viewed on desktop and a 3D mode that uses a VR set to view. This application should show multiple ways to view the data tree, such as the being able to minimize or expand an ancestry data. Functional features include seeing direct lineage, common ancestor and node manipulation. With this program, a user can view and manage ancestry DNA data.
+\end{abstract}
+
+\pagebreak
+
+\section{Problem}
+The problem of this project is to be able to take a GEDCOM file and build an ancestry tree from it. The application should be accessible in both a 2D and 3D viewer. The 2D mode should be compatible on desktop, on Microsoft Windows 10 or Linux operating system. The 3D mode should be compatible on VR, with the possible addition of remote controls. The user should have access to expanding and minimizing sections of the ancestry tree. They should also be able to toggle between direct lineage while on the full family tree viewer. Given two names, the program should be able to locate a common ancestor.
+
+\section{Solutions}
+First off, the user should be able to select certain subcategories of the ancestry tree and being able to minimize it. This goes the same with trying to expand the tree into a larger one. The smallest a family tree should be is the user and its parents which can expand to siblings and grandparents. The direct lineage option would be a very simple structure that only connects child and parent, resulting in a very balanced structure. To create the common ancestor function, given two names (or nodes) find the closest parent node and it will result in the common ancestor they share. 
+Extra features that a user should be allowed to do is manipulate the tree. Manipulating nodes by making new connections or moving them around. This will be much more apparent with the 3D viewer where a user can use the remote controllers to control the application. 
+
+\section{Performance Metrics}
+The application should be able to display a large amount of nodes, let's say 100 for now and we'll revisit later. The 3D mode viewer should be able to be compatible with the remote controllers. The toggling between direct lineage function should be able to display a perfect full binary tree that ends with the user or person in question. Changes done on one of the modes should be able to transfer to the other mode (i.e. if a node is added in 2D then you should be able to see it in the 3D viewer). The common ancestor function should not take more than 10 seconds to run (hopefully a lot faster). 
+
+\end{document}
