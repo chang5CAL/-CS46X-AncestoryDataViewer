@@ -82,26 +82,38 @@
 \section{Introduction}
 \subsection{Purpose}
 \begin{singlespace}
-The purpose of this project is to create a program that will open GEDCOM files and show the data contained in a clear and easy to read manner.
+The purpose of this Software Requirements Specification document is to clearly illustrate the details of the “Ancestry Data Viewer” software. It will identify the purpose of the software, the intended audience of the software, and the behavior of the audience.
 \end{singlespace}
 
 \subsection{Scope}
 \begin{singlespace}
-The software will open and get data from GEDCOM file and use the data to produce the required features. These features include full tree view, direct lineage view, 3D view, and also the ability to find the common ancestor of two people(node) in the tree. 
+The purpose of the “Ancestry Data Viewer” software is to get data from GEDCOM file and display the data in a clear and easy to read manner. The GEDCOM file format is difficult to read in plain text and the “Ancestry Data Viewer” software is capable of access the and construct the family tree though the access of the GEDCOM file. The software will work on computers with Linux or Windows operating system. The software provides the following features include full tree view, direct lineage view, 3D view, and also the ability to find the common ancestor of two people in the tree. 
 \end{singlespace}
 
 \subsection{Definitions, acronyms, and abbreviations}
 \begin{singlespace}
-Tree : is actually refers to the tree data structure for displaying data. Elements in the tree is refer to as nodes. Every person's name in the GEDCOM file will be a node on our tree diagram.
+Tree : Refers to the tree data structure for displaying data. Elements in the tree is refer to as nodes. Every person’s name in the GEDCOM file will be a node on our tree diagram.
+Full tree view: Full family tree view
+Direct lineage view: View people who are directly related to the selected person.
 \newline
 \newline
-Graph: A graph is a superset of Trees. Whereas a node trees can hold only two children per node, a graph is capable of holding as many nodes as desired.
+ADVR: Abbreviation for Ancestry Data Viewer
+\newline
+\newline
+ADVS: Abbreviation for Ancestry Data Viewer Software
+\newline
+\newline
+GEDCOM: A GEDCOM file is a type of format that contains ancestry data.
+\newline
+\newline
+Linux: For the purposes of this application, Linux refers to the Ubuntu Linux operating system, and not every UNIX based operating system.
+
 \end{singlespace}
 
-\subsection{References}
-\begin{singlespace}
+%\subsection{References}
+%\begin{singlespace}
 
-\end{singlespace}
+%\end{singlespace}
 
 \subsection{Overview}
 \begin{singlespace}
@@ -155,8 +167,15 @@ We are dependent on pre-existing VR frameworks in order to implement VR function
 The application must run in a reasonable amount of time, as discovered via user study.
 \item If the user attempts to search for the common ancestor of a person and their parent, the application will return their grandparents.
 \item If the user attempts to search for the the common ancestor of a person and their spouse, and the spouse is not related to the family in any way, the application will inform the user that no such ancestor exists.
-
 \end{itemize}
+
+\subsection{GANTT chart}
+\begin{singlespace}
+The following is a GANTT chart that approximately shows the planned development cycle of the application.
+\newline
+\newline
+\includegraphics[scale=0.8]{GANTT}
+\end{singlespace}
 
 %\section{Appendixes}
 %\index{a}

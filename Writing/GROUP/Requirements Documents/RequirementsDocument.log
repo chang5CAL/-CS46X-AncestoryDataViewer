@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.10.15)  1 NOV 2017 20:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.10.15)  2 NOV 2017 01:45
 entering extended mode
 **./RequirementsDocument.tex
 (RequirementsDocument.tex
@@ -290,15 +290,12 @@ Package epstopdf Info: Source file: <coe_v_spot1.eps>
 (epstopdf)                    date: 2017-10-15 23:07:46
 (epstopdf)                    size: 631574 bytes
 (epstopdf)             Output file: <coe_v_spot1-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-11-01 20:17:31
+(epstopdf)                    size: 31214 bytes
 (epstopdf)             Command: <epstopdf --outfile=coe_v_spot1-eps-converted-t
 o.pdf coe_v_spot1.eps>
 (epstopdf)             \includegraphics on input line 39.
-runsystem(epstopdf --outfile=coe_v_spot1-eps-converted-to.pdf coe_v_spot1.eps).
-..executed (allowed).
-
-Package epstopdf Info: Result file: <coe_v_spot1-eps-converted-to.pdf>
-(epstopdf)                    date: 2017-11-01 20:17:31
-(epstopdf)                    size: 31214 bytes.
+Package epstopdf Info: Output file is already uptodate.
 <coe_v_spot1-eps-converted-to.pdf, id=1, 346.29375pt x 436.63126pt>
 File: coe_v_spot1-eps-converted-to.pdf Graphic file (type pdf)
 
@@ -338,32 +335,78 @@ LaTeX Font Info:    External font `cmex10' loaded for size
  [1]
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <9.53561> not available
 (Font)              Font shape `OT1/phv/b/n' tried instead on input line 83.
+Missing character: There is no ‚ in font pplr7t!
+Missing character: There is no Ä in font pplr7t!
+Missing character: There is no ú in font pplr7t!
+Missing character: There is no ‚ in font pplr7t!
+Missing character: There is no Ä in font pplr7t!
+Missing character: There is no ù in font pplr7t!
+Missing character: There is no ‚ in font pplr7t!
+Missing character: There is no Ä in font pplr7t!
+Missing character: There is no ú in font pplr7t!
+Missing character: There is no ‚ in font pplr7t!
+Missing character: There is no Ä in font pplr7t!
+Missing character: There is no ù in font pplr7t!
+Missing character: There is no ‚ in font pplr7t!
+Missing character: There is no Ä in font pplr7t!
+Missing character: There is no ú in font pplr7t!
+Missing character: There is no ‚ in font pplr7t!
+Missing character: There is no Ä in font pplr7t!
+Missing character: There is no ù in font pplr7t!
+Missing character: There is no ‚ in font pplr7t!
+Missing character: There is no Ä in font pplr7t!
+Missing character: There is no ô in font pplr7t!
 
-Underfull \hbox (badness 10000) in paragraph at lines 95--99
+Underfull \hbox (badness 10000) in paragraph at lines 95--110
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 95--110
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 95--110
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 95--110
 
  []
 
 [2
 
-] [3] (RequirementsDocument.aux) ) 
+] <GANTT.pdf, id=28, 614.295pt x 794.97pt>
+File: GANTT.pdf Graphic file (type pdf)
+ <use GANTT.pdf>
+Package pdftex.def Info: GANTT.pdf used on input line 177.
+(pdftex.def)             Requested size: 491.43666pt x 635.97687pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 174--178
+
+ []
+
+[3] [4 <./GANTT.pdf>] (RequirementsDocument.aux) ) 
 Here is how much of TeX's memory you used:
- 3009 strings out of 493323
- 48462 string characters out of 3139062
- 118511 words of memory out of 3000000
- 6503 multiletter control sequences out of 15000+200000
+ 3014 strings out of 493323
+ 48526 string characters out of 3139062
+ 119511 words of memory out of 3000000
+ 6507 multiletter control sequences out of 15000+200000
  41702 words of font info for 88 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,5n,25p,443b,223s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/
-base/8r.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.p
-fb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Program
- Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Program Files/MiKTeX 
-2.9/fonts/type1/urw/palatino/uplb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
-1/urw/palatino/uplr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/palatino
-/uplri8a.pfb>
-Output written on RequirementsDocument.pdf (4 pages, 107182 bytes).
+ 39i,5n,25p,620b,223s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files/MiKTeX 2.9/
+fonts/enc/dvips/base/8r.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
+fonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a
+.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Progr
+am Files/MiKTeX 2.9/fonts/type1/urw/palatino/uplb8a.pfb><C:/Program Files/MiKTe
+X 2.9/fonts/type1/urw/palatino/uplr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
+pe1/urw/palatino/uplri8a.pfb>
+Output written on RequirementsDocument.pdf (5 pages, 116479 bytes).
 PDF statistics:
- 51 PDF objects out of 1000 (max. 8388607)
+ 59 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
