@@ -36,7 +36,7 @@
 \begin{titlepage}
     \pagenumbering{gobble}
     \begin{singlespace}
-    	%\includegraphics[height=4cm]{coe_v_spot1}
+    	\includegraphics[height=4cm]{coe_v_spot1}
         \hfill 
         % 4. If you have a logo, use this includegraphics command to put it on the coversheet.
         %\includegraphics[height=4cm]{CompanyLogo}   
@@ -66,7 +66,7 @@
         }
         %\begin{abstract}
         % 6. Fill in your abstract    
-        	 
+        This document lists the requirements that the finished application must fulfill. This document will be used to grade the final project and is also an agreement with the client regarding what they should expect from the end product.
         %\end{abstract}     
     \end{singlespace}
 \end{titlepage}
@@ -92,7 +92,7 @@ The software will open and get data from GEDCOM file and use the data to produce
 
 \subsection{Definitions, acronyms, and abbreviations}
 \begin{singlespace}
-Tree : is actually refers to the tree data structure for displaying data. Elements in the tree is refer to as nodes. Every person’s name in the GEDCOM file will be a node on our tree diagram.
+Tree : is actually refers to the tree data structure for displaying data. Elements in the tree is refer to as nodes. Every person's name in the GEDCOM file will be a node on our tree diagram.
 \newline
 \newline
 Graph: A graph is a superset of Trees. Whereas a node trees can hold only two children per node, a graph is capable of holding as many nodes as desired.
@@ -105,49 +105,59 @@ Graph: A graph is a superset of Trees. Whereas a node trees can hold only two ch
 
 \subsection{Overview}
 \begin{singlespace}
- Our project will create an application that is capable of reading and parsing GEDCOM files. After parsing the files, it will generate a graph, with each node representing one member of the family. The graph will be arranged in a legible fashion, which displays each person chronologically and connects them. Our project will also allow users to quickly search for common ancestors, and see the direct lineage of a given person. Finally, our project will allow the user to view it in VR if they have a headset available.
+	There are two more sections to this SRS document. Section 2 is a detailed description of the ADVS including the it's functionalities, constraints, and the intended user of this software. Section 3 is a user story describing what the users are capable of doing with the ADVS.
 \end{singlespace}
 
 \section{Overall Description}
 \subsection{Product perspective}
 \begin{singlespace}
-This project is to create an Ancestry data viewer for our client to use. It’s also available for everybody out there because the code is open sources(GITHUB). The user will interface with our software through a laptop or desktop with Linux or Windows operating system. The user will need to have their own GEDCOM file and open the GEDCOM file in our software. The software will run an algorithm to obtain the data and display it in a clear and easy to read manner.
+	The user will interface with the ADVS through a laptop or desktop with Linux or Windows operating system. The software is not self-contained, as the user will need to provide their own GEDCOM file for the software to display. The software will parse the input GEDCOM file to obtain the data and run an algorithm to generate and display a graph that is clear and easy to read.
 \end{singlespace}
 
 \subsection{Product functions}
-\begin{singlespace}
-Our product should be capable of reading GEDCOM files, then displaying them. It should also be capable of displaying every person included in the GEDCOM file, and should be able to filter out people who aren’t directly related to the selected person. The application will highlight the nearest ancestor of two selected people.
-\end{singlespace}
+\begin{itemize}
+\item Full Tree View: Display the full family tree contained within the GEDCOM file. The tree should never have nodes that overlap with each other.
+\item Direct Lineage View: Display people who is directly related to a select person, including the person themselves. The application will specifically highlight the person, their birth parents, their grandparents, and so on.
+\item Find Common Ancestor: Select two people and highlight their common ancestor on the tree. If an ancestor is not found, the application will inform the user that no such ancestor exists.
+\item VR Compatibility: Detect if a VR headset is plugged in, and generate a new view if the user enables. The VR view is capable of performing every function that the non-VR view is capable of performing.
+\item VR Controller Compatibility: Use VR controller to rotate, and zoom in and out of the tree. The VR controller should only work if VR mode is enabled.
+
+\end{itemize}
 
 \subsection{User characteristics}
 \begin{singlespace}
-Our user is Ashley McGrath, who is our client. While our users is likely to be standard denizens of the Internet, we are primarily designing our application for our client. 
-\newline
-\newline
-A standard user should not need to have great technical knowledge in order to successfully use the application. They should be able to read and understand basic computer terminology, such as clicking, and moving the mouse, and should be able to read and follow simple instructions.
-
+	A standard user should not need to have great technical knowledge in order to successfully use the application. They should be able to read and understand basic computer terminology, such as clicking, and moving the mouse, and should be able to read and follow simple instructions. It is assumed that this is their first GEDCOM reader, so they will not have any previous experience with using a different viewer.
 \end{singlespace}
 
 \subsection{Constraints}
-\begin{singlespace}
-We are required to create a 3D view of the family tree. The 3D view can only be accessed with the VR devices. 
-\end{singlespace}
+\begin{itemize}
+\item We are required to create a 3D view of the family tree. The 3D view can only be accessed with the VR devices. 
+\item The software only works on computers with Linux and Windows operating systems. Compatibility with OSX and other operating systems is not prioritized. The application must be simple to use
+\item The application must not be aesthetically displeasing
+\item The application must run in a reasonable amount of time
+\item The application must be capable of reading proper GEDCOM files.
+\end{itemize}
 
 \subsection{Assumptions and dependencies}
 \begin{singlespace}
-We are dependent on pre-existing VR frameworks in order to implement VR functionality. If not, we will not be able to create our own, as this would be too complicated and time-consuming.
+We are dependent on pre-existing VR frameworks in order to implement VR functionality. If not, we will not be able to create our own, as this would be too complicated and time consuming. The VR framework should be capable of switching to and from VR mode and Desktop Application mode.
 \end{singlespace}
 
 \section{Specific requirements}
 \begin{itemize}
-\item Our application must be capable of opening and displaying GEDCOM files.
-\item Our application must be able to run on Linux and Windows operating systems. 
-\item Our application must be VR compatible
-\item Our application must include the ability to find the nearest ancestor of two given people.
-\item Our application must be able to highlight direct relatives of a given person
+\item Users are able to of opening and displaying GEDCOM files. The full family tree view will automatically display after opening the GEDCOM file.
+\item Users are able to select a person and toggle direct lineage view button to narrow down the tree to display only people directly related to the selected person.
+\item Users are able to select two people and the software will find and highlight the common ancestor of these two people.
+\item Users are able to switch to VR Mode. User will be able to view the tree in 3D after switching to VR Mode, and they are able to zoom in and out with the VR controllers
+\item The majority of users, as discovered via user study, are capable of intuiting how to use the application, or intuiting how to receive assistance for using the application.
+\item The majority of users, as discovered via user study, find the application to look at worse unobtrusive.
+\item If a user attempts to read an invalid GEDCOM file, the application must inform the user that the file is invalid, but not crash.
+The application must run in a reasonable amount of time, as discovered via user study.
+\item If the user attempts to search for the common ancestor of a person and their parent, the application will return their grandparents.
+\item If the user attempts to search for the the common ancestor of a person and their spouse, and the spouse is not related to the family in any way, the application will inform the user that no such ancestor exists.
+
 \end{itemize}
 
-\appendix
 %\section{Appendixes}
 %\index{a}
 %\section{Index}
