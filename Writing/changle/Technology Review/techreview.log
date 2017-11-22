@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.10.15)  21 NOV 2017 18:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.10.15)  21 NOV 2017 19:04
 entering extended mode
 **./techreview.tex
 (techreview.tex
@@ -442,27 +442,6 @@ Overfull \hbox (16.78842pt too wide) in paragraph at lines 187--208
 hreads/ui-design-tool-pros-vs-cons-unitygui-guitextures-3d-mesh-
  []
 
-
-Overfull \hbox (109.99915pt too wide) in paragraph at lines 187--208
-\OT1/ppl/m/n/9.53561 [5] D. East-man, Ah-nentafel Ex-plained, 16-Oct-2002. [On-
-line]. Avail-able: http://freepages.genealogy.rootsweb.ancestry.com/ jcat2/ahne
-ntafel.html.
- []
-
-
-Overfull \hbox (74.53392pt too wide) in paragraph at lines 187--208
-\OT1/ppl/m/n/9.53561 [10] Aes-theticin-ter-ac-tive, aestheticinteractive/Hover-
-UI-Kit, GitHub. [On-line]. Avail-able: https://github.com/aestheticinteractive/
-Hover-
- []
-
-
-Overfull \hbox (181.70445pt too wide) in paragraph at lines 187--208
-\OT1/ppl/m/n/9.53561 [11] In-put for OpenVR con-trollers, Unity - Man-ual: In-p
-ut for OpenVR con-trollers. [On-line]. Avail-able: https://docs.unity3d.com/Man
-ual/OpenVRControllers.html.
- []
-
 [6] (techreview.aux) ) 
 Here is how much of TeX's memory you used:
  2998 strings out of 493323
@@ -478,7 +457,7 @@ les/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Program Files/MiKTeX 2.9
 /fonts/type1/urw/helvetic/uhvro8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
 urw/palatino/uplb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/palatino/u
 plr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on techreview.pdf (7 pages, 115764 bytes).
+Output written on techreview.pdf (7 pages, 115761 bytes).
 PDF statistics:
  62 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
