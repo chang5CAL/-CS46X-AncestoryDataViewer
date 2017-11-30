@@ -1,0 +1,181 @@
+\documentclass[onecolumn, draftclsnofoot, 10pt, compsoc]{IEEEtran}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{setspace}
+
+\usepackage{geometry}
+\geometry{textheight=9.5in, textwidth=7in}
+
+% 1. Fill in these details
+\def \CapstoneTeamName{		Team Ancestry Data Viewer(ADVR)}
+\def \CapstoneTeamNumber{		22}
+\def \GroupMemberOne{			Monica Sek}
+\def \CapstoneProjectName{		Ancestry Data Viewer}
+\def \CapstoneSponsorCompany{	}
+\def \CapstoneSponsorPerson{		Ashley McGrath}
+
+% 2. Uncomment the appropriate line below so that the document type works
+\def \DocType{	%Problem Statement
+				%Requirements Document
+				Technology Review
+				%Design Document
+				%Progress Report
+				}
+			
+\newcommand{\NameSigPair}[1]{\par
+\makebox[2.75in][r]{#1} \hfil 	\makebox[3.25in]{\makebox[2.25in]{\hrulefill} \hfill		\makebox[.75in]{\hrulefill}}
+\par\vspace{-12pt} \textit{\tiny\noindent
+\makebox[2.75in]{} \hfil		\makebox[3.25in]{\makebox[2.25in][r]{Signature} \hfill	\makebox[.75in][r]{Date}}}}
+% 3. If the document is not to be signed, uncomment the RENEWcommand below
+%\renewcommand{\NameSigPair}[1]{#1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{titlepage}
+    \pagenumbering{gobble}
+    \begin{singlespace}
+    	\includegraphics[height=4cm]{coe_v_spot1}
+        \hfill 
+        % 4. If you have a logo, use this includegraphics command to put it on the coversheet.
+        %\includegraphics[height=4cm]{CompanyLogo}   
+        \par\vspace{.2in}
+        \centering
+        \scshape{
+            \huge CS Capstone \DocType \par
+            {\large\today}\par
+            \vspace{.5in}
+            \textbf{\Huge\CapstoneProjectName}\par
+            \vfill
+            {\large Prepared for}\par
+            \Huge \CapstoneSponsorCompany\par
+            \vspace{5pt}
+            {\Large\NameSigPair{\CapstoneSponsorPerson}\par}
+            {\large Prepared by }\par
+            Group\CapstoneTeamNumber\par
+            % 5. comment out the line below this one if you do not wish to name your team
+            \CapstoneTeamName\par 
+            \vspace{5pt}
+            {\Large
+                \NameSigPair{\GroupMemberOne}\par
+                \NameSigPair{\GroupMemberTwo}\par
+                \NameSigPair{\GroupMemberThree}\par
+            }
+            \vspace{20pt}
+        }
+        %\begin{abstract}
+        % 6. Fill in your abstract    
+        This document lists the requirements that the finished application must fulfill. This document will be used to grade the final project and is also an agreement with the client regarding what they should expect from the end product.
+        %\end{abstract}     
+    \end{singlespace}
+\end{titlepage}
+\newpage
+\pagenumbering{arabic}
+\tableofcontents
+% 7. uncomment this (if applicable). Consider adding a page break.
+%\listoffigures
+%\listoftables
+\clearpage
+
+% 8. now you write!
+\section{Introduction}
+\subsection{Purpose}
+\begin{singlespace}
+The purpose of this Software Requirements Specification document is to clearly illustrate the details of the “Ancestry Data Viewer” software. It will identify the purpose of the software, the intended audience of the software, and the behavior of the audience.
+\end{singlespace}
+
+\subsection{Scope}
+\begin{singlespace}
+The purpose of the “Ancestry Data Viewer” software is to get data from GEDCOM file and display the data in a clear and easy to read manner. The GEDCOM file format is difficult to read in plain text and the “Ancestry Data Viewer” software is capable of access the and construct the family tree though the access of the GEDCOM file. The software will work on computers with Linux or Windows operating system. The software provides the following features include full tree view, direct lineage view, 3D view, and also the ability to find the common ancestor of two people in the tree. 
+\end{singlespace}
+
+\subsection{Definitions, acronyms, and abbreviations}
+\begin{singlespace}
+Tree : Refers to the tree data structure for displaying data. Elements in the tree is refer to as nodes. Every person’s name in the GEDCOM file will be a node on our tree diagram.
+Full tree view: Full family tree view
+Direct lineage view: View people who are directly related to the selected person.
+\newline
+\newline
+ADVR: Abbreviation for Ancestry Data Viewer
+\newline
+\newline
+ADVS: Abbreviation for Ancestry Data Viewer Software
+\newline
+\newline
+GEDCOM: A GEDCOM file is a type of format that contains ancestry data.
+\newline
+\newline
+Linux: For the purposes of this application, Linux refers to the Ubuntu Linux operating system, and not every UNIX based operating system.
+
+\end{singlespace}
+
+%\subsection{References}
+%\begin{singlespace}
+
+%\end{singlespace}
+
+\subsection{Overview}
+\begin{singlespace}
+	There are two more sections to this SRS document. Section 2 is a detailed description of the ADVS including the it's functionalities, constraints, and the intended user of this software. Section 3 is a user story describing what the users are capable of doing with the ADVS.
+\end{singlespace}
+
+\section{Overall Description}
+\subsection{Product perspective}
+\begin{singlespace}
+	The user will interface with the ADVS through a laptop or desktop with Linux or Windows operating system. The software is not self-contained, as the user will need to provide their own GEDCOM file for the software to display. The software will parse the input GEDCOM file to obtain the data and run an algorithm to generate and display a graph that is clear and easy to read.
+\end{singlespace}
+
+\subsection{Product functions}
+\begin{itemize}
+\item Full Tree View: Display the full family tree contained within the GEDCOM file. The tree should never have nodes that overlap with each other.
+\item Direct Lineage View: Display people who is directly related to a select person, including the person themselves. The application will specifically highlight the person, their birth parents, their grandparents, and so on.
+\item Find Common Ancestor: Select two people and highlight their common ancestor on the tree. If an ancestor is not found, the application will inform the user that no such ancestor exists.
+\item VR Compatibility: Detect if a VR headset is plugged in, and generate a new view if the user enables. The VR view is capable of performing every function that the non-VR view is capable of performing.
+\item VR Controller Compatibility: Use VR controller to rotate, and zoom in and out of the tree. The VR controller should only work if VR mode is enabled.
+
+\end{itemize}
+
+\subsection{User characteristics}
+\begin{singlespace}
+	A standard user should not need to have great technical knowledge in order to successfully use the application. They should be able to read and understand basic computer terminology, such as clicking, and moving the mouse, and should be able to read and follow simple instructions. It is assumed that this is their first GEDCOM reader, so they will not have any previous experience with using a different viewer.
+\end{singlespace}
+
+\subsection{Constraints}
+\begin{itemize}
+\item We are required to create a 3D view of the family tree. The 3D view can only be accessed with the VR devices. 
+\item The software only works on computers with Linux and Windows operating systems. Compatibility with OSX and other operating systems is not prioritized. The application must be simple to use
+\item The application must not be aesthetically displeasing
+\item The application must run in a reasonable amount of time
+\item The application must be capable of reading proper GEDCOM files.
+\end{itemize}
+
+\subsection{Assumptions and dependencies}
+\begin{singlespace}
+We are dependent on pre-existing VR frameworks in order to implement VR functionality. If not, we will not be able to create our own, as this would be too complicated and time consuming. The VR framework should be capable of switching to and from VR mode and Desktop Application mode.
+\end{singlespace}
+
+\section{Specific requirements}
+\begin{itemize}
+\item Users are able to of opening and displaying GEDCOM files. The full family tree view will automatically display after opening the GEDCOM file.
+\item Users are able to select a person and toggle direct lineage view button to narrow down the tree to display only people directly related to the selected person.
+\item Users are able to select two people and the software will find and highlight the common ancestor of these two people.
+\item Users are able to switch to VR Mode. User will be able to view the tree in 3D after switching to VR Mode, and they are able to zoom in and out with the VR controllers
+\item The majority of users, as discovered via user study, are capable of intuiting how to use the application, or intuiting how to receive assistance for using the application.
+\item The majority of users, as discovered via user study, find the application to look at worse unobtrusive.
+\item If a user attempts to read an invalid GEDCOM file, the application must inform the user that the file is invalid, but not crash.
+The application must run in a reasonable amount of time, as discovered via user study.
+\item If the user attempts to search for the common ancestor of a person and their parent, the application will return their grandparents.
+\item If the user attempts to search for the the common ancestor of a person and their spouse, and the spouse is not related to the family in any way, the application will inform the user that no such ancestor exists.
+\end{itemize}
+
+\subsection{GANTT chart}
+\begin{singlespace}
+The following is a GANTT chart that approximately shows the planned development cycle of the application.
+\newline
+\newline
+\includegraphics[scale=0.8]{GANTT}
+\end{singlespace}
+
+%\section{Appendixes}
+%\index{a}
+%\section{Index}
+\end{document}
