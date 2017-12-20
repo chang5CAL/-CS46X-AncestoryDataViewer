@@ -16,6 +16,24 @@
 
 % 2. Uncomment the appropriate line below so that the document type works
 \def \DocType{	%Problem Statement
+				%Requirements Document\documentclass[onecolumn, draftclsnofoot, 10pt, compsoc]{IEEEtran}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{setspace}
+
+\usepackage{geometry}
+\geometry{textheight=9.5in, textwidth=7in}
+
+% 1. Fill in these details
+\def \CapstoneTeamName{		Team Ancestry Data Viewer(ADVR)}
+\def \CapstoneTeamNumber{		22}
+\def \GroupMemberOne{			Monica Sek}
+\def \CapstoneProjectName{		Ancestry Data Viewer}
+\def \CapstoneSponsorCompany{	}
+\def \CapstoneSponsorPerson{		Ashley McGrath}
+
+% 2. Uncomment the appropriate line below so that the document type works
+\def \DocType{	%Problem Statement
 				%Requirements Document
 				Technology Review
 				%Design Document
@@ -57,15 +75,13 @@
             \vspace{5pt}
             {\Large
                 \NameSigPair{\GroupMemberOne}\par
-                \NameSigPair{\GroupMemberTwo}\par
-                \NameSigPair{\GroupMemberThree}\par
             }
             \vspace{20pt}
         }
-        %\begin{abstract}
+        \begin{abstract}
         % 6. Fill in your abstract    
-        This document lists the requirements that the finished application must fulfill. This document will be used to grade the final project and is also an agreement with the client regarding what they should expect from the end product.
-        %\end{abstract}     
+        This document examines three pieces of technology that are involved in the creation of our project. Each piece will examine three possible technologies that can be used. After comparing and contrasting the options, a decision will be made to utilize one of the technology for the piece. 
+        \end{abstract}     
     \end{singlespace}
 \end{titlepage}
 \newpage
@@ -77,103 +93,194 @@
 \clearpage
 
 % 8. now you write!
+
 \section{Introduction}
-\subsection{Purpose}
+The goal of this project is to take a GEDCOM file as an input and to display an organized ancestry tree as an output. 
+
+\section{2D Visualization}
+\subsection{Overview}
 \begin{singlespace}
-The purpose of this Software Requirements Specification document is to clearly illustrate the details of the “Ancestry Data Viewer” software. It will identify the purpose of the software, the intended audience of the software, and the behavior of the audience.
+For the first piece, we will be examining different options that can be used to display our program in its 2D application. 
 \end{singlespace}
 
-\subsection{Scope}
-\begin{singlespace}
-The purpose of the “Ancestry Data Viewer” software is to get data from GEDCOM file and display the data in a clear and easy to read manner. The GEDCOM file format is difficult to read in plain text and the “Ancestry Data Viewer” software is capable of access the and construct the family tree though the access of the GEDCOM file. The software will work on computers with Linux or Windows operating system. The software provides the following features include full tree view, direct lineage view, 3D view, and also the ability to find the common ancestor of two people in the tree. 
-\end{singlespace}
-
-\subsection{Definitions, acronyms, and abbreviations}
-\begin{singlespace}
-Tree : Refers to the tree data structure for displaying data. Elements in the tree is refer to as nodes. Every person’s name in the GEDCOM file will be a node on our tree diagram.
-Full tree view: Full family tree view
-Direct lineage view: View people who are directly related to the selected person.
-\newline
-\newline
-ADVR: Abbreviation for Ancestry Data Viewer
-\newline
-\newline
-ADVS: Abbreviation for Ancestry Data Viewer Software
-\newline
-\newline
-GEDCOM: A GEDCOM file is a type of format that contains ancestry data.
-\newline
-\newline
-Linux: For the purposes of this application, Linux refers to the Ubuntu Linux operating system, and not every UNIX based operating system.
-
-\end{singlespace}
 
 %\subsection{References}
 %\begin{singlespace}
 
 %\end{singlespace}
 
+\subsection{Criteria}
+\begin{singlespace}
+The application needs to be able to display all the member’s required information and to clearly represent the relationship between members. The engine should be easy to manipulate so that the information is neat and not cluttered, even when the user is shifting the tree. The engine should have a VR-compatible feature that can be activated from desktop mode.  
+\end{singlespace}
+
+\subsection{Potential Choices}
+\begin{singlespace}
+The potential choices for displaying our project are the Unreal Engine 4, Unity Engine 3, and Lumberyard.  
+\end{singlespace}
+
+\subsubsection{Unreal Engine}
+\begin{singlespace}
+The Unreal Engine is a popular VR engines and is known for its ease of use. Switching from desktop to VR mode is also supported on this engine, there are published open-sources for this feature included \cite{UE4 forum}. The mode switching open-source code is among many other open-source data and an abundant supply of tutorial videos can be found throughout the community for help \cite{UE4 EG}. The Unreal Engine recently launched an enterprise team to focus on non-video game applications \cite{UE4E QA}. One of the target uses include data visualization. The software has over 20 built-in CAD data plugins that include features like geometry, texture, and camera angles \cite{UE4E GFX}. Other parameter tools include uniform scaling and tiling awareness with objects. 
+
+\end{singlespace}
+
+\subsubsection{Unity}
+\begin{singlespace}
+The Unity game engine is another widely popular software for VR. This engine provides a built-in VR support that can be enabled from desktop \cite{unity3d}. Unity has also built support for non-video games application which focuses on architecture, engineering, and construction \cite{unity AEC}. These tools can be used to display desired graphics and visualizations. Objects can be created in both 2D and 3D, and they can have specific details attached to them. Details are done by creating prefabs for the object, which will establish certain properties to each replicated object \cite{unity3d}.  
+ 
+\end{singlespace}
+
+\subsubsection{Lumberyard}
+\begin{singlespace}
+The Lumberyard engine is a newer engine that was released by Amazon, it is still in its Beta version. It is also encouraged to be used for architecture, simulations, and animated movies purposes \cite{lumberyard}. Lumberyard includes features like color grading, shading, particle effects, depth of field, etc. Free open source code is also available for the developer, that way they can just focus on changing aspects they want to change. Lumberyard also includes the concept of entities, which allows developers to drag and drop components to build the behavior they wish to see \cite{lumberyard}. These components can be grouped together into slices to build more complex entities.  
+\end{singlespace}
+
+\subsection{Discussion}
+\begin{singlespace}
+All three technologies share open-source data that can be used to build functions for the application and can handle toggling to a VR application from desktop. Although they all are primarily game engines, they do provide features for non-video game application. Visual graphics are available in each engine however Lumberyard focuses on it the most and can deliver hyper realistic graphics. Unreal Engine and Unity still provide visual features that can be altered such as color and texture. Lumberyard and Unity utilizes grouping features that allows the developer to control properties across entities. Unreal Engine offers plug-ins and tools that can be used to alter entities.
+\end{singlespace}
+
+\subsection{Conclusion}
+\begin{singlespace}
+As a team, we have chosen to use Unreal Engine because of its ease of use and overall responsive community of users which is beneficial for debugging issues. Although the Unity and Lumberyard provide complex handling with entities, our application desires minimal display that can be achieved with Unreal Engine and its built-in plugins. Unreal Engine also provides a larger option for non-video game applications after the launch of the enterprise community.   
+\end{singlespace}
+
+\section{3D Visualization}
 \subsection{Overview}
 \begin{singlespace}
-	There are two more sections to this SRS document. Section 2 is a detailed description of the ADVS including the it's functionalities, constraints, and the intended user of this software. Section 3 is a user story describing what the users are capable of doing with the ADVS.
+For the next piece, we will be examining different options that can be used to display our program in its 3D application. 
 \end{singlespace}
 
-\section{Overall Description}
-\subsection{Product perspective}
+\subsection{Criteria}
 \begin{singlespace}
-	The user will interface with the ADVS through a laptop or desktop with Linux or Windows operating system. The software is not self-contained, as the user will need to provide their own GEDCOM file for the software to display. The software will parse the input GEDCOM file to obtain the data and run an algorithm to generate and display a graph that is clear and easy to read.
+The application needs to be able to display all the member’s required information and to clearly represent the relationship between members. The engine should be easy to manipulate so that the information is neat and not cluttered, even when the user is shifting the tree. The user should be able to look around the tree to examine neighboring nodes.  
 \end{singlespace}
 
-\subsection{Product functions}
-\begin{itemize}
-\item Full Tree View: Display the full family tree contained within the GEDCOM file. The tree should never have nodes that overlap with each other.
-\item Direct Lineage View: Display people who is directly related to a select person, including the person themselves. The application will specifically highlight the person, their birth parents, their grandparents, and so on.
-\item Find Common Ancestor: Select two people and highlight their common ancestor on the tree. If an ancestor is not found, the application will inform the user that no such ancestor exists.
-\item VR Compatibility: Detect if a VR headset is plugged in, and generate a new view if the user enables. The VR view is capable of performing every function that the non-VR view is capable of performing.
-\item VR Controller Compatibility: Use VR controller to rotate, and zoom in and out of the tree. The VR controller should only work if VR mode is enabled.
-
-\end{itemize}
-
-\subsection{User characteristics}
+\subsection{Potential Choices}
 \begin{singlespace}
-	A standard user should not need to have great technical knowledge in order to successfully use the application. They should be able to read and understand basic computer terminology, such as clicking, and moving the mouse, and should be able to read and follow simple instructions. It is assumed that this is their first GEDCOM reader, so they will not have any previous experience with using a different viewer.
+The potential choices for displaying our project are the Unreal Engine 4, Unity 3, and Lumberyard.   
 \end{singlespace}
 
-\subsection{Constraints}
-\begin{itemize}
-\item We are required to create a 3D view of the family tree. The 3D view can only be accessed with the VR devices. 
-\item The software only works on computers with Linux and Windows operating systems. Compatibility with OSX and other operating systems is not prioritized. The application must be simple to use
-\item The application must not be aesthetically displeasing
-\item The application must run in a reasonable amount of time
-\item The application must be capable of reading proper GEDCOM files.
-\end{itemize}
-
-\subsection{Assumptions and dependencies}
+\subsubsection{Unreal Engine}
 \begin{singlespace}
-We are dependent on pre-existing VR frameworks in order to implement VR functionality. If not, we will not be able to create our own, as this would be too complicated and time consuming. The VR framework should be capable of switching to and from VR mode and Desktop Application mode.
+The Unreal Engine is a popular VR engines and is known for its ease of use. A VR camera setup is included in the software which allows the developer to initialize camera view origins \cite{UE4 EG}. Depending on how the user should be oriented when using the program, the developer can adjust the initial camera setting. Unreal has its own VR measure units that can be converted to real-world units, so size is more manageable for the VR experience \cite{UE4 EG}. There are many open-source data and an abundant supply of tutorial videos that can be found throughout the community for help.   
+
 \end{singlespace}
 
-\section{Specific requirements}
-\begin{itemize}
-\item Users are able to of opening and displaying GEDCOM files. The full family tree view will automatically display after opening the GEDCOM file.
-\item Users are able to select a person and toggle direct lineage view button to narrow down the tree to display only people directly related to the selected person.
-\item Users are able to select two people and the software will find and highlight the common ancestor of these two people.
-\item Users are able to switch to VR Mode. User will be able to view the tree in 3D after switching to VR Mode, and they are able to zoom in and out with the VR controllers
-\item The majority of users, as discovered via user study, are capable of intuiting how to use the application, or intuiting how to receive assistance for using the application.
-\item The majority of users, as discovered via user study, find the application to look at worse unobtrusive.
-\item If a user attempts to read an invalid GEDCOM file, the application must inform the user that the file is invalid, but not crash.
-The application must run in a reasonable amount of time, as discovered via user study.
-\item If the user attempts to search for the common ancestor of a person and their parent, the application will return their grandparents.
-\item If the user attempts to search for the the common ancestor of a person and their spouse, and the spouse is not related to the family in any way, the application will inform the user that no such ancestor exists.
-\end{itemize}
-
-\subsection{GANTT chart}
+\subsubsection{Unity}
 \begin{singlespace}
-The following is a GANTT chart that approximately shows the planned development cycle of the application.
-\newline
-\newline
-\includegraphics[scale=0.8]{GANTT}
+The Unity game engine is another widely popular software for VR. However, camera movement is also very limited \cite{unity doc}. Unity doesn’t allow for direct VR camera change, for this to happen a change in position and rotation must be applied to a different object that is the parent of the object. The software also comes with a large option of built-in image effects including Colorful, Chromatica, Amplify Color, etc. Unity focuses on pixel ratio over lens correction, ultimately trading in performance for sharpness \cite{unity3d}. 3D objects also have specific graphic settings that also involves texture and color. 
+ 
 \end{singlespace}
+
+\subsubsection{Lumberyard}
+\begin{singlespace}
+The Lumberyard engine is a newer engine that was released by Amazon, that is still in its Beta version. High graphics and realistic visuals are highly supported by this software. Lumberyard utilizes gems to enable VR view \cite{lumberyard}. Flow Graph nodes are used to control and add properties to the entities being used in the program \cite{lumberyard doc}. The nodes can be used camera angle, image display, and controlling entities.    
+\end{singlespace}
+
+\subsection{Discussion}
+\begin{singlespace}
+All three engines can display 3D objects and utilize cameras. Unreal Engine is much more user-friendly with camera orientation. Lumberyard would be the next easiest to use while Unity is the more obvious limited one. Lumberyard and Unity provide a lot of graphic features that can be used to edit entities. Unity even sacrifices performance to be able to enhance sharpness of imagery. . 
+\end{singlespace}
+
+\subsection{Conclusion}
+\begin{singlespace}
+As a team, we have chosen to use Unreal Engine because its camera motion view has more options unlike the Unity engine which is much more limited. Lumberyard and Unity are ideal for high quality and complex graphics. Unity also consists of low performance which is something we don’t want to sacrifice because we are using simple images.  
+\end{singlespace}
+
+\section{VR API}
+\subsection{Overview}
+\begin{singlespace}
+For the final piece, we will be examining different options that can be used to configure the interface between our application and its controls.  
+\end{singlespace}
+
+\subsection{Criteria}
+\begin{singlespace}
+The API needs to be compatible with VR software and hardware. It should be capable of handling motion controllers to drag objects around in VR. Basic button configuration should be easy to configure.   
+\end{singlespace}
+
+\subsection{Potential Choices}
+\begin{singlespace}
+The potential choices for displaying our project are the Unreal Engine 4, Unity Engine 3, and OpenXR.  
+\end{singlespace}
+
+\subsubsection{Unreal Engine}
+\begin{singlespace}
+The Unreal Engine is one of the most popular VR engines and is known for its ease of use. It supports devices and contains built-in plugins to accommodate features \cite{looman}. The engine is compatible with a large amount of hardware including the Oculus Rift, PlayStation VR, Steam VR, Google VR, etc. Motion remote controllers’ setup is built into the software that allows for simple buttons and actions configuration. Events are set up through a blueprint interface displayed in a flowchart-fashion, the structure is simple and user-friendly while still having the ability to perform advance tasks \cite{UE4 EG}. Once the blueprint events are set up, there is a simulation feature to run tests.  
+
+\end{singlespace}
+
+\subsubsection{Unity}
+\begin{singlespace}
+The Unity game engine is another widely popular software for VR. It is compatible with the following hardware: Oculus Rift, PlayStation VR, Steam VR, Google VR, Gear VR, and Microsoft HaloLens. There are built-in APIs variables that can be used to detect the device being in use \cite{unity3d doc}. In addition, there are other script features available for API specifically. Images in VR are being provided twice, one for each eye, resulting in a performance cost \cite{unity3d}. 
+ 
+\end{singlespace}
+
+\subsubsection{OpenXR}
+\begin{singlespace}
+OpenXR is a cross-platform VR API that connects a VR application from any VR system to access any VR device. This software eliminates the limited access between application and devices. The API is split into two levels of interface: application and device layer \cite{khronos}. The application layer takes in events and outputs images to display. The device layer takes in controller state and outputs movement. These layers of translation are used to make the VR setup more uniform and available across multiple platforms.   
+\end{singlespace}
+
+\subsection{Discussion}
+\begin{singlespace}
+Unreal Engine, Unity and OpenXR support VR and motion remote controllers. In addition, both Unreal Engine and Unity can support a desktop to VR mode. Unreal Engine’s blueprint features allow for easier configuration by implementing flowcharts, and utilizing drag and drop actions. Unlike Unity which implements the configuration with code, because Unity is heavily code-based. OpenXR is an excellent option for integrating cross-platforms. 
+\end{singlespace}
+
+\subsection{Conclusion}
+\begin{singlespace}
+As a team, we have chosen to use Unreal Engine because it provides a simpler method to initialize the motion remote controllers. This feature is important to us because we want to incorporate these controllers into our program. Although OpenXR would be useful if we had integrated separate applications and devices, we are planning on keeping the hardware and application interaction simple. Unity also has a performance cost to incorporate VR images, which isn’t favored for our application so Unreal Engine became the better decision.   
+\end{singlespace}
+
+\newpage
+
+\begin{thebibliography}{9}
+
+\bibitem{UE4 forum} 
+DreaM\&\Mer,
+\\\texttt{https://answers.unrealengine.com/questions/262396/switch-on-vr-mode-in-runtime.html}
+
+\bibitem{UE4 EG}
+Epic Games Inc,
+\\\texttt{https://docs.unrealengine.com/latest/INT/Platforms/VR/}
+
+\bibitem{UE4E QA}
+Ronnie Dungan,
+\\\texttt{https://www.seriousgamesindustry.com/wp-content/cache/wp-rocket/seriousgameindustry.com/en/qa-simon-jones-director-unreal-engine-enterprise/index.html_gzip}
+
+\bibitem{UE4E GFX}
+Randall Newton,
+\\\texttt{http://gfxspeak.com/2017/08/22/reveals-enterprise-visualization/}
+
+\bibitem{unity3d}
+Unity Technologies,
+\\\texttt{https://unity3d.com/learn/tutorials/topics/virtual-reality/vr-overview}
+
+\bibitem{unity AEC}
+Unity Technolofies,
+\\\texttt{https://store.unity.com/industries/aec}
+
+\bibitem{lumberyard}
+Amazon Web Services Inc,
+\\\texttt{https://aws.amazon.com/lumberyard/details/}
+
+\bibitem{unity doc}
+Unity Technologies,
+\\\texttt{https://docs.unity3d.com/Manual/VROverview.html}
+
+\bibitem{lumberyard doc}
+Amazon Web Services Inc,
+\\\texttt{http://docs.aws.amazon.com/lumberyard/latest/userguide/virtual-reality.html}
+
+\bibitem{looman}
+Tom Looman
+\\\texttt{http://www.tomlooman.com/getting-started-with-vr/}
+
+\bibitem{khronos}
+The Khronos Group Inc,
+\\\texttt{https://www.khronos.org/openxr}
+
+\end{thebibliography}
 
 %\section{Appendixes}
 %\index{a}
