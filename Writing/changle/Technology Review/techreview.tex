@@ -94,20 +94,20 @@ Criteria that is used in the event of equally suited tools will simply be to sel
 It should be noted that the primary component to fulfilling the usability and aesthetics component of the UI is more likely to be the result of design rather then the tool used to develop it, however, the selected tool is an important component for ease of development.
 \subsection{Potential Choices}
 \subsubsection{JUCE}
-JUCE is a partially open-source library that uses OpenGL to generate a user interface. Since it runs on OpenGL, it is compatible with both Windows and Linux, and as an added bonus it is also compatible with Mac. Another feature of JUCE is that it is also compatible with mobile devices. JUCE is free for personal use, though a license is required for larger teams and larger applications. One notable source of JUCE's users are creators of music creation tools, such as FL Studios. There are also various tutorials for using JUCE available on its website. [1]
+JUCE is a partially open-source library that uses OpenGL to generate a user interface. Since it runs on OpenGL, it is compatible with both Windows and Linux, and as an added bonus it is also compatible with Mac  \cite{1}. Another feature of JUCE is that it is also compatible with mobile devices \cite{1}. JUCE is free for personal use, though a license is required for larger teams and larger applications \cite{1}. One notable source of JUCE's users are creators of music creation tools, such as FL Studios \cite{1}. There are also various tutorials for using JUCE available on its website \cite{1}.
 \\
 \\
-A helpful inclusion with JUCE is the Projucer, which is an application that helps with developing UI. By allowing the developer to manipulate the GUI by hand, be it resizing or changing the colors [3]. It can also allow HTML-like development, except that it allows C++. Projucer is also compatible with various IDEs, such as Visual Studios. [1]
+A helpful inclusion with JUCE is the Projucer, which is an application that helps with developing UI \cite{1}. By allowing the developer to manipulate the GUI by hand, be it resizing or changing the colors \cite{1}. It can also allow HTML-like development, except that it uses C++ \cite{1}. Projucer is also compatible with various IDEs, such as Visual Studios \cite{1}.
 \\
 \\
-Another aspect of JUCE is that it supports plug-in development, especially for VST, AU and AAX. It is frequently used for various plug-ins for various Digital Audio Workstation. Additionally, JUCE is compatible with mobile devices, both Android and iOS [4]. An aspect that is less direct but helpful and notable nonetheless is that there is a forum for developers, in case assistance is needed from experienced developers. [1]
+Another aspect of JUCE is that it supports plug-in development, especially for VST, AU and AAX \cite{1}. It is frequently used for various plug-ins for various Digital Audio Workstation \cite{1}. Additionally, JUCE is compatible with mobile devices, both Android and iOS \cite{1}. An aspect that is less direct but helpful and notable nonetheless is that there is a forum for developers, in case assistance is needed from experienced developers \cite{1}.
 
 \subsubsection{UMG UI Designer}
-UMG, short for Unreal Motion Graphics User Interface Designer, is a UI development tool for Unreal Engine [5]. It is a visual editor that allows for the creation of menus, and other interface graphics [5]. UMG is bundled and designed for use with Unreal Engine, so there is little need for an external UI library if Unreal is selected to be the exclusive visual development format. UMG has an extensive tutorial available online, and it features an online forum to request assistance. [2]
+UMG, short for Unreal Motion Graphics User Interface Designer, is a UI development tool for Unreal Engine \cite{2}. It is a visual editor that allows for the creation of menus, and other interface graphics \cite{2}. UMG is bundled and designed for use with Unreal Engine, so there is little need for an external UI library if Unreal is selected to be the exclusive visual development format \cite{2}. UMG has an extensive tutorial available online, and it features an online forum to request assistance \cite{2}.
 
 
 \subsubsection{Unity}
-Unity includes a built-in UI creator, which features an extensive tutorial and forums to consult if needed. There is one large drawback to the Unity UI, which is that it is very resource intensive, to the extent that it runs twice as often as the default Update() function from Unity, which heavily increases the per-frame update time. The UI  includes the ability to add most features that are requested from a UI, however, such as built-in buttons, different modes of interaction, and accuracy. The Unity UI creator is also a visual editor, for ease of use, both developing and previewing the finished result. [3][4]
+Unity includes a built-in UI creator, which features an extensive tutorial and forums to consult if needed \cite{3}. There is one large drawback to the Unity UI, which is that it is very resource intensive, to the extent that it runs twice as often as the default Update() function from Unity, which heavily increases the per-frame update time \cite{4}. The UI includes the ability to add most features that are requested from a UI, however, such as built-in buttons, different modes of interaction, and accuracy \cite{3}. The Unity UI creator is also a visual editor, for ease of use, both developing and previewing the finished result \cite{3}.
 
 \subsection{Discussion}
 UMG is built for the Unreal Engine, and the Unity UI tools are built for Unity. Both feature an extensive array of tools for their respective game engines, but only Unity's is specifically noted to cause performance issues, though that may not be a large concern, given the data viewer is unlikely to be extremely performance intensive. 
@@ -128,10 +128,10 @@ The display algorithm is likely one of the most difficult, yet important feature
 For the purposes of this application, excessive complications of family trees will be ignored, such as incest, adoption, or divorce. The most important aspect of the algorithm is that it must display everything properly, with as few intersections as possible, with ideally no intersections. Compatibility is also an important aspect, as ideally the algorithm should be compatible with how the data is read and stored, though it is possible to slightly modify either the chosen data structure or the algorithm to fit one another, though that may be difficult without fulling understanding every part of the algorithm. A final criteria for the chosen algorithm is that it should also be easy to implement.
 \subsection{Potential Choices}
 \subsubsection{Ahnentafel}
-Ahnentafel, German for ancestry table, is a system for displaying ancestry data using numbers. It starts from a child and working it's way up. The Ahnentafel is used for a lot of family trees, with at least one set up for the Bush family, and sees plenty of usage elsewhere, including one made for King Henry III, which indicates the system has been tested extensively. Ahnentafels always start with exactly one child, and can feature potentially thousands of ancestors. The system also numbers ancestors, so that a given ancestor can be found via mathematics. The Ahnentafel is not a premade program, however, so it must be implemented and there are no active forums to assist with implementation, though it is possible to find a prermade algorithm to adapt. It is possible to use the Ahnentafel system, and while displaying nodes, add a quantity of space between each node, so that each node is displayed. [5][6]
+Ahnentafel, German for ancestor table, is a system for displaying ancestry data using numbers. It starts from a child and working its way up \cite{5}. The Ahnentafel is used for a lot of family trees, with at least one set up for the Bush family \cite{5}, and sees plenty of usage elsewhere, including one made for King Henry III \cite{6}, which indicates the system has been tested extensively. Ahnentafels always start with exactly one child, and can feature potentially thousands of ancestors \cite{5}. The system also numbers ancestors, so that a given ancestor can be found via mathematics \cite{5}. The Ahnentafel is not a pre-made program, however, so it must be implemented and there are no active forums to assist with implementation, though it is possible to find a pre-made algorithm to adapt. It is possible to use the Ahnentafel system, and while displaying nodes, add a quantity of space between each node, so that each node is displayed.
 
 \subsubsection{D3 Hierarchy}
-D3 Hierarchy is a JavaScript library that takes documents that are in hierarchical form and visualizes them. The D3 library also includes a method to automatically convert certain formats, such as CSV files, to a compatible hierarchical format. D3 has multiple display forms, such as tree and cluster views, so it can display the data in multiple ways. Additionally, the library has built-in functions to allow peeking at other nodes relative to a given node, which would allow for traversing through a graph. [10] The library was last updated six months ago, with the developer last appearing in the issues three months ago, so support is likely to be somewhat sparse. [7]
+D3 Hierarchy is a JavaScript library that takes documents that are in hierarchical form and visualizes them \cite{7}. The D3 library also includes a method to automatically convert certain formats, such as CSV files, to a compatible hierarchical format \cite{7}. D3 has multiple display forms, such as tree and cluster views, so it can display the data in multiple ways \cite{7}. Additionally, the library has built-in functions to allow peeking at other nodes relative to a given node, which would allow for traversing through a graph  \cite{7}. The library was last updated six months ago, with the developer last appearing in the issues three months ago, so support is likely to be somewhat sparse \cite{7}.
 
 
 \subsubsection{Create an Algorithm}
@@ -141,7 +141,7 @@ Creating an algorithm to display every node allows maximum flexibility, and woul
 The easiest algorithm to implement would be the D3, which could be treated as a black box. The main problem when compared to the other two options is that D3 is a JavaScript library, so a JavaScript converter would be necessary. Additionally, depending on the visualization tool, only the algorithm will be necessary.
 \\
 \\
-The Ahnentafel system is fairly simple to implement, being a binary tree, but it isn't completely sufficient for the application, as it only works from one child. While it would be possible to combine all children for the root generation, going further up would excessively complicate matters, especially if the GEDCOM contains multiple families linked by marriage.
+The Ahnentafel system is fairly simple to implement, being a binary tree, but it is not completely sufficient for the application, as it only works from one child. While it would be possible to combine all children for the root generation, going further up would excessively complicate matters, especially if the GEDCOM contains multiple families linked by marriage.
 \\
 \\
 Creating an algorithm specifically for this application allows the algorithm to be fully compatible, capable of taking inputs as is and joining multiple families without overlapping. The glaring flaw, however, is that it must be designed, which is likely to take a large amount of time, and even then, it is likely to miss edge cases. It is likely to have roots in other systems, like the Ahnentafel, however, to hasten the design process.
@@ -153,7 +153,7 @@ Implementing the Ahnentafel system is unlikely to be the optimal choice, due to 
 Therefore, the most likely tool to use is the D3 library. While it may require implementing JavaScript as a scripting language to the application, at least for reading and converting the files, it is by far the easiest method of implementation, and it generates a well structured visualization, which can be converted back to data for the visualization engine to render.
 
 \section{Overview}
-The UI, as previously discussed, is an important aspect of the program. The UI in VR should behave identical to the UI in application mode, with the exception that it's accessibility and user-friendliness is adapted for VR hardware. It should be noted that, while designing a UI for the application view is relatively straightforward, VR view is newer and less standardized, so the user is expected to be much less aware of how to interact with the application using their VR hardware.
+The UI, as previously discussed, is an important aspect of the program. The UI in VR should behave identical to the UI in application mode, with the exception that its accessibility and user-friendliness is adapted for VR hardware. It should be noted that, while designing a UI for the application view is relatively straightforward, VR view is newer and less standardized, so the user is expected to be much less aware of how to interact with the application using their VR hardware.
 
 \subsection{Criteria}
 The criteria for the VR UI tool remains the same as for application view. It must be capable of creating a UI intuitive, easy to use, and aesthetically pleasing. It must be compatible with the VR framework, which is most likely a game engine, that will be selected, and it must be capable of producing intuitive designs.
@@ -162,48 +162,71 @@ The criteria for the VR UI tool remains the same as for application view. It mus
 If all tools are well suited for the task, then a tiebreaker criteria will be ease of use.
 \subsection{Potential Choices}
 \subsubsection{UMG UI Designer}
-UMG UI Designer, short for Unreal Motion Graphic User Interface Designer, is the built in UI tool for Unreal Engine. While UMG is currently the primary UI tool for development with Unreal Engine, and as such is the most compatible with Unreal Engine. UMG doesn't fully support VR, but does have an experimental method to create one via importing a pre-existing UI in to a 3D widget [12], which would make it a very simplistic to convert a normal UI to a VR UI. The biggest flaw to this, however, is that since it's an in-game object, it doesn't necessarily follow the player. There is also a large community that exists to assist developers with various tasks using the Unreal Engine. [2][8]
+UMG UI Designer, short for Unreal Motion Graphic User Interface Designer, is the built in UI tool for Unreal Engine \cite{2}. While UMG is currently the primary UI tool for development with Unreal Engine, and as such is the most compatible with Unreal Engine. UMG does not fully support VR, but does have an experimental method to create one via importing a pre-existing UI in to a 3D widget, which would make it a very simplistic to convert a normal UI to a VR UI \cite{8}. The biggest flaw to this, however, is that since it is an in-game object, it does not necessarily follow the player \cite{8}. There is also a large community that exists to assist developers with various tasks using the Unreal Engine \cite{2}.
 
 \subsubsection{Unity}
-Unity has a built in set of tools for UI development. It features built in VR utilities, including both diegetic, when the UI is in a fixed location that the user can view. The Unity UI tools are the most compatible with the Unity Game Engine, as they are built for Unity. The UI is capable of being moved closer and further away from the user as needed, to simulate the size increasing or decreasing. Unity has a large tutorial for integrating VR, including the interface, and a forum to post questions as needed. Additionally, Unity has sample assets to show how a finished UI should look like. [9] 
+Unity has a built in set of tools for UI development. It features built in VR utilities, including both diegetic, when the UI is in a fixed location that the user can view. The Unity UI tools are the most compatible with the Unity Game Engine, as they are built for Unity. The UI is capable of being moved closer and further away from the user as needed, to simulate the size increasing or decreasing \cite{9}. Unity has a large tutorial for integrating VR, including the interface, and a forum to post questions as needed \cite{9}. Additionally, Unity has sample assets to show how a finished UI should look like \cite{9}. 
 
 
 \subsubsection{Hover UI}
-Hover UI is a tool for developing a UI with Unity. It is designed to be simple to use but beautiful and dynamic. It uses a prefab that allows developers to add the UI, then modify it with the options that need to be added. Hover UI is designed to work with VR Controllers, so it is very compatible with the hardware the application needs. The possible modules for Hover UI includes an on-screen keyboard, and a menu that is attached to a controller. There is little support for Hover UI on its GitHub, and it may be abandoned, however, as its last update was eight months ago and though its developer has been active three months ago. [10]
+Hover UI is a tool for developing a UI with Unity \cite{10}. It is designed to be simple to use yet produce "beautiful and dynamic" UI \cite{10}. It uses a prefab, which is a built in Unity objct, that allows developers to add the UI, then modify it with the options that need to be added \cite{10}. Hover UI is designed to work with VR Controllers \cite{10}, so it is very compatible with the hardware the application needs. The possible modules for Hover UI includes an on-screen keyboard, and a menu that is attached to a controller \cite{10}. There is little support for Hover UI on its GitHub, and it may be abandoned, however, as its last update was eight months ago and though its developer has been active three months ago \cite{10}. 
 
 \subsection{Discussion}
-UMG UI is most compatible with Unreal Engine, being developed for it, however, it is by far the least effective, as it isn't designed specifically for VR, and is incapable of non-diegetic views. A major benefit is that it is capable of easily converting the UI from 2D to 3D, with minimal effort.
+UMG UI is most compatible with Unreal Engine, being developed for it, however, it is by far the least effective, as it is not designed specifically for VR, and is incapable of non-diegetic views. A major benefit is that it is capable of easily converting the UI from 2D to 3D, with minimal effort.
 
 Unity is, by comparison, significantly more powerful for VR UI, as it was designed to be capable. It can do mostly everything that the 2D view can do, and thus can easily be converted from 2D to 3D, though it cannot do non-diegetic views, on the grounds that to do so would be difficult to focus on.
 
 Hover UI is a Unity plugin, so it is also compatible with Unity. It allows menus from VR Controllers, which make it a very helpful place to store the menu, and allows a good use for the rest of the buttons on the VR Controller. However, due to the fact it has not been updated in a while, there may be compatibility problems in the future if Unity receives a major update.
 
 \subsection{Conclusion}
-The selection of which tool to use for the VR UI is heavily dependent on what visualization tool is selected. It is almost certain that a game engine with prebuilt VR features would be used, thus, Unreal Engine or Unity Engine. If Unreal Engine is selected, then the UMG UI is likely to be the best selection, as it is already fully compatible.
-If the Unity Engine is selected, Unity's built in UI tools should be sufficient, as Unity allows developers to bind buttons to do certain things, for instance, opening a menu. As there are few interactions, the advanced tools of Hover UI are not necessary, thus it is more worthwhile to secure the future proofing of the built in Unity UI tools. [11]
+The selection of which tool to use for the VR UI is heavily dependent on what visualization tool is selected. It is almost certain that a game engine with prebuilt VR features would be used, thus, Unreal Engine or Unity Engine. If Unreal Engine is selected, then the UMG UI is likely to be the best selection, as it is already fully compatible \cite{2}.
+If the Unity Engine is selected, Unity's built in UI tools should be sufficient, as Unity allows developers to bind buttons to do certain things, for instance, opening a menu \cite{3}. As there are few interactions, the advanced tools of Hover UI are not necessary, thus it is more worthwhile to secure the future proofing of the built in Unity UI tools.
 
 \newpage
-\section{References}
-[1] “Introducing the MAQ,” JUCE. [Online]. Available: https://juce.com/. [Accessed: 21-Nov-2017]. 
-\newline
-[2] “UMG UI Designer,” Unreal Engine. [Online]. Available: https://docs.unrealengine.com/latest/INT/Engine/UMG/. [Accessed: 21-Nov-2017]. 
-\newline
-[3] “UI,” Unity - Manual: UI. [Online]. Available: https://docs.unity3d.com/Manual/UISystem.html. [Accessed: 21-Nov-2017].
-\newline
-[4] bigkahuna, “UI Design Tool Pros vs. Cons: UnityGUI, GuiTextures, 3D Mesh, or 3rd party tools?,” Unity Community, 07-Feb-2011. [Online]. Available: https://forum.unity.com/threads/ui-design-tool-pros-vs-cons-unitygui-guitextures-3d-mesh-or-3rd-party-tools.76937/. [Accessed: 21-Nov-2017].
-\newline
-[5] D. Eastman, Ahnentafel Explained, 16-Oct-2002. [Online]. Available:\\ http://freepages.genealogy.rootsweb.ancestry.com/~jcat2/ahnentafel.html. [Accessed: 21-Nov-2017].
-\newline
-[6] “2010-04-23 Ahnentafel,” Ahnentafel. [Online]. Available: https://www.tamurajones.net/Ahnentafel.xhtml. [Accessed: 21-Nov-2017].
-\newline
-[7] d3, “d3/d3-hierarchy,” GitHub, 09-Jun-2017. [Online]. Available: https://github.com/d3/d3-hierarchy. [Accessed: 21-Nov-2017].
-\newline
-[8] motorsep, BenWeber, NobleSpoon, and pixelvspixel, “Tutorials on UMG UI in VR ?,” Tutorials on UMG UI in VR ? - Unreal Engine Forums, 19-Sep-2015. [Online]. Available: https://forums.unrealengine.com/development-discussion/vr-ar-development/56432-tutorials-on-umg-ui-in-vr. [Accessed: 21-Nov-2017].
-\newline
-[9] “Virtual Reality,” Unity. [Online]. Available: https://unity3d.com/learn/tutorials/s/virtual-reality. [Accessed: 21-Nov-2017].
-\newline
-[10] Aestheticinteractive, “aestheticinteractive/Hover-UI-Kit,” GitHub. [Online]. Available:\\ https://github.com/aestheticinteractive/Hover-UI-Kit/wiki. [Accessed: 21-Nov-2017].
-\newline
-[11] “Input for OpenVR controllers,” Unity - Manual: Input for OpenVR controllers. [Online]. Available: \\ https://docs.unity3d.com/Manual/OpenVRControllers.html. [Accessed: 21-Nov-2017]. 	
+\begin{thebibliography}{9}
+\bibitem{1}
+ROLI Ltd,
+\\\texttt{https://juce.com/}
 
+\bibitem{2}
+Epic Games Inc,
+\\\texttt{https://docs.unrealengine.com/latest/INT/Engine/UMG/}
+
+\bibitem{3}
+Unity Technologies,
+\\\texttt{https://docs.unity3d.com/Manual/UISystem.html}
+
+\bibitem{4}
+Unity Technologies,
+\\\texttt{https://forum.unity.com/threads/ui-design-tool-pros-vs-cons-unitygui-guitextures-3d-mesh-or-3rd-party-tools.76937/}
+
+\bibitem{5}
+D. Eastman,
+\\\texttt{http://freepages.genealogy.rootsweb.ancestry.com/~jcat2/ahnentafel.html}
+
+\bibitem{6}
+Tamura Jones,
+\\\texttt{https://www.tamurajones.net/Ahnentafel.xhtml}
+
+\bibitem{7}
+Bostock, Mike,
+\\\texttt{https://github.com/d3/d3-hierarchy}
+
+\bibitem{8}
+Epic Games Inc,
+\\\texttt{https://forums.unrealengine.com/development-discussion/vr-ar-development/56432-tutorials-on-umg-ui-in-vr}
+
+\bibitem{9}
+Unity Technologies,
+\\\texttt{https://unity3d.com/learn/tutorials/s/virtual-reality}
+
+\bibitem{10}
+Kinstner, Zach,
+\\\texttt{https://github.com/aestheticinteractive/Hover-UI-Kit/wiki}
+
+\bibitem{11}
+Unity Technologies,
+\\\texttt{https://docs.unity3d.com/Manual/OpenVRControllers.html}
+
+\end{thebibliography}
 \end{document}
