@@ -78,7 +78,130 @@
 %\clearpage
 
 % 8. now you write!
+\section{Introduction}
+The objective of our project is to develop a software to generate the family tree with different views from a GEDCOM file. The software also has the functionality of finding the common ancestor between two people. Our team decided to split the project into nine components including the parser, database, data structure, 2D visualization, 3D visualization, VR hardware, 2D UI, 3D UI, and display algorithm. I will be reviewing tools for the parser, database, and data structure. The parser is used to capture data; we need to be able to determine the pieces of information we need in the GEDCOM file and capture the information. The database is used to store the data before we use it because we don't want waste time to repeat the capturing process. The data structure is used to make access to data easier.
 
+\section{Parser}
+\subsection{Overview}
+\begin{singlespace}
+The GEDCOM file given contains a lot of information and most of the information isn't needed for our project. The format of the GEDCOM file is complicated, but there are patterns within the file. We will need to find the pattern in the information and develop an algorithm to capture the data that we need. Although the capturing of the data can be performed by a tool call parser, we also have the option of implementing our own parser.
+\end{singlespace}
+
+\subsection{Criteria}
+\begin{singlespace}
+The parser needs to capture only the information we needed and that is the names and their relationship with others. Another criteria for the parser is performance. We need this process to be done at a fast speed because everything else happens after we captured the data. The user will have to wait during this process so having them wait too long is not good.
+\end{singlespace}
+
+\subsection{Potential choices}
+
+\subsubsection{Nail}
+\begin{singlespace}
+Nail is a parser that is heavily focused on security. It is very secure compared to other parser and this will reduce the effort needed for programmers[1]. Nail can use the protocol grammar to define the data format and the internal object model of the data. Therefore, it can identify the different, unique objects in the data and information related to the object[1]. Nail use other existing parsers to eliminate the notion of semantic actions, so it hides what the data is to be captured from the file with the cost of its performance. There's an authoritative DNS server that can outperform the BIND9 DNS server[1]. This tool is free to share and adapt, but it can't be use for commercial purposes. 
+\end{singlespace}
+
+\subsubsection{Log parser}
+\begin{singlespace}
+Log parser is a powerful tool that can perform universal query access to text-based data. These text-based data files include XML files, CSV files, and even file such as event log for your windows operating system[2]. This tool accepts many input formats, and it is possible to create your own custom input format and use it with the log parser engine. The results of the query can also be custom-formatted in text-based output[2].
+\end{singlespace}
+ 
+
+\subsubsection{Creating our own parser}
+\begin{singlespace}
+We have the option of not using existing parser and implement our own parser. By analyzing the GEDCOM file and finding the pattern of the data. We could use this pattern and build an algorithm that captures the needed data. The implementation of the parser shouldn't be difficult after we analyze the data and find the pattern.
+\end{singlespace}
+
+\subsection{Compare and Contrast}
+\begin{singlespace}
+Creating our own parser will cost us time and the performance depends on the language that we are using and the algorithm. The best part about creating our own parser is to use the data right away after capturing it, so it doesn't have to output to a file first, and then access the file for data. Nail performs slower than log parser due capturing the data in a more secure method, but our software doesn't have to be done over the Internet so security isn't something we should worry about. Log Parser is a great tool and it allows us to customize input and output.
+\end{singlespace}
+
+\subsection{Decision}
+\begin{singlespace}
+I would choose to create our own parser because the existing parsers might perform some process that isn't relevant and takes more time to capture the data. Nail heavily focus on security but security shouldn't be a problem for our project. Log Parser has these functionalities that allow users to customize input and output and I think it would do unnecessary processes that would lower the performance. Therefore, we should implement our own parser which is simpler and we have more control over it.
+\end{singlespace}
+
+
+\section{Database}
+\subsection{Overview}
+\begin{singlespace}
+The database is used to store the data. We need the data to be stored so we can use it whenever we need and don't have to go back to the GEDCOM file every time. Going through and parsing the GEDCOM file will take time and we don't know how long it would take, but we don't want to spend much time on this process. 
+\end{singlespace}
+
+\subsection{Criteria}
+\begin{singlespace}
+The criteria are to store in a correct manner to ease the access and use of the data for our software. The data store has to be able to depict the relationships between each person in our data. It should also to able to perform the find common ancestor functionality.
+\end{singlespace}
+
+\subsection{Potential choices}
+
+
+\subsubsection{MySQL}
+\begin{singlespace}
+MySQL is a relational database management system[3]. The tool is based on the relational model of data which depicts the relationship between the entities in the data. The data is stored in rows and each with a unique id. The columns will be categories of information about this unique data. In our case, each person will be linked to a unique id and the columns indicate the relationship between the people on our data. For example, we could have a column name "Mother of this person", and inside that column is that person's mother's unique id. It can depict many relationships in just a row of data. It can perform query search for specific data in the database[4].
+\end{singlespace}
+
+\subsubsection{Neo4j}
+\begin{singlespace}
+Neo4j is a graph database. It stores every unique item as a node and the relationship between the nodes[5]. Each person's name will be a node and the relationship between people will be defined in the data. Neo4j takes its input from CSV files to create all the different nodes and relationships[5]. It is able to load up to 10 million nodes so it can deal with large data. This tool can perform queries to search the data that we need which will be useful for the find common ancestor function. It is a lot faster than MySQL due to its queries requiring 10 to 100 times less code[5]. Neo4j is the specialized tool for storing relational data and displaying it as graphs[5].
+\end{singlespace}
+ 
+
+\subsubsection{Not using a database}
+\begin{singlespace}
+Not using a database is also an acceptable option for our project. We could create our own way of storing the data locally and doesn't have to get into a database for accessing the data. 
+\end{singlespace}
+
+\subsection{Compare and Contrast}
+\begin{singlespace}
+Both the Neo4j and MySQL can depict the relational data. They can perform query search for specific data in the database. Neo4j will take inputs from CSV files which we can create but it will take us time to do so. MySQL is easier for inputting the data into the database. MySQL is able to use online but requires users to log in. Not using a database would be easy for storing the data, we just need to format the data and store it.
+\end{singlespace}
+
+\subsection{Decision}
+\begin{singlespace}
+I think it is best for us to create our own way of storing the data. The data can be easily stored, and we don't have to go through other means to store the data in a database. Storing the data in a database will cost time for manipulating the data and making it cope with the format for the database. There isn't a good reason for doing extra things and make the software function slower.  
+\end{singlespace}
+
+
+\section{Data Structure}
+\subsection{Overview}
+\begin{singlespace}
+The data structures are for making access to data more easily. There are many existing search algorithms and functions that could be used for the different data structures. 
+\end{singlespace}
+
+\subsection{Criteria}
+\begin{singlespace}
+The criteria are the data structure needs to make access easy. It also needs to be able to illustrate the different relationships between the people, including parents and children, husband and wife, ex-husband and ex-wife, etc. 
+\end{singlespace}
+
+\subsection{Potential choices}
+
+\subsubsection{Linked-List}
+\begin{singlespace}
+A linked list is a linear data structure, so items in the linked list are actually sequenced. We could implement this like a graph and make one person connect with multiple people. Linked list contains a data field to store data and a link field[6]. In the link field, we can create multiple links to make it into a graph. The links can be named differently in order to determine the relationships. The links are actually pointers pointing from current address to address the next item[6]. The address of items in this data structure is not sequential, that is why it uses links. The benefit of using this structure is that it is easy to add items to the linked-list. Also, there aren't limitations on the number of items to be in the linked-list, unlike arrays, you have to define its size[6].
+\end{singlespace}
+
+\subsubsection{Tree}
+\begin{singlespace}
+Tree is a type of nonlinear data structure. Every item in the tree is called a node. There is one distinguished node being the root of the tree[7]. The other nodes will have a parent node and child nodes. Every node can have a corresponding height and depth determining their place on the tree. Nodes that shared the same parent node are siblings[7]. The binary tree is well known to the programmers. It is a specialized tree that each parent node could only have up to two child nodes[7]. This won't be helpful for our project because people can have more than two children. The general tree is what we needed, but a problem we will have with this data structure is illustrated marital status. We could put the parents on one node, but this would make it more difficult to access the individual nodes/person[7].
+\end{singlespace}
+ 
+
+\subsubsection{Graph}
+\begin{singlespace}
+The graph is another type of nonlinear data structure[9]. The graph has two things to it and that is vertices and edges[9]. The vertices represent the objects and edges are the links between the objects. The edges don't only store the link between the two vertices, but it also can store an integer[8]. This integer has a variety of uses, it can be used as the distance between two locations if locations are the vertices of the graph, etc. We can use this integer to identify the relationships between the nodes.
+\end{singlespace}
+
+\subsection{Compare and Contrast}
+\begin{singlespace}
+The linked-list uses pointers so we need to change the address of the pointer in order to access the data. It is really a mess if we used linked-list in our project because it is very hard to access the data. The tree data structure has problems illustrating the marital status. If we put parents into one node, we would have to make do more effort in accessing the information from individual node/person. The graph is able to illustrate all the different relationships between people through the integer that can be stored in its edges. 
+\end{singlespace}
+
+\subsection{Decision}
+\begin{singlespace}
+I would choose graph because it is able to depict all the different kinds of relationships. The linked-list is also able to do the job, but it is very hard to get access to the data. The tree can have only one parent node, so we need to put the parents into one node in order to use this data structure. We will have to put more effort into accessing the node/data. Therefore, the data store in the graph is easier to access and it is able to depict all the relationships easier than other data structures.   
+\end{singlespace}
+
+\newpage
 
 \section{Introduction}
 The goal of this project is to take a GEDCOM file as an input and to display an organized ancestry tree as an output. 
@@ -323,129 +446,6 @@ Hover UI is a Unity plugin, so it is also compatible with Unity. It allows menus
 \subsection{Conclusion}
 The selection of which tool to use for the VR UI is heavily dependent on what visualization tool is selected. It is almost certain that a game engine with prebuilt VR features would be used, thus, Unreal Engine or Unity Engine. If Unreal Engine is selected, then the UMG UI is likely to be the best selection, as it is already fully compatible \cite{J2}.
 If the Unity Engine is selected, Unity's built in UI tools should be sufficient, as Unity allows developers to bind buttons to do certain things, for instance, opening a menu \cite{J3}. As there are few interactions, the advanced tools of Hover UI are not necessary, thus it is more worthwhile to secure the future proofing of the built in Unity UI tools.
-
-\section{Introduction}
-The objective of our project is to develop a software to generate the family tree with different views from a GEDCOM file. The software also has the functionality of finding the common ancestor between two people. Our team decided to split the project into nine components including the parser, database, data structure, 2D visualization, 3D visualization, VR hardware, 2D UI, 3D UI, and display algorithm. I will be reviewing tools for the parser, database, and data structure. The parser is used to capture data; we need to be able to determine the pieces of information we need in the GEDCOM file and capture the information. The database is used to store the data before we use it because we don't want waste time to repeat the capturing process. The data structure is used to make access to data easier.
-
-\section{Parser}
-\subsection{Overview}
-\begin{singlespace}
-The GEDCOM file given contains a lot of information and most of the information isn't needed for our project. The format of the GEDCOM file is complicated, but there are patterns within the file. We will need to find the pattern in the information and develop an algorithm to capture the data that we need. Although the capturing of the data can be performed by a tool call parser, we also have the option of implementing our own parser.
-\end{singlespace}
-
-\subsection{Criteria}
-\begin{singlespace}
-The parser needs to capture only the information we needed and that is the names and their relationship with others. Another criteria for the parser is performance. We need this process to be done at a fast speed because everything else happens after we captured the data. The user will have to wait during this process so having them wait too long is not good.
-\end{singlespace}
-
-\subsection{Potential choices}
-
-\subsubsection{Nail}
-\begin{singlespace}
-Nail is a parser that is heavily focused on security. It is very secure compared to other parser and this will reduce the effort needed for programmers[1]. Nail can use the protocol grammar to define the data format and the internal object model of the data. Therefore, it can identify the different, unique objects in the data and information related to the object[1]. Nail use other existing parsers to eliminate the notion of semantic actions, so it hides what the data is to be captured from the file with the cost of its performance. There's an authoritative DNS server that can outperform the BIND9 DNS server[1]. This tool is free to share and adapt, but it can't be use for commercial purposes. 
-\end{singlespace}
-
-\subsubsection{Log parser}
-\begin{singlespace}
-Log parser is a powerful tool that can perform universal query access to text-based data. These text-based data files include XML files, CSV files, and even file such as event log for your windows operating system[2]. This tool accepts many input formats, and it is possible to create your own custom input format and use it with the log parser engine. The results of the query can also be custom-formatted in text-based output[2].
-\end{singlespace}
- 
-
-\subsubsection{Creating our own parser}
-\begin{singlespace}
-We have the option of not using existing parser and implement our own parser. By analyzing the GEDCOM file and finding the pattern of the data. We could use this pattern and build an algorithm that captures the needed data. The implementation of the parser shouldn't be difficult after we analyze the data and find the pattern.
-\end{singlespace}
-
-\subsection{Compare and Contrast}
-\begin{singlespace}
-Creating our own parser will cost us time and the performance depends on the language that we are using and the algorithm. The best part about creating our own parser is to use the data right away after capturing it, so it doesn't have to output to a file first, and then access the file for data. Nail performs slower than log parser due capturing the data in a more secure method, but our software doesn't have to be done over the Internet so security isn't something we should worry about. Log Parser is a great tool and it allows us to customize input and output.
-\end{singlespace}
-
-\subsection{Decision}
-\begin{singlespace}
-I would choose to create our own parser because the existing parsers might perform some process that isn't relevant and takes more time to capture the data. Nail heavily focus on security but security shouldn't be a problem for our project. Log Parser has these functionalities that allow users to customize input and output and I think it would do unnecessary processes that would lower the performance. Therefore, we should implement our own parser which is simpler and we have more control over it.
-\end{singlespace}
-
-
-\section{Database}
-\subsection{Overview}
-\begin{singlespace}
-The database is used to store the data. We need the data to be stored so we can use it whenever we need and don't have to go back to the GEDCOM file every time. Going through and parsing the GEDCOM file will take time and we don't know how long it would take, but we don't want to spend much time on this process. 
-\end{singlespace}
-
-\subsection{Criteria}
-\begin{singlespace}
-The criteria are to store in a correct manner to ease the access and use of the data for our software. The data store has to be able to depict the relationships between each person in our data. It should also to able to perform the find common ancestor functionality.
-\end{singlespace}
-
-\subsection{Potential choices}
-
-
-\subsubsection{MySQL}
-\begin{singlespace}
-MySQL is a relational database management system[3]. The tool is based on the relational model of data which depicts the relationship between the entities in the data. The data is stored in rows and each with a unique id. The columns will be categories of information about this unique data. In our case, each person will be linked to a unique id and the columns indicate the relationship between the people on our data. For example, we could have a column name "Mother of this person", and inside that column is that person's mother's unique id. It can depict many relationships in just a row of data. It can perform query search for specific data in the database[4].
-\end{singlespace}
-
-\subsubsection{Neo4j}
-\begin{singlespace}
-Neo4j is a graph database. It stores every unique item as a node and the relationship between the nodes[5]. Each person's name will be a node and the relationship between people will be defined in the data. Neo4j takes its input from CSV files to create all the different nodes and relationships[5]. It is able to load up to 10 million nodes so it can deal with large data. This tool can perform queries to search the data that we need which will be useful for the find common ancestor function. It is a lot faster than MySQL due to its queries requiring 10 to 100 times less code[5]. Neo4j is the specialized tool for storing relational data and displaying it as graphs[5].
-\end{singlespace}
- 
-
-\subsubsection{Not using a database}
-\begin{singlespace}
-Not using a database is also an acceptable option for our project. We could create our own way of storing the data locally and doesn't have to get into a database for accessing the data. 
-\end{singlespace}
-
-\subsection{Compare and Contrast}
-\begin{singlespace}
-Both the Neo4j and MySQL can depict the relational data. They can perform query search for specific data in the database. Neo4j will take inputs from CSV files which we can create but it will take us time to do so. MySQL is easier for inputting the data into the database. MySQL is able to use online but requires users to log in. Not using a database would be easy for storing the data, we just need to format the data and store it.
-\end{singlespace}
-
-\subsection{Decision}
-\begin{singlespace}
-I think it is best for us to create our own way of storing the data. The data can be easily stored, and we don't have to go through other means to store the data in a database. Storing the data in a database will cost time for manipulating the data and making it cope with the format for the database. There isn't a good reason for doing extra things and make the software function slower.  
-\end{singlespace}
-
-
-\section{Data Structure}
-\subsection{Overview}
-\begin{singlespace}
-The data structures are for making access to data more easily. There are many existing search algorithms and functions that could be used for the different data structures. 
-\end{singlespace}
-
-\subsection{Criteria}
-\begin{singlespace}
-The criteria are the data structure needs to make access easy. It also needs to be able to illustrate the different relationships between the people, including parents and children, husband and wife, ex-husband and ex-wife, etc. 
-\end{singlespace}
-
-\subsection{Potential choices}
-
-\subsubsection{Linked-List}
-\begin{singlespace}
-A linked list is a linear data structure, so items in the linked list are actually sequenced. We could implement this like a graph and make one person connect with multiple people. Linked list contains a data field to store data and a link field[6]. In the link field, we can create multiple links to make it into a graph. The links can be named differently in order to determine the relationships. The links are actually pointers pointing from current address to address the next item[6]. The address of items in this data structure is not sequential, that is why it uses links. The benefit of using this structure is that it is easy to add items to the linked-list. Also, there aren't limitations on the number of items to be in the linked-list, unlike arrays, you have to define its size[6].
-\end{singlespace}
-
-\subsubsection{Tree}
-\begin{singlespace}
-Tree is a type of nonlinear data structure. Every item in the tree is called a node. There is one distinguished node being the root of the tree[7]. The other nodes will have a parent node and child nodes. Every node can have a corresponding height and depth determining their place on the tree. Nodes that shared the same parent node are siblings[7]. The binary tree is well known to the programmers. It is a specialized tree that each parent node could only have up to two child nodes[7]. This won't be helpful for our project because people can have more than two children. The general tree is what we needed, but a problem we will have with this data structure is illustrated marital status. We could put the parents on one node, but this would make it more difficult to access the individual nodes/person[7].
-\end{singlespace}
- 
-
-\subsubsection{Graph}
-\begin{singlespace}
-The graph is another type of nonlinear data structure[9]. The graph has two things to it and that is vertices and edges[9]. The vertices represent the objects and edges are the links between the objects. The edges don't only store the link between the two vertices, but it also can store an integer[8]. This integer has a variety of uses, it can be used as the distance between two locations if locations are the vertices of the graph, etc. We can use this integer to identify the relationships between the nodes.
-\end{singlespace}
-
-\subsection{Compare and Contrast}
-\begin{singlespace}
-The linked-list uses pointers so we need to change the address of the pointer in order to access the data. It is really a mess if we used linked-list in our project because it is very hard to access the data. The tree data structure has problems illustrating the marital status. If we put parents into one node, we would have to make do more effort in accessing the information from individual node/person. The graph is able to illustrate all the different relationships between people through the integer that can be stored in its edges. 
-\end{singlespace}
-
-\subsection{Decision}
-\begin{singlespace}
-I would choose graph because it is able to depict all the different kinds of relationships. The linked-list is also able to do the job, but it is very hard to get access to the data. The tree can have only one parent node, so we need to put the parents into one node in order to use this data structure. We will have to put more effort into accessing the node/data. Therefore, the data store in the graph is easier to access and it is able to depict all the relationships easier than other data structures.   
-\end{singlespace}
 
 \newpage
 \begin{thebibliography}{}
