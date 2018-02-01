@@ -8,8 +8,6 @@
 using namespace std;
 
 
-unordered_set<node> nodes;
-unordered_set<families> families;
 
 struct node{
     //So we're just gonna treat the node as a name and
@@ -34,13 +32,17 @@ struct family{
     //This should store their IDs, the nodes store their location.
 };
 
+
+unordered_set<node*> nodes;
+unordered_set<family*> families;
+
 //So GEDCOM files work as basically "subtrees" and "nodes", for our purposes.
 //Soooooooooooo,
 //Let's start by finding every GEDCOM file that does NOT have a FAMC.
 
 
 
-void linkFamily(family f){
+void linkFamily(family* f){
     for(int i=0;i<f->numChildren;++i){
         nodes[f->parent1]->child[i] = nodes[f->children[i]];
         nodes[f->parent2]->child[i] = nodes[f->children[i]];
@@ -57,42 +59,55 @@ void linkFamily(family f){
 int main()
 {
     string line;
+    string idVal;
     //This should actually be a constructor.
     node* n = NULL;
-    families = new family[100]; //Temp, just set it to 100
 
     //This should go in a different function, like read or something. But then it should wipe it all.
     ifstream file("temp.ged"); //Should allow manual input but this will suffice for now.
+
     if(file.is_open()){
         while(file >> line){
-                //Note to self: This should grab a word I think
-            //Read the file
-            if(line == "NODE"){
+            //Read the file word by word
+            if (line == "0"){
+                //So it's not GUARENTEED to be one or the other.
+                //It could be the submitter's info, for instance.
+                //It shouldn't have two 0's in a row, though.
+                file >> line;
+                idVal = line;
+            }
+
+            if(line == "INDI"){
                 //If it's a node
-                //Keep going for a name...
+                //Keep going for a name and ID
                 n = new node;
 
                 bool nameFound = false;
                 bool idFound = false;
 
-                while(file >> line){
-                    if(line == "ID"){
+                while(file >> line && line != "0"){
+                    if (line == "NAME"){
                         file >> line;
-                        n->id = line;
-
-                        idFound = true;
-                    }
-                    else if (line == "NAME"){
-                        file >> line;
-                        n->name = line;
+                        string name;
+                        name = line;
+                        while(file >> line && line != /*a number*/){
+                            name += " ";
+                            name += line;
+                            //Get the full name here
+                        }
+                        n->name = name;
 
                         nameFound = true;
                     }
 
-                    if(idFound && nameFound){
+                    if(nameFound){
                         break;
                         //n has a name and id, so we're good!
                     }
+                }
+                if(!nameFound){
+                    cout << "Whoops" << endl;
+                    //There's no name, so break.
                 }
                 nodes[idTemp] = n;
                 n = NULL;
@@ -106,7 +121,7 @@ int main()
                 bool parent2Found = false;
                 bool childFound = false;
 
-                while(file >> line && line != "WHATEVER_SIGNALS_FAMILY_DONE"){
+                while(file >> line && line != "0"){
                     if(line == "ID"){
                         //Grab the family's id.
                         file >> line;
@@ -114,7 +129,7 @@ int main()
 
                         idFound = true;
                     }
-                    else if (line == "CHILD"){
+                    else if (line == "CHIL"){
                         //I think having at least one child is mandatory for a GEDCOM,
                         //but I don't know. Parents ARE mandatory. Probably.
                         file >> line;
@@ -124,7 +139,7 @@ int main()
 
                         childFound = true;
                     }
-                    else if (line == "PARENT"){
+                    else if (line == "HUSB" || line == "WIFE"){
                         file >> line;
 
                         if(!parent1Found){
@@ -146,7 +161,7 @@ int main()
                     cout << "Whoops." << endl;
                     //So it should error.
                 }
-                families[fTemp->id] = ;
+                families[fTemp->id] = fTemp;
 
             }
         }
