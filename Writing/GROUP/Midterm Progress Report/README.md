@@ -1,1 +1,1 @@
-The progress report for F17
+The MIdterm progress report for W18 CS462
