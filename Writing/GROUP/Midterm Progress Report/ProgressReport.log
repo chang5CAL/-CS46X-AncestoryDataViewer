@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.10.15)  16 FEB 2018 23:05
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.10.15)  16 FEB 2018 23:09
 entering extended mode
 **./ProgressReport.tex
 (ProgressReport.tex
@@ -419,20 +419,25 @@ LaTeX Font Info:    Font shape `OT1/phv/bx/sc' in size <11.04124> not available
 <data.png, id=60, 891.33pt x 130.4875pt>
 File: data.png Graphic file (type png)
  <use data.png>
-Package pdftex.def Info: data.png used on input line 92.
-(pdftex.def)             Requested size: 971.78888pt x 142.26378pt.
+Package pdftex.def Info: data.png used on input line 93.
+(pdftex.def)             Requested size: 512.15717pt x 142.26637pt.
 
 <struct.png, id=62, 167.62625pt x 177.66376pt>
 File: struct.png Graphic file (type png)
  <use struct.png>
-Package pdftex.def Info: struct.png used on input line 93.
+Package pdftex.def Info: struct.png used on input line 94.
 (pdftex.def)             Requested size: 134.22905pt x 142.26378pt.
 Missing character: There is no ‚ in font pplr7t!
 Missing character: There is no Ä in font pplr7t!
 Missing character: There is no ô in font pplr7t!
 
-Overfull \hbox (465.89888pt too wide) in paragraph at lines 90--96
-[]
+Underfull \hbox (badness 10000) in paragraph at lines 90--97
+
+ []
+
+
+Overfull \hbox (6.26717pt too wide) in paragraph at lines 90--97
+[] 
  []
 
 [1
@@ -441,15 +446,15 @@ Overfull \hbox (465.89888pt too wide) in paragraph at lines 90--96
 File: tree.png Graphic file (type png)
 
 <use tree.png>
-Package pdftex.def Info: tree.png used on input line 109.
+Package pdftex.def Info: tree.png used on input line 110.
 (pdftex.def)             Requested size: 218.52626pt x 142.26378pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 107--111
+Underfull \hbox (badness 10000) in paragraph at lines 108--112
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 107--111
+Underfull \hbox (badness 10000) in paragraph at lines 108--112
 
  []
 
@@ -467,20 +472,20 @@ Missing character: There is no ‚ in font pplr7t!
 Missing character: There is no Ä in font pplr7t!
 Missing character: There is no ù in font pplr7t!
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <9.53561> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 129.
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 130.
  [3] <design1.jpg, id=79, 5331.92pt x 2999.205pt>
 File: design1.jpg Graphic file (type jpg)
 
 <use design1.jpg>
-Package pdftex.def Info: design1.jpg used on input line 145.
+Package pdftex.def Info: design1.jpg used on input line 146.
 (pdftex.def)             Requested size: 252.86205pt x 142.26378pt.
  <design2.jpg, id=80, 4336.2pt x 2995.19pt>
 File: design2.jpg Graphic file (type jpg)
  <use design2.jpg>
-Package pdftex.def Info: design2.jpg used on input line 146.
+Package pdftex.def Info: design2.jpg used on input line 147.
 (pdftex.def)             Requested size: 205.90547pt x 142.26378pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 143--149
+Underfull \hbox (badness 10000) in paragraph at lines 144--150
 
  []
 
@@ -491,15 +496,15 @@ Missing character: There is no ‚ in font pplr7t!
 Missing character: There is no Ä in font pplr7t!
 Missing character: There is no ù in font pplr7t!
 [4 <./design1.jpg> <./design2.jpg>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 169.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 170.
  [5]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 169.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 170.
  (ProgressReport.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 169.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 169.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 170.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 170.
 Package rerunfilecheck Info: File `ProgressReport.out' has not changed.
 (rerunfilecheck)             Checksum: 34659AF965C4F165743D683744398872;475.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 169.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 170.
  ) 
 Here is how much of TeX's memory you used:
  6517 strings out of 493323
@@ -514,7 +519,7 @@ KTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts
 /type1/urw/helvetic/uhvr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/pal
 atino/uplb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/palatino/uplr8a.p
 fb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on ProgressReport.pdf (6 pages, 8356685 bytes).
+Output written on ProgressReport.pdf (6 pages, 8356698 bytes).
 PDF statistics:
  112 PDF objects out of 1000 (max. 8388607)
  16 named destinations out of 1000 (max. 500000)
