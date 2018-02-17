@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.10.15)  16 FEB 2018 20:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.10.15)  16 FEB 2018 20:32
 entering extended mode
 **./ProgressReport.tex
 (ProgressReport.tex
@@ -412,73 +412,113 @@ LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <11.04124> not available
 LaTeX Font Info:    Font shape `OT1/phv/bx/sc' in size <11.04124> not available
 
 (Font)              Font shape `OT1/phv/b/sc' tried instead on input line 83.
-LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <9.53561> not available
-(Font)              Font shape `OT1/phv/b/n' tried instead on input line 91.
 
-<design1.jpg, id=64, 5331.92pt x 2999.205pt>
-File: design1.jpg Graphic file (type jpg)
- <use design1.jpg>
-Package pdftex.def Info: design1.jpg used on input line 107.
-(pdftex.def)             Requested size: 252.86205pt x 142.26378pt.
+<data.png, id=64, 891.33pt x 130.4875pt>
+File: data.png Graphic file (type png)
+ <use data.png>
+Package pdftex.def Info: data.png used on input line 92.
+(pdftex.def)             Requested size: 971.78888pt x 142.26378pt.
 
-<design2.jpg, id=65, 4336.2pt x 2995.19pt>
-File: design2.jpg Graphic file (type jpg)
- <use design2.jpg>
-Package pdftex.def Info: design2.jpg used on input line 108.
-(pdftex.def)             Requested size: 205.90547pt x 142.26378pt.
+<struct.png, id=66, 167.62625pt x 177.66376pt>
+File: struct.png Graphic file (type png)
+ <use struct.png>
+Package pdftex.def Info: struct.png used on input line 93.
+(pdftex.def)             Requested size: 134.22905pt x 142.26378pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 105--110
-
+Overfull \hbox (465.89888pt too wide) in paragraph at lines 90--95
+[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 105--110
+Underfull \hbox (badness 10000) in paragraph at lines 90--95
 
  []
 
-[1
-
- <./design1.jpg> <./design2.jpg>]
+<tree.png, id=67, 1090.0725pt x 709.65125pt>
+File: tree.png Graphic file (type png)
+ <use tree.png>
+Package pdftex.def Info: tree.png used on input line 100.
+(pdftex.def)             Requested size: 218.52626pt x 142.26378pt.
 Missing character: There is no ‚ in font pplr7t!
 Missing character: There is no Ä in font pplr7t!
 Missing character: There is no ú in font pplr7t!
 Missing character: There is no ‚ in font pplr7t!
 Missing character: There is no Ä in font pplr7t!
 Missing character: There is no ù in font pplr7t!
-LaTeX Font Info:    Calculating math sizes for size <9.53561> on input line 133
+Missing character: There is no ‚ in font pplr7t!
+Missing character: There is no Ä in font pplr7t!
+Missing character: There is no ú in font pplr7t!
+Missing character: There is no ‚ in font pplr7t!
+Missing character: There is no Ä in font pplr7t!
+Missing character: There is no ù in font pplr7t!
+
+Underfull \hbox (badness 10000) in paragraph at lines 98--110
+
+ []
+
+[1
+
+ <./data.png> <./struct.png>]
+LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <9.53561> not available
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 112.
+ [2 <./tree.png>]
+<design1.jpg, id=79, 5331.92pt x 2999.205pt>
+File: design1.jpg Graphic file (type jpg)
+ <use design1.jpg>
+Package pdftex.def Info: design1.jpg used on input line 128.
+(pdftex.def)             Requested size: 252.86205pt x 142.26378pt.
+
+<design2.jpg, id=80, 4336.2pt x 2995.19pt>
+File: design2.jpg Graphic file (type jpg)
+ <use design2.jpg>
+Package pdftex.def Info: design2.jpg used on input line 129.
+(pdftex.def)             Requested size: 205.90547pt x 142.26378pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 126--132
+
+ []
+
+Missing character: There is no ‚ in font pplr7t!
+Missing character: There is no Ä in font pplr7t!
+Missing character: There is no ú in font pplr7t!
+Missing character: There is no ‚ in font pplr7t!
+Missing character: There is no Ä in font pplr7t!
+Missing character: There is no ù in font pplr7t!
+[3 <./design1.jpg> <./design2.jpg>]
+LaTeX Font Info:    Calculating math sizes for size <9.53561> on input line 153
 .
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9.53561> on input line 133.
+(Font)              <9.53561> on input line 153.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6.6749> on input line 133.
+(Font)              <6.6749> on input line 153.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <4.7678> on input line 133.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 147.
- [2]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 147.
+(Font)              <4.7678> on input line 153.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 167.
+ [4]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 167.
  (ProgressReport.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 147.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 147.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 167.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 167.
 Package rerunfilecheck Info: File `ProgressReport.out' has not changed.
 (rerunfilecheck)             Checksum: 776F91045D654F8F2621971EB70CC2B3;525.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 147.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 167.
  ) 
 Here is how much of TeX's memory you used:
- 6507 strings out of 493323
- 101366 string characters out of 3139062
- 195362 words of memory out of 3000000
- 9975 multiletter control sequences out of 15000+200000
+ 6524 strings out of 493323
+ 101565 string characters out of 3139062
+ 203362 words of memory out of 3000000
+ 9987 multiletter control sequences out of 15000+200000
  43811 words of font info for 90 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 28i,8n,28p,1023b,359s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 28i,8n,28p,1179b,359s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program Files/Mi
 KTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts
 /type1/urw/helvetic/uhvr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/pal
 atino/uplb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/palatino/uplr8a.p
 fb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on ProgressReport.pdf (3 pages, 7664387 bytes).
+Output written on ProgressReport.pdf (5 pages, 8353478 bytes).
 PDF statistics:
- 97 PDF objects out of 1000 (max. 8388607)
- 14 named destinations out of 1000 (max. 500000)
- 96 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 112 PDF objects out of 1000 (max. 8388607)
+ 16 named destinations out of 1000 (max. 500000)
+ 111 words of extra memory for PDF output out of 10000 (max. 10000000)
 
