@@ -1,179 +1,117 @@
+
 #include <iostream>
-#include <string>
-#include <unordered_set>
-#include <iostream>
+#include <stdlib.h>
+#include <string.h>
 #include <fstream>
-//Really, this should all be in a class.
+#include <stdio.h>
+#include <algorithm>
+
 
 using namespace std;
 
-
-
-struct node{
-    //So we're just gonna treat the node as a name and
-    //their direct link. No siblings.
-    string name;
-    string id;
-    //Let's start simply:
-    node* spouse; //FAMS
-    node** children; //FAM
-    node* parent1; //FAMC
-    node* parent2; //FAMC
-};
-
-struct family{
-    //So we're just gonna treat the node as a name and
-    //their direct link. No siblings.
-    string id;
-    string* children; //FAM
-    string parent1; //FAMC
-    string parent2; //FAMC
-    int numChildren;
-    //This should store their IDs, the nodes store their location.
+struct Person {
+	string id;
+	string name;
+	string sprouse;
+	string father;
+	string mother;
 };
 
 
-unordered_set<node*> nodes;
-unordered_set<family*> families;
+void print_info(Person *p){
+	int i = 0;
+	ofstream output("output.txt");
+	if(output.is_open()){
+		while(!p[i].id.empty()){
+			output << p[i].id << ", " << p[i].name << ", " << p[i].sprouse << ", " << p[i].father << ", " << p[i].mother << "\n";
+			i++;
+		}
+	}
+	output.close();
+}
 
-//So GEDCOM files work as basically "subtrees" and "nodes", for our purposes.
-//Soooooooooooo,
-//Let's start by finding every GEDCOM file that does NOT have a FAMC.
-
-
-
-void linkFamily(family* f){
-    for(int i=0;i<f->numChildren;++i){
-        nodes[f->parent1]->child[i] = nodes[f->children[i]];
-        nodes[f->parent2]->child[i] = nodes[f->children[i]];
-        //Take the parent node's child parameter and attach the
-        //child's node to it.
-        nodes[f->children[i]]->parent1 = nodes[f->parent1];
-        nodes[f->children[i]]->parent2 = nodes[f->parent2];
-        //And attach the parents as the child's parents.
-    }
-    //This should work fine. Now to just read the file.
+int search_by_id(Person *p, string str){
+	int i = 0;
+	while(!p[i].id.empty()){
+		if(p[i].id == str){
+			//cout << "husb  " << i << endl;
+			return i;
+		}
+		i++;
+	}
+	return 0;
 }
 
 
-int main()
-{
-    string line;
-    string idVal;
-    //This should actually be a constructor.
-    node* n = NULL;
+int main(){
+	Person p[100];
+	int i, j, husb, wife, chil;
+	string str;
+	string str2 ("0 @I");
+	string str3 ("1 NAME");
+	string str4 ("1 HUSB");
+	string str5 ("1 WIFE");
+	string str6 ("1 CHIL");
 
-    //This should go in a different function, like read or something. But then it should wipe it all.
-    ifstream file("temp.ged"); //Should allow manual input but this will suffice for now.
+	ifstream input("s.ged");
 
-    if(file.is_open()){
-        while(file >> line){
-            //Read the file word by word
-            if (line == "0"){
-                //So it's not GUARENTEED to be one or the other.
-                //It could be the submitter's info, for instance.
-                //It shouldn't have two 0's in a row, though.
-                file >> line;
-                idVal = line;
-            }
+	i = 0;
+	j = 0;
 
-            if(line == "INDI"){
-                //If it's a node
-                //Keep going for a name and ID
-                n = new node;
+	if(!input.fail()){
 
-                bool nameFound = false;
-                bool idFound = false;
+		while(getline(input, str)){
+			if(str.find(str2) != string::npos){
+				str.erase(6,7);
+				str.erase(0,3);
+				//cout << "str  :" << str << " length: " << str.length() <<endl;
+				p[j].id = str;
+				//cout << j << endl;
+				j++;
+			}
 
-                while(file >> line && line != "0"){
-                    if (line == "NAME"){
-                        file >> line;
-                        string name;
-                        name = line;
-                        while(file >> line && line != /*a number*/){
-                            name += " ";
-                            name += line;
-                            //Get the full name here
-                        }
-                        n->name = name;
+			if(str.find(str3) != string::npos){
+				str.erase(0,7);
+				str.erase(remove(str.begin(), str.end(), '/'), str.end());
+				//cout << "str  :" << str << " length: " << str.length() <<endl;
+				str.erase(str.length()-1);
+				p[i].name = str;
+				//cout << i << endl;
+				i++;
+			}
 
-                        nameFound = true;
-                    }
+			if(str.find(str4) != string::npos){
+				str.erase(11,2);
+				str.erase(0,8);
+				//cout << "str  :" << str << " length: " << str.length() <<endl;
+				husb = search_by_id(p, str);
+				//p[i].name = str;
 
-                    if(nameFound){
-                        break;
-                        //n has a name and id, so we're good!
-                    }
-                }
-                if(!nameFound){
-                    cout << "Whoops" << endl;
-                    //There's no name, so break.
-                }
-                nodes[idTemp] = n;
-                n = NULL;
-            }
-            else if (line == "FAM"){
-                //If it's a family, make the family.
-                family* fTemp = new family;
-                fTemp->numChildren = 0;
-                bool idFound = false;
-                bool parent1Found = false;
-                bool parent2Found = false;
-                bool childFound = false;
+			}
 
-                while(file >> line && line != "0"){
-                    if(line == "ID"){
-                        //Grab the family's id.
-                        file >> line;
-                        fTemp->id = line;
+			if(str.find(str5) != string::npos){
+				str.erase(11,2);
+				str.erase(0,8);
+				wife = search_by_id(p, str);
+				p[husb].sprouse = p[wife].name;
+				p[wife].sprouse = p[husb].name;
+				//p[i].name = str;
 
-                        idFound = true;
-                    }
-                    else if (line == "CHIL"){
-                        //I think having at least one child is mandatory for a GEDCOM,
-                        //but I don't know. Parents ARE mandatory. Probably.
-                        file >> line;
+			}
 
-                        fTemp->children[fTemp->numChildren] = line;
-                        fTemp->numChildren++;
+			if(str.find(str6) != string::npos){
+				str.erase(11,2);
+				str.erase(0,8);
+				chil = search_by_id(p, str);
+				p[chil].mother = p[wife].name;
+				p[chil].father = p[husb].name;
+				//p[i].name = str;
+			}
+		}
+	}
+	input.close();
 
-                        childFound = true;
-                    }
-                    else if (line == "HUSB" || line == "WIFE"){
-                        file >> line;
-
-                        if(!parent1Found){
-                            parent1Found = true;
-                            fTemp->parent1 = line;
-                        }
-                        else if (!parent2Found){
-                            parent2Found = true;
-                            fTemp->parent2 = line;
-                        }
-                        else{
-                            cout << "WHOOPS." << endl;
-                            //Throw an error you have three parents!
-                        }
-                    }
-                }
-                if(!parent1Found || !parent2Found || !childFound || !idFound){
-                    //You're missing something
-                    cout << "Whoops." << endl;
-                    //So it should error.
-                }
-                families[fTemp->id] = fTemp;
-
-            }
-        }
-    }
-    else{
-        cout << "Error, file could not be opened." << endl;
-    }
-
-    //Now make an iterator and have it run through the families unordered set.
-    for(auto it = families.begin();it != families.end();++it){
-        linkFamily(*it);
-    }
-
-    return 0;
+	i = 0;
+	print_info(p);
+	return 0;
 }
