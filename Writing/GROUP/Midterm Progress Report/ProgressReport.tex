@@ -3,7 +3,7 @@
 \usepackage{url}
 \usepackage{setspace}
 \usepackage{hyperref}
-
+\usepackage{indentfirst}
 \usepackage{geometry}
 \geometry{textheight=9.5in, textwidth=7in}
 
@@ -67,7 +67,7 @@
         }
         \begin{abstract}
         % 6. Fill in your abstract    
-		The purpose of our project is to read in a GEDCOM file and display its information onto an ancestry tree. The purpose of this progress report is to illustrate what we have done in the past 10 weeks and identify any problems that have impeded us and explain our solutions to these problems.
+This document is a report on how much progress has been made on the development of the Ancestral Data Viewer application. This document also identifies problems that have delayed progress, and solutions or potential solutions to those problems.
         \end{abstract}     
     \end{singlespace}
 \end{titlepage}
@@ -99,13 +99,21 @@ Currently in the project, I am about to implement a menu feature and major objec
 \newline
 \includegraphics[height=5cm]{tree}
 \newline
+
 The floor that is seen in the picture has been used for debugging the overlapping and connections of the objects being displayed. This will be removed since users will be restricted to a specific view window. Light effect were added as a default setting, this will be removed since there is no need for the objects to display a shadow. 
+
 I have also researched online for other open source blueprints that we could use for our project. I was able to find the spline pipeline through that, in addition to finding a way to toggle between desktop and VR. I have also been looking for blueprints to help manipulate data structures and how to display them to use in the future. In addition to blueprints, I found a lot of VR object building such as displaying and using a keyboard to type with in VR mode. I spent a lot of time exploring Unreal Engine and its features, in addition to finding ways of manipulating interactions. 
+
 My next course of action would be to implement major user interaction with the objects. Upon selection, the object will be highlighted along with its relationships to other nodes (members of the family). I will also begin to implement a static menu bar window for the user to be able to call certain functions such as full or binary tree view, finding common ancestors, and to switch into VR mode.
+
 Now that we have a working parser, we will also integrate that into Unreal Engine. Our parser has successfully worked as its own program and Unreal Engine also runs in C++ so the transition should hopefully be smooth. Once we are able to implement the parser into Unreal Engine, then we will be able to produce nodes with their given member's name. Because our parser also labels the relationship between each member, we will be able to create and display pipeline connections between each relating member according to their relationship with one another. 
+
 Once we can successfully display a family tree, we will begin to implement the other features of our program. The algorithms for the binary tree and common ancestry will be programmed in C++ and then integrated into Unreal Engine. As mentioned before, each feature will be displayed via a button on the menu bar. In the case of the full binary tree option, this will initiate a new display but should still use the custom classes and interactions as the full ancestry tree. However, the common ancestor function should highlight the common ancestor as well as the pathway to the nodes that were selected. 
+
 Once we are able to successfully run everything, we need to implement our final functionality: switching into VR. Luckily Unreal Engine has a built-in handler for VR. If a VR set is presented, then there will be an extra functionality available for the user to switch into VR. In VR mode, the display will generally be the same 3D objects as seen in the desktop version. Interactions will also be the same, so upon interacting with an object, the node will be highlighted along with their relationships to other members of the tree. The user will still be limited to how far they can zoom in and out, and how far they can scroll from the family tree. The largest difference would be how the user will access the other application's features. Instead of having a menu bar at the top of the screen, the user will be able to have a menu appear in their “hand”. VR remote buttons will be utilize to aid in scrolling, zooming, select, and right-click. Another difference is that when a user is searching for a common ancestor, a keyboard will appear on the screen for the user to type instead of having them remove their headset to manually use a keyboard.
+
 The biggest and reoccurring problem I have had is working with Unreal Engine. Unreal Engine is focused on being a gaming software, so most of its features focuses on following certain “gaming rules”. This was apparent when even the most basic template form included a platform, light source objects, reflections objects, and shadow effects. For our very basic data display application, we didn't need these extra features. No one in my group is familiar with Unreal Engine either, so like any new software, we had to learn its numerous functions which hasn't been too difficult because the Unreal Engine documents provide a lot of information and tutorials. 
+
 Initially, I was trying to create the objects on my own using basic assumptions, which worked well in the beginning in regard to rotating and changing sizes. However, my first small issue was attempting to create a texture pack and understanding how the blueprint functionality worked. This was easily solved with online tutorials and forums. This was helpful when I was attempting on creating a spline pipeline class and relationships between objects. Most of my issues have been small and annoying but were all existing problems that have been talked about. The Unreal Engine community has definitely been able to help me through most of my problems. Some issues were a bit harder to fix, such as the glitch with my spline pipeline, because many of the forums are unfortunately outdated. 
 \end{singlespace}
 \section{Le-Chuan Justin Chang}
@@ -146,22 +154,7 @@ The implementation of the VR UI should blend aspects of the normal UI with new a
 
 \section{Conclusion }
 \begin{singlespace}
-The purpose of our project is to read in a GEDCOM file and display its information onto an ancestry tree. The GEDCOM file needs to be parsed through to make it easier for the software to read and to gather the required data. The ancestry tree will be displayed in a clear graph that contains series of parent and children nodes. The software has two applications: desktop and VR. A user should be able to toggle between desktop and VR mode if a VR headset is presented. In addition, the following special features should be included in the software: choosing a subsection of the tree, finding a common ancestor between two nodes (members), and toggling between a full ancestry tree and a direct lineage tree.
+Overall, the progress on the application has been poor over the current term. While research on how to perform each task has been done, and in many cases, completed, there is very little to show for it, as there has not been much implementation. There needs to be more hard deadlines set, and more strict leadership, so that time can be properly allocated for the development of the application.
 \end{singlespace}
-
-\section {Retrospective}
-\begin {tabular} { | p{0.3\linewidth} | p{0.3\linewidth} | p{0.3\linewidth} | }
-\hline
-Positives & Deltas & Actions \\
-\hline
-Established Technologies
-&Workflow is slow
-&Establish a tighter schedule and work on time management.
-\\
-\hline
-\end {tabular}
-
-
-
 
 \end{document}
