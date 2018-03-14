@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2017.10.15)  16 FEB 2018 23:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=latex 2018.2.16)  16 FEB 2018 23:19
 entering extended mode
 **./ProgressReport.tex
 (ProgressReport.tex
@@ -22,7 +22,7 @@ File: ot1ppl.fd 2001/06/04 font definitions for OT1/ppl.
 )
 -- Using IEEE Computer Society mode.
 -- Using 8.5in x 11in (letter) paper.
--- Using PDF output.
+-- Using DVI output.
 \@IEEEnormalsizeunitybaselineskip=\dimen105
 -- This is a 10 point document.
 \CLASSINFOnormalsizebaselineskip=\dimen106
@@ -130,18 +130,10 @@ Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 ("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-cfg\graphics.cfg"
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: pdftex.def on input line 99.
+Package graphics Info: Driver file: dvips.def on input line 99.
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-def\pdftex.def"
-File: pdftex.def 2017/01/12 v0.06k Graphics/color for pdfTeX
-
-("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
-Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
-)
-("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
-Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
-)
-\Gread@gobject=\count94
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-def\dvips.def"
+File: dvips.def 2016/07/10 v3.1a Driver-dependent file (DPC,SPQR)
 ))
 \Gin@req@height=\dimen126
 \Gin@req@width=\dimen127
@@ -163,8 +155,8 @@ Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
 ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\hobsub-generic.sty"
 Package: hobsub-generic 2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
 Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
-Package hobsub Info: Skipping package `infwarerr' (already loaded).
-Package hobsub Info: Skipping package `ltxcmds' (already loaded).
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
 Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
 Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
@@ -183,7 +175,7 @@ Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
+Package pdftexcmds Info: \pdfdraftmode is ignored in DVI mode.
 Package: pdfescape 2016/05/16 v1.14 Implements pdfTeX's escape features (HO)
 Package: bigintcalc 2016/05/16 v1.4 Expandable calculations on big integers (HO
 )
@@ -210,13 +202,13 @@ Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
 Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
 )
 \@linkdim=\dimen128
-\Hy@linkcounter=\count95
-\Hy@pagecounter=\count96
+\Hy@linkcounter=\count94
+\Hy@pagecounter=\count95
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\pd1enc.def"
 File: pd1enc.def 2017/03/14 v6.85a Hyperref: PDFDocEncoding definition (HO)
 )
-\Hy@SavedSpaceFactor=\count97
+\Hy@SavedSpaceFactor=\count96
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\hyperref.cfg"
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
@@ -228,10 +220,10 @@ Package hyperref Info: Plain pages OFF on input line 4513.
 Package hyperref Info: Backreferencing OFF on input line 4518.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4751.
-\c@Hy@tempcnt=\count98
+\c@Hy@tempcnt=\count97
 LaTeX Info: Redefining \url on input line 5104.
 \XeTeXLinkMargin=\dimen129
-\Fld@menulength=\count99
+\Fld@menulength=\count98
 \Field@Width=\dimen130
 \Fld@charsize=\dimen131
 Package hyperref Info: Hyper figures OFF on input line 6358.
@@ -243,15 +235,23 @@ Package hyperref Info: Link coloring with OCG OFF on input line 6383.
 Package hyperref Info: PDF/A mode OFF on input line 6388.
 LaTeX Info: Redefining \ref on input line 6428.
 LaTeX Info: Redefining \pageref on input line 6432.
-\Hy@abspage=\count100
-\c@Item=\count101
-\c@Hfootnote=\count102
+\Hy@abspage=\count99
+\c@Item=\count100
+\c@Hfootnote=\count101
 )
 
-Package hyperref Message: Driver (autodetected): hpdftex.
+Package hyperref Message: Driver (default): hdvips.
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hpdftex.def"
-File: hpdftex.def 2017/03/14 v6.85a Hyperref driver for pdfTeX
+("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hdvips.def"
+File: hdvips.def 2017/03/14 v6.85a Hyperref driver for dvips
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\pdfmark.def"
+File: pdfmark.def 2017/03/14 v6.85a Hyperref definitions for pdfmark specials
+\pdf@docset=\toks16
+\pdf@box=\box28
+\pdf@toks=\toks17
+\pdf@defaulttoks=\toks18
+\HyField@AnnotCount=\count102
 \Fld@listcount=\count103
 \c@bookmark@seq@number=\count104
 
@@ -261,7 +261,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
 )
 \Hy@SectionHShift=\skip44
-)
+))
 ("C:\Program Files\MiKTeX 2.9\tex\latex\tools\indentfirst.sty"
 Package: indentfirst 1995/11/23 v1.03 Indent first paragraph (DPC)
 )
@@ -278,7 +278,7 @@ Package: geometry 2010/09/12 v5.6 Page Geometry
 \Gm@layoutheight=\dimen137
 \Gm@layouthoffset=\dimen138
 \Gm@layoutvoffset=\dimen139
-\Gm@dimlist=\toks16
+\Gm@dimlist=\toks19
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.cfg"))
 (ProgressReport.aux)
@@ -300,42 +300,15 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 36.
 LaTeX Font Info:    ... okay on input line 36.
 
 -- Lines per column: 39 (approximate, difference = 14.73578pt).
-("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count108
-\scratchdimen=\dimen140
-\scratchbox=\box28
-\nofMPsegments=\count109
-\nofMParguments=\count110
-\everyMPshowfont=\toks17
-\MPscratchCnt=\count111
-\MPscratchDim=\dimen141
-\MPnumerator=\count112
-\makeMPintoPDFobject=\count113
-\everyMPtoPDFconversion=\toks18
-) ("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty"
-Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\grfext.sty"
-Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
-)
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
-38.
-Package grfext Info: Graphics extension search list:
-(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
-G,.JBIG2,.JB2,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 456.
-)
 \AtBeginShipoutBox=\box29
 Package hyperref Info: Link coloring OFF on input line 36.
-
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
 ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count114
+\c@section@level=\count108
 )
 LaTeX Info: Redefining \ref on input line 36.
 LaTeX Info: Redefining \pageref on input line 36.
@@ -346,10 +319,13 @@ LaTeX Info: Redefining \nameref on input line 36.
 \openout3 = `ProgressReport.out'.
 
 
+
+Package hyperref Warning: Rerun to get /PageLabels entry.
+
 *geometry* driver: auto-detecting
-*geometry* detected driver: pdftex
+*geometry* detected driver: dvips
 *geometry* verbose mode - [ preamble ] result:
-* driver: pdftex
+* driver: dvips
 * paper: <default>
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
@@ -380,53 +356,54 @@ LaTeX Info: Redefining \nameref on input line 36.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package epstopdf Info: Source file: <coe_v_spot1.eps>
-(epstopdf)                    date: 2017-10-15 23:07:46
-(epstopdf)                    size: 631574 bytes
-(epstopdf)             Output file: <coe_v_spot1-eps-converted-to.pdf>
-(epstopdf)                    date: 2018-02-16 20:03:47
-(epstopdf)                    size: 31214 bytes
-(epstopdf)             Command: <epstopdf --outfile=coe_v_spot1-eps-converted-t
-o.pdf coe_v_spot1.eps>
-(epstopdf)             \includegraphics on input line 40.
-Package epstopdf Info: Output file is already uptodate.
-<coe_v_spot1-eps-converted-to.pdf, id=39, 346.29375pt x 436.63126pt>
-File: coe_v_spot1-eps-converted-to.pdf Graphic file (type pdf)
-
-<use coe_v_spot1-eps-converted-to.pdf>
-Package pdftex.def Info: coe_v_spot1-eps-converted-to.pdf used on input line 40
-.
-(pdftex.def)             Requested size: 90.26146pt x 113.81102pt.
+File: coe_v_spot1.eps Graphic file (type eps)
+<coe_v_spot1.eps>
 LaTeX Font Info:    Font shape `OT1/ppl/bx/sc' in size <20.075> not available
 (Font)              Font shape `OT1/ppl/b/sc' tried instead on input line 50.
 LaTeX Font Info:    Font shape `OT1/ppl/bx/sc' in size <24.09> not available
 (Font)              Font shape `OT1/ppl/b/sc' tried instead on input line 50.
 LaTeX Font Info:    Try loading font information for OT1+phv on input line 68.
-
-("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1phv.fd"
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1phv.fd"
 File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <8.03> not available
 (Font)              Font shape `OT1/phv/b/n' tried instead on input line 68.
- [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map} <./coe_v_spot1-eps-conv
-erted-to.pdf>]
+
+[1]
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <11.04124> not available
 (Font)              Font shape `OT1/phv/b/n' tried instead on input line 83.
 LaTeX Font Info:    Font shape `OT1/phv/bx/sc' in size <11.04124> not available
 
 (Font)              Font shape `OT1/phv/b/sc' tried instead on input line 83.
 
-<data.png, id=60, 891.33pt x 130.4875pt>
-File: data.png Graphic file (type png)
- <use data.png>
-Package pdftex.def Info: data.png used on input line 93.
-(pdftex.def)             Requested size: 512.15717pt x 142.26637pt.
 
-<struct.png, id=62, 167.62625pt x 177.66376pt>
-File: struct.png Graphic file (type png)
- <use struct.png>
-Package pdftex.def Info: struct.png used on input line 94.
-(pdftex.def)             Requested size: 134.22905pt x 142.26378pt.
+! LaTeX Error: File `data' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.93 \includegraphics[height=5cm,width=18cm]{data}
+                                                  \\
+I could not locate the file with any of these extensions:
+.eps,.ps,.eps.gz,.ps.gz,.eps.Z,.mps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `struct' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.94 \includegraphics[height=5cm]{struct}
+                                         
+I could not locate the file with any of these extensions:
+.eps,.ps,.eps.gz,.ps.gz,.eps.Z,.mps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
 Missing character: There is no ‚ in font pplr7t!
 Missing character: There is no Ä in font pplr7t!
 Missing character: There is no ô in font pplr7t!
@@ -436,18 +413,32 @@ Underfull \hbox (badness 10000) in paragraph at lines 90--97
  []
 
 
-Overfull \hbox (6.26717pt too wide) in paragraph at lines 90--97
-[] 
+Underfull \hbox (badness 10000) in paragraph at lines 90--97
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 90--97
+
  []
 
 [1
 
- <./data.png> <./struct.png>] <tree.png, id=69, 1090.0725pt x 709.65125pt>
-File: tree.png Graphic file (type png)
+]
 
-<use tree.png>
-Package pdftex.def Info: tree.png used on input line 110.
-(pdftex.def)             Requested size: 305.93344pt x 199.16928pt.
+! LaTeX Error: File `tree' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.110 \includegraphics[height=7cm]{tree}
+                                        
+I could not locate the file with any of these extensions:
+.eps,.ps,.eps.gz,.ps.gz,.eps.Z,.mps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
 
 Underfull \hbox (badness 10000) in paragraph at lines 108--112
 
@@ -458,7 +449,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 108--112
 
  []
 
-[2 <./tree.png>]
+
+Underfull \hbox (badness 10000) in paragraph at lines 108--112
+
+ []
+
 Missing character: There is no ‚ in font pplr7t!
 Missing character: There is no Ä in font pplr7t!
 Missing character: There is no ú in font pplr7t!
@@ -471,19 +466,43 @@ Missing character: There is no ú in font pplr7t!
 Missing character: There is no ‚ in font pplr7t!
 Missing character: There is no Ä in font pplr7t!
 Missing character: There is no ù in font pplr7t!
+[2]
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <9.53561> not available
 (Font)              Font shape `OT1/phv/b/n' tried instead on input line 130.
- [3] <design1.jpg, id=79, 5331.92pt x 2999.205pt>
-File: design1.jpg Graphic file (type jpg)
 
-<use design1.jpg>
-Package pdftex.def Info: design1.jpg used on input line 146.
-(pdftex.def)             Requested size: 252.86205pt x 142.26378pt.
- <design2.jpg, id=80, 4336.2pt x 2995.19pt>
-File: design2.jpg Graphic file (type jpg)
- <use design2.jpg>
-Package pdftex.def Info: design2.jpg used on input line 147.
-(pdftex.def)             Requested size: 205.90547pt x 142.26378pt.
+
+! LaTeX Error: File `design1' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.146 \includegraphics[height=5cm]{design1}
+                                           
+I could not locate the file with any of these extensions:
+.eps,.ps,.eps.gz,.ps.gz,.eps.Z,.mps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `design2' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.147 \includegraphics[height=5cm]{design2}
+                                           
+I could not locate the file with any of these extensions:
+.eps,.ps,.eps.gz,.ps.gz,.eps.Z,.mps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 144--150
+
+ []
+
 
 Underfull \hbox (badness 10000) in paragraph at lines 144--150
 
@@ -495,33 +514,24 @@ Missing character: There is no ú in font pplr7t!
 Missing character: There is no ‚ in font pplr7t!
 Missing character: There is no Ä in font pplr7t!
 Missing character: There is no ù in font pplr7t!
-[4 <./design1.jpg> <./design2.jpg>]
+[3]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 170.
- [5]
+ [4]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 170.
  (ProgressReport.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 170.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 170.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 170.
 Package rerunfilecheck Info: File `ProgressReport.out' has not changed.
 (rerunfilecheck)             Checksum: 34659AF965C4F165743D683744398872;475.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 170.
  ) 
 Here is how much of TeX's memory you used:
- 6517 strings out of 493323
- 101546 string characters out of 3139062
- 195422 words of memory out of 3000000
- 9976 multiletter control sequences out of 15000+200000
- 43811 words of font info for 90 fonts, out of 3000000 for 9000
+ 5982 strings out of 493324
+ 93798 string characters out of 3139089
+ 191452 words of memory out of 3000000
+ 9490 multiletter control sequences out of 15000+200000
+ 29166 words of font info for 72 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 28i,6n,28p,1521b,359s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program Files/Mi
-KTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts
-/type1/urw/helvetic/uhvr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/pal
-atino/uplb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/palatino/uplr8a.p
-fb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on ProgressReport.pdf (6 pages, 8356645 bytes).
-PDF statistics:
- 112 PDF objects out of 1000 (max. 8388607)
- 16 named destinations out of 1000 (max. 500000)
- 103 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 29i,5n,28p,1521b,359s stack positions out of 5000i,500n,10000p,200000b,50000s
 
+Output written on ProgressReport.dvi (5 pages, 29628 bytes).
