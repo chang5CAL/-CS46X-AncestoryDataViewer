@@ -1,5 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-
+//#define LOCTEXT_NAMESPACE "AGameStateTreeGen" 
 #include "GameStateTreeGen.h"
 
 
@@ -16,7 +16,8 @@ AGameStateTreeGen::AGameStateTreeGen()
 	int id;
 	//When this is run, it should take the location from some (as of writing) unknown other class
 	//that came from the UI that has the file location from the user.
-	std::string file = "s.ged"; //Currently a default value that assumes the file's s.ged in the same folder.
+	std::string file = "C:/Users/Justin/Desktop/ADVR/Source/ADVR/s.ged"; 
+	//Currently a default value that assumes the file's s.ged in the same folder.
 	parsedData = parse(file);
 
 	roots = findRoots(parsedData);
@@ -271,7 +272,9 @@ void AGameStateTreeGen::placeNodes(Person p, std::vector<Person> family, Person 
 									 //Keep adding until you hit the tree level, so you move over enough.
 	}
 	FVector loc = FVector(p.pos + offset, p.level, 0.f);
-	FString name = FString((p.name).c_str);
+	
+	FString fStr(p.name.c_str());
+	FText name = FText::FromString(fStr);
 	//Create text(In this case, the name)
 
 	//Append the text to the node
@@ -281,7 +284,7 @@ void AGameStateTreeGen::placeNodes(Person p, std::vector<Person> family, Person 
 	SpawnParams.Instigator = Instigator;
 
 	//Place the node
-	
+
 	AActor* personNode = GetWorld()->SpawnActor<AActor>(Node, loc, FRotator::ZeroRotator, SpawnParams);
 
 	personNode->FindComponentByClass<UTextRenderComponent>()->SetText(name);
@@ -331,9 +334,12 @@ void AGameStateTreeGen::placeSpouse(Person p, std::vector<Person> family) {
 		FVector loc = FVector(p.pos + offset, p.level, 0.f);
 		FVector sLoc = FVector(p.pos + offset + 2, p.level, 0.f);
 		//Create text(In this case, the spouse'sname)
-		FString sName = FString((s.name).c_str);
 
 		AActor* spouseNode = GetWorld()->SpawnActor<AActor>(Node, sLoc, FRotator::ZeroRotator);
+
+		FString fsStr((s.name).c_str());
+		FText sName = FText::FromString(fsStr);
+		
 		spouseNode->FindComponentByClass<UTextRenderComponent>()->SetText(sName);
 
 		//Draw a line from the person to their spouse
@@ -353,7 +359,7 @@ void AGameStateTreeGen::placeSpouse(Person p, std::vector<Person> family) {
 			//So now we know the two locations that we need to point to and from, loc and spouseLoc
 			//Make sure it's transparent, though.
 			//GetWorld()->LineBatcher->DrawLine(spouseLoc, loc, Color.ToFColor(false), SDPG_World, Thickness, LifeTime);
-			GetWorld()->LineBatcher->DrawLine(loc, spouseLoc, FColor(0,0,0), SDPG_World, 2.0f);
+			GetWorld()->LineBatcher->DrawLine(loc, spouseLoc, FColor(0, 0, 0), SDPG_World, 2.0f);
 		}
 	}
 	for (int i = 0; i < p.children.size(); ++i) {
@@ -361,3 +367,6 @@ void AGameStateTreeGen::placeSpouse(Person p, std::vector<Person> family) {
 		placeSpouse(family[childID], family);
 	}
 }
+
+
+//#undef LOCTEXT_NAMESPACE

@@ -4,18 +4,17 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "NodeScript.generated.h"
+#include "NodeBluePrintScript.generated.h"
 
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class ADVR_API UNodeScript : public UActorComponent
+class ADVR_API UNodeBluePrintScript : public UActorComponent
 {
 	GENERATED_BODY()
 
 public:	
 	// Sets default values for this component's properties
-	UNodeScript();
-	void changeTextRender(FName t);
+	UNodeBluePrintScript();
 
 protected:
 	// Called when the game starts
