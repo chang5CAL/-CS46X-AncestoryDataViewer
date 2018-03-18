@@ -1,5 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
-//#define LOCTEXT_NAMESPACE "AGameStateTreeGen" 
+ 
 #include "GameStateTreeGen.h"
 
 
@@ -16,7 +16,7 @@ AGameStateTreeGen::AGameStateTreeGen()
 	int id;
 	//When this is run, it should take the location from some (as of writing) unknown other class
 	//that came from the UI that has the file location from the user.
-	std::string file = "C:/Users/Justin/Desktop/ADVR/Source/ADVR/s.ged"; 
+	std::string file = "C:/Users/Justin/Desktop/ADVR/Source/ADVR/s.ged";
 	//Currently a default value that assumes the file's s.ged in the same folder.
 	parsedData = parse(file);
 
@@ -57,6 +57,7 @@ int AGameStateTreeGen::search_by_id(std::vector<Person> p, std::string str) {
 std::vector<AGameStateTreeGen::Person> AGameStateTreeGen::parse(std::string fileLocation) {
 	std::vector<Person> p;
 	int i, j, husb, wife, chil;
+
 	std::string str;
 	std::string str2("0 @I");
 	std::string str3("1 NAME");
@@ -65,6 +66,9 @@ std::vector<AGameStateTreeGen::Person> AGameStateTreeGen::parse(std::string file
 	std::string str6("1 CHIL");
 
 	std::ifstream input(fileLocation);
+
+	husb = -1;
+	wife = -1; //These should get overwritten later, but just set them to these arbitrary values to satisfy Unreal's compilation.
 
 	i = 0;
 	j = 0;
@@ -156,26 +160,31 @@ std::vector<std::string> AGameStateTreeGen::findRoots(std::vector<Person> family
 			if (!family[i].spouse.empty()) {
 				//If spouse exists
 				spouseID = search_by_id(family, family[i].spouse);
-			}
-
-			if (family[i].spouse.empty() || (family[spouseID].father.empty() && family[spouseID].mother.empty())) {
-				//Check if spouse either doesn't exist or doesn't have parents either.
-				if (!family[i].spouse.empty()) {
-					//If a spouse exists, check if they're in the roots already have them
+				if ((family[spouseID].father.empty() && family[spouseID].mother.empty()))
+				{
+					//Spouse does exist, therefore:
 					for (int j = 0; j < roots.size(); ++j) {
 						if (roots[j] == family[i].spouse) {
 							//Will need to come back to solve divorces.
 							spouseAdded = true;
 						}
 					}
-				}
-				//If either the spouse doesn't exist, or they haven't been added already, add it
-				if (!spouseAdded) {
-					//If the spouse has been added already, don't add.
-					roots.push_back(family[i].id);
-				}
 
-				spouseAdded = false;
+					if (!spouseAdded) {
+						//If the spouse has been added already, don't add.
+						roots.push_back(family[i].id);
+					}
+
+					spouseAdded = false;
+
+				}
+			}
+			else {
+				//If the spouse does NOT exist, we can just push back the person.
+				roots.push_back(family[i].id);
+				
+				//If either the spouse doesn't exist, or they haven't been added already, add it
+				
 				//So the fatal flaw is that we assume the roots married once and had children.
 				//If W-X and Y-Z both had children, then X-Y and W-Z got together, we'll forget to
 				//push one in.
@@ -272,7 +281,7 @@ void AGameStateTreeGen::placeNodes(Person p, std::vector<Person> family, Person 
 									 //Keep adding until you hit the tree level, so you move over enough.
 	}
 	FVector loc = FVector(p.pos + offset, p.level, 0.f);
-	
+
 	FString fStr(p.name.c_str());
 	FText name = FText::FromString(fStr);
 	//Create text(In this case, the name)
@@ -339,7 +348,7 @@ void AGameStateTreeGen::placeSpouse(Person p, std::vector<Person> family) {
 
 		FString fsStr((s.name).c_str());
 		FText sName = FText::FromString(fsStr);
-		
+
 		spouseNode->FindComponentByClass<UTextRenderComponent>()->SetText(sName);
 
 		//Draw a line from the person to their spouse
@@ -367,6 +376,3 @@ void AGameStateTreeGen::placeSpouse(Person p, std::vector<Person> family) {
 		placeSpouse(family[childID], family);
 	}
 }
-
-
-//#undef LOCTEXT_NAMESPACE
