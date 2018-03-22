@@ -15,23 +15,27 @@ struct Person {
   string spouse;
   string father;
   string mother;
+  string adopted_parent_F;
+  string adopted_parent_M;
+  int level;
+  double pos;
+  double range;
   vector<string> child;
 };
 
 // prints struct Person information into output.txt
-void print_info(Person *p){
+void print_info(vector<Person> p){
   int i = 0;
   int z = 0;
   ofstream output("output.txt");
   if(output.is_open()){
-    while(!p[i].id.empty()){
-      output<< "id: " << p[i].id << ", name: " << p[i].name << ", spouse: " << p[i].spouse << ", father: " << p[i].father << ", mother: " << p[i].mother;
+    for(i = 0; i < p.size(); i++){
+      output<< "id: " << p[i].id << ", name: " << p[i].name << ", spouse: " << p[i].spouse << ", father: " << p[i].father << ", mother: " << p[i].mother << ", adopted_father: " << p[i].adopted_parent_F << ", adopted_mother: " << p[i].adopted_parent_M;
       for(z = 0; z<p[i].child.size(); ++z){
         output << ", child: " << p[i].child[z];
         //z++;
       }
       output << "\n";
-      i++;
     }
   }
   output.close();
@@ -47,7 +51,7 @@ void print_ancestor(vector<string> ancestor){
 }
 
 // returns the index of person in struct p with the given id
-int search_by_id(Person *p, string str){
+int search_by_id(vector<Person> p, string str){
   int i = 0;
   while(!p[i].id.empty()){
     if(p[i].id == str){
@@ -60,7 +64,7 @@ int search_by_id(Person *p, string str){
 }
 
 // returns the index of person in struct p with the given name(the first one found)
-int search_by_name(Person *p, string str){
+int search_by_name(vector<Person> p, string str){
   int i = 0;
   while(!p[i].id.empty()){
     if(p[i].name == str){
@@ -73,19 +77,33 @@ int search_by_name(Person *p, string str){
 }
 
 // construct list of ancestors of a given person.(Recursively)
-void find_ancestors(Person *p, Person current_person, vector<string> &ancestor){
+void find_ancestors(vector<Person> p, Person current_person, vector<string> &ancestor){
   int i;
-  Person mother, father, spouse;
+  Person mother, father, spouse, adopted_father, adopted_mother;
   if(!current_person.father.empty()){ //check if the person have parents
     mother = p[search_by_id(p, current_person.mother)]; // find parents in struct
     father = p[search_by_id(p, current_person.father)];
     ancestor.push_back(father.id); // add parent's id to ancestor vector
     ancestor.push_back(mother.id);
-    if(!father.father.empty()){ // check if parents have parents
+    if(!father.father.empty() || !father.adopted_parent_F.empty() || !father.adopted_parent_M.empty()){ // check if parents have parents
       find_ancestors(p, father, ancestor);
     }
-    if(!mother.father.empty()){
+    if(!mother.father.empty() || !father.adopted_parent_F.empty() || !father.adopted_parent_M.empty()){
       find_ancestors(p, mother, ancestor);
+    }
+  }
+  if(!current_person.adopted_parent_F.empty()){
+    adopted_father = p[search_by_id(p, current_person.adopted_parent_F)];
+    ancestor.push_back(adopted_father.id);
+    if(!adopted_father.father.empty() || !adopted_father.adopted_parent_F.empty() || !adopted_father.adopted_parent_M.empty()){ // check if parents have parents
+      find_ancestors(p, adopted_father, ancestor);
+    }
+  }
+  if(!current_person.adopted_parent_M.empty()){
+    adopted_mother = p[search_by_id(p, current_person.adopted_parent_M)];
+    ancestor.push_back(adopted_mother.id);
+    if(!adopted_mother.father.empty() || !father.adopted_parent_F.empty() || !father.adopted_parent_M.empty()){ // check if parents have parents
+      find_ancestors(p, adopted_mother, ancestor);
     }
   }
   if(!current_person.spouse.empty()){ // check if person have spouse
@@ -95,22 +113,36 @@ void find_ancestors(Person *p, Person current_person, vector<string> &ancestor){
       father = p[search_by_id(p, spouse.father)];
       ancestor.push_back(father.id); // add parents to ancestor vector
       ancestor.push_back(mother.id);
-      if(!father.father.empty()){ // check if parents have parents
+      if(!father.father.empty() || !father.adopted_parent_F.empty() || !father.adopted_parent_M.empty()){ // check if parents have parents
         find_ancestors(p, father, ancestor);
       }
-      if(!mother.father.empty()){
+      if(!mother.father.empty() || !father.adopted_parent_F.empty() || !father.adopted_parent_M.empty()){
         find_ancestors(p, mother, ancestor);
+      }
+    }
+    if(!spouse.adopted_parent_F.empty()){
+      adopted_father = p[search_by_id(p, spouse.adopted_parent_F)];
+      ancestor.push_back(adopted_father.id);
+      if(!adopted_father.father.empty() || !adopted_father.adopted_parent_F.empty() || !adopted_father.adopted_parent_M.empty()){ // check if parents have parents
+        find_ancestors(p, adopted_father, ancestor);
+      }
+    }
+    if(!spouse.adopted_parent_M.empty()){
+      adopted_mother = p[search_by_id(p, spouse.adopted_parent_M)];
+      ancestor.push_back(adopted_mother.id);
+      if(!adopted_mother.father.empty() || !father.adopted_parent_F.empty() || !father.adopted_parent_M.empty()){ // check if parents have parents
+        find_ancestors(p, adopted_mother, ancestor);
       }
     }
   }
 }
 
 // find noot node and return. The other root node is this person's spouse.
-Person find_root_node(Person *p){
+Person find_root_node(vector<Person> p){
   int i = 0;
   while(!p[i].id.empty()){
-    if(p[i].father.empty()){ // has no information about their parents
-      if(p[search_by_id(p, p[i].spouse)].father.empty()){ // spouse also has no information about their parents
+    if(p[i].father.empty() && p[i].adopted_parent_F.empty() && p[i].adopted_parent_M.empty()){ // has no information about their parents
+      if(p[search_by_id(p, p[i].spouse)].father.empty() && p[search_by_id(p, p[i].spouse)].adopted_parent_F.empty() && p[search_by_id(p, p[i].spouse)].adopted_parent_M.empty()){ // spouse also has no information about their parents
         return p[i];
         //cout << i << endl;
       }
@@ -118,7 +150,7 @@ Person find_root_node(Person *p){
     //cout << i << "!!!!!!!!"<< endl;
     i++;
   }
-  return p[99];
+  return p[0];
 }
 
 
@@ -136,7 +168,7 @@ void find_common_ancestor(vector<string> ancestor1, vector<string> ancestor2){
 }
 
 int main(){
-  Person p[100];
+  vector<Person> p;
   Person root, root_spouse;
   int i, j, husb, wife, chil, z;
   string str;
@@ -146,6 +178,8 @@ int main(){
   string str4 ("1 HUSB");
   string str5 ("1 WIFE");
   string str6 ("1 CHIL");
+  string str7 ("2 _FREL");
+  string str8 ("2 _MREL");
 
   ifstream input("s.ged");
 
@@ -157,12 +191,21 @@ int main(){
 
     while(getline(input, str)){
       if(str.find(str2) != string::npos){
-        str.erase(6,7);
+        //str.erase(6,7);
         str.erase(0,3);
         //cout << "str  :" << str << " length: " << str.length() <<endl;
+        //str.erase(str.length()-1);
+        //cout << "last char: " << str[str.length()-1] << endl;
+        while(str[str.length()-1] != '@'){
+          str.erase(str.length()-1);
+        }
+        str.erase(str.length()-1);
+        p.push_back(Person());
+        cout << j << endl;
         p[j].id = str;
         //cout << j << endl;
         j++;
+        cout << j << endl;
       }
 
       if(str.find(str3) != string::npos){
@@ -198,16 +241,35 @@ int main(){
         str.erase(11,2);
         str.erase(0,8);
         chil = search_by_id(p, str);
-        p[chil].mother = p[wife].id;
-        p[chil].father = p[husb].id;
         p[wife].child.push_back(p[chil].id);
         p[husb].child.push_back(p[chil].id);
+      }
+      if(str.find(str7) != string::npos){
+        str.erase(0,7);
+        str.erase(str.length()-1);
+        if(str == "Natural"){
+          p[chil].father = p[husb].id;
+        }
+        else{
+          p[chil].adopted_parent_F = p[husb].id;
+        }
+      }
+      if(str.find(str8) != string::npos){
+        str.erase(0,7);
+        str.erase(str.length()-1);
+        if(str == "Natural"){
+          p[chil].mother = p[wife].id;
+        }
+        else{
+          p[chil].adopted_parent_M = p[wife].id;
+        }
       }
     }
   }
   input.close();
 
   i = 0;
+
   print_info(p);
   root = find_root_node(p);
   cout << root.id << " name: " <<root.name << endl;
