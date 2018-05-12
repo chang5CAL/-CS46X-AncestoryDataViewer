@@ -183,7 +183,7 @@ std::vector<Alineage_view_spawner::Person> Alineage_view_spawner::parse(FString 
 	return p;
 }
 
-void Alineage_view_spawner::find_ancestors(std::vector<Person> p, FString root, std::vector<Person> l) {
+void Alineage_view_spawner::find_ancestors(std::vector<Person> p, FString root, std::vector<Person> &l) {
 	//int i;
 	Person p_mother, p_father, p_spouse;
 	int id;
@@ -632,5 +632,3 @@ void Alineage_view_spawner::lineage_view(FString root) {
 	placeNodes(root, middle);
 	
 }
-
-

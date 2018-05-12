@@ -16,7 +16,7 @@
 // Sets default values
 ANodeSpawner::ANodeSpawner()
 {
-	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+ 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 }
@@ -39,36 +39,36 @@ void ANodeSpawner::BeginPlay()
 		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("We are parsing"));
 		parsedData = parse(file);
 		roots = findRoots(parsedData);
+	
 
-
-
+	
 		/* Debugging messages
 		if (!parsedData.empty()) {
-		int i;
-		for (i = 0; i < parsedData.size(); i++) {
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("ParseData[0].id: ") + parsedData[i].id);
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("ParseData[0].name: ") + parsedData[i].name);
-		}
+			int i;
+			for (i = 0; i < parsedData.size(); i++) {
+				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("ParseData[0].id: ") + parsedData[i].id);
+				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("ParseData[0].name: ") + parsedData[i].name);
+			}
 		}
 		else {
-		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::White, TEXT("Empty ParseData"));
+			GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::White, TEXT("Empty ParseData"));
 		}
 		if (!roots.empty()) {
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("roots[0]: ") + roots[0]);
-		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("roots[0]: ") + roots[1]);
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("roots[0]: ") + roots[0]);
+			//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("roots[0]: ") + roots[1]);
 		}
 		else {
-		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::White, TEXT("Empty Root"));
+			GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::White, TEXT("Empty Root"));
 		}
 		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Black, TEXT("roots: ") + FString::FromInt(roots.size()));
 		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("Root[1]: ") + n);
 		*/
-
+	
 		int id;
-
+	
 		id = search_by_id(parsedData, roots[0]);
 
-
+	
 		//GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Green, TEXT("max level: ") + FString::FromInt(maxLevel));
 		//int maxLevel = 8;
 		float middle = 0;
@@ -79,18 +79,18 @@ void ANodeSpawner::BeginPlay()
 			int maxLevel = findmaxLevel(parsedData, roots[i]);
 			setLevel(roots[i], maxLevel); // set the levels recursively from top to bottom 
 			int maxSpace = setSpace(roots[i]); // find the spaces needed for all the nodes, maxSpace is space for root node
-											   //GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Black, TEXT("roots max space: ") + FString::FromInt(maxSpace));
+			//GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Black, TEXT("roots max space: ") + FString::FromInt(maxSpace));
 			xoffset = 120; // space between nodes
 			middle = middle + maxSpace * xoffset / 2; //starting point of the root node
-													  //GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("roots name: ") + parsedData[id].name);
-													  //GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("roots total space: ") + FString::FromInt(parsedData[id].totalspace));
-													  //GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("roots level: ") + FString::FromInt(parsedData[id].level));
-													  //GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("roots middle: ") + FString::FromInt(middle));
+			//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("roots name: ") + parsedData[id].name);
+			//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("roots total space: ") + FString::FromInt(parsedData[id].totalspace));
+			//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("roots level: ") + FString::FromInt(parsedData[id].level));
+			//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("roots middle: ") + FString::FromInt(middle));
 			setPosition(roots[i], 0); // calculate node's offset from parent, use for calculating the location of node
 			placeNodes(roots[i], middle); // calculate location of node, place node, and save location
 			middle = middle + maxSpace * xoffset / 2;
 		}
-		//find_common_ancestor(parsedData[20].id, parsedData[9].id);
+		find_common_ancestor(parsedData[20].id, parsedData[9].id);
 		find_common_ancestor(parsedData[0].id, parsedData[9].id);
 		find_common_ancestor(parsedData[0].id, parsedData[1].id);
 	}
@@ -103,15 +103,15 @@ void ANodeSpawner::Tick(float DeltaTime)
 
 }
 /*
-static ULineBatchComponent* GetDebugLineBatcher(const UWorld* InWorld, bool bPersistentLines, float LifeTime, bool bDepthIsForeground)
+static ULineBatchComponent* GetDebugLineBatcher(const UWorld* InWorld, bool bPersistentLines, float LifeTime, bool bDepthIsForeground) 
 {
-return (InWorld ? (bDepthIsForeground ? InWorld->ForegroundLineBatcher : ((bPersistentLines || (LifeTime > 0.f)) ? InWorld->PersistentLineBatcher : InWorld->LineBatcher)) : NULL);
+	return (InWorld ? (bDepthIsForeground ? InWorld->ForegroundLineBatcher : ((bPersistentLines || (LifeTime > 0.f)) ? InWorld->PersistentLineBatcher : InWorld->LineBatcher)) : NULL);
 }
 */
 
 
 // create node given location
-void ANodeSpawner::CreateNode(FVector location)
+void ANodeSpawner::CreateNode(FVector location) 
 {
 	GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::White, TEXT("NodeSpawner CreateNode"));
 	FActorSpawnParameters SpawnParams;
@@ -141,7 +141,7 @@ int ANodeSpawner::search_by_id(std::vector<Person> p, FString str) {
 
 std::vector<ANodeSpawner::Person> ANodeSpawner::parse(FString fileLocation) {
 	std::vector<Person> p;
-	int i, j, k, z, husb, wife, chil, have_father, have_mother;
+	int i, j, k, z , husb, wife, chil, have_father, have_mother;
 	FString str;
 	FString str2 = "0 @I";
 	FString str3 = "1 NAME";
@@ -153,7 +153,7 @@ std::vector<ANodeSpawner::Person> ANodeSpawner::parse(FString fileLocation) {
 	have_mother = 0;
 	//IPlatformFile& PlatformFile = FPlatformFileManager::Get().GetPlatformFile;
 	if (!FPlatformFileManager::Get().GetPlatformFile().FileExists(*fileLocation)) {
-		//if(1){
+	//if(1){
 		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::White, TEXT("Can't find file"));
 		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::White, TEXT("File name: ") + fileLocation);
 		return p;
@@ -249,8 +249,8 @@ std::vector<ANodeSpawner::Person> ANodeSpawner::parse(FString fileLocation) {
 				have_mother = 0;
 			}
 		}
-
-
+	
+			
 	}
 	i = 0;
 
@@ -263,21 +263,21 @@ std::vector<ANodeSpawner::Person> ANodeSpawner::parse(FString fileLocation) {
 
 /*
 void ANodeSpawner::levelInsert(int tree, int level, float val) {
-//Checks if an inputted value is greater than
-//the current value, and if it doesn't exist,
-//create all levels until it does.
-std::vector<float> f;
-while (levelMaxVal.size() < tree) {
-//If the outer vector doesn't have a vector, then add it in until it does.
-levelMaxVal.push_back(f);
-}
-while (levelMaxVal[tree].size() < level) {
-levelMaxVal[tree].push_back(0);
-}
-if (levelMaxVal[tree][level - 1] < val) {
-levelMaxVal[tree][level - 1] = val;
-}
-//Remember, if we get 3, we add 0,1,2 as 0,0,0. Therefore 2 is the third value.
+	//Checks if an inputted value is greater than
+	//the current value, and if it doesn't exist,
+	//create all levels until it does.
+	std::vector<float> f;
+	while (levelMaxVal.size() < tree) {
+		//If the outer vector doesn't have a vector, then add it in until it does.
+		levelMaxVal.push_back(f);
+	}
+	while (levelMaxVal[tree].size() < level) {
+		levelMaxVal[tree].push_back(0);
+	}
+	if (levelMaxVal[tree][level - 1] < val) {
+		levelMaxVal[tree][level - 1] = val;
+	}
+	//Remember, if we get 3, we add 0,1,2 as 0,0,0. Therefore 2 is the third value.
 }
 */
 
@@ -291,7 +291,7 @@ int ANodeSpawner::findmaxLevel(std::vector<Person> p, FString sid) {
 		return 1;
 	}
 	/*if (p[id].level >= 0) {
-	return p[id].level;
+		return p[id].level;
 	}*/
 	for (int i = 0; i < p[id].children.size(); i++) {
 		curLev = findmaxLevel(p, p[id].children[i]) + 1;
@@ -313,7 +313,7 @@ void ANodeSpawner::setLevel(FString sid, int maxLevel) {
 	//GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Black, TEXT("parsed ID: max level: ") + FString::FromInt(parsedData[id].level));
 	//GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Black, TEXT("p ID: max level: ") + FString::FromInt(p[id].level));
 	for (int i = 0; i < parsedData[id].children.size(); i++) {
-		setLevel(parsedData[id].children[i], maxLevel - 1);
+		setLevel(parsedData[id].children[i], maxLevel-1);
 	}
 }
 
@@ -342,16 +342,16 @@ int ANodeSpawner::setSpace(FString sid) {
 		}
 		/*
 		if (curVal > maxVal) {
-		if (!parsedData[cid].placed) {
-		maxVal = curVal;
-		}
+			if (!parsedData[cid].placed) {
+				maxVal = curVal;
+			}
 		}*/
 	}
 	if (parsedData[id].children.size() != 0) {
 		if (!parsedData[id].spouse.IsEmpty() && maxVal == 0) {
 			maxVal = 5;
 		}
-		else if (maxVal == 0) {
+		else if (maxVal == 0){
 			maxVal = 3;
 		}
 		parsedData[id].largestchildnode = maxVal;
@@ -380,7 +380,7 @@ void ANodeSpawner::setPosition(FString sid, float position) {
 			setPosition(parsedData[id].children[i], positionOfFirstNode);
 			//GEngine->AddOnScreenDebugMessage(-1, 30.f, FColor::Yellow, TEXT("position: ") + FString::FromInt(positionOfFirstNode));
 			if (i + 1 < parsedData[id].children.size()) {
-				child_id2 = search_by_id(parsedData, parsedData[id].children[i + 1]);
+				child_id2 = search_by_id(parsedData, parsedData[id].children[i+1]);
 				child1_halfSpace = child2_halfSpace;
 				child2_halfSpace = (parsedData[child_id2].totalspace / 2);
 				positionOfFirstNode = positionOfFirstNode + child1_halfSpace + child2_halfSpace;
@@ -415,7 +415,7 @@ void ANodeSpawner::placeNodes(FString sid, int middle) {
 
 	if (!parsedData[id].spouse.IsEmpty()) {
 		int spouseid = search_by_id(parsedData, parsedData[id].spouse);
-		x = middle + 120;
+		x = middle +  120;
 		z = parsedData[spouseid].level * 300;
 		location2.X = x;
 		location2.Y = 0.0f;
@@ -484,8 +484,8 @@ std::vector<FString> ANodeSpawner::findRoots(std::vector<Person> family) {
 			if (!family[i].spouse.IsEmpty()) {
 				//If spouse exists
 				spouseID = search_by_id(family, family[i].spouse);
-				if ((family[spouseID].father.IsEmpty() && family[spouseID].mother.IsEmpty())) { // code deleted: family[i].spouse.IsEmpty() ||
-																								//Check if spouse either doesn't exist or doesn't have parents either.
+				if ( (family[spouseID].father.IsEmpty() && family[spouseID].mother.IsEmpty())) { // code deleted: family[i].spouse.IsEmpty() ||
+					//Check if spouse either doesn't exist or doesn't have parents either.
 					for (int j = 0; j < roots.size(); j++) {
 						if (roots[j] == family[i].spouse) {
 							//Will need to come back to solve divorces.
@@ -518,7 +518,7 @@ std::vector<FString> ANodeSpawner::findRoots(std::vector<Person> family) {
 
 void ANodeSpawner::find_ancestors(std::vector<Person> p, FString root, std::vector<FString> &ancestor_array) {
 	//int i;
-	Person p_father, p_spouse, p_mother;
+	Person p_father, p_spouse , p_mother;
 	int id, spouse_id, p_id;
 	int search_father = 0;
 	int search_father_in_law = 0;
@@ -575,12 +575,12 @@ void ANodeSpawner::find_common_ancestor(FString p1, FString p2) {
 	//GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Black, TEXT("Person2 ancestor size: ") + FString::FromInt(ancestor_array2.size()));
 	/*
 	for (i = 0; i < ancestor_array1.size(); i++) {
-	GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Black, TEXT("Person1 ancestor: ") + ancestor_array1[i]);;
+		GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Black, TEXT("Person1 ancestor: ") + ancestor_array1[i]);;
 	}
 	for (i = 0; i < ancestor_array2.size(); i++) {
-	GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Black, TEXT("Person2 ancestor: ") + ancestor_array2[i]);;
+		GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Black, TEXT("Person2 ancestor: ") + ancestor_array2[i]);;
 	}
-	*/
+*/
 	for (i = 0; i < ancestor_array1.size(); i++) {
 		//GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Black, TEXT("Person1 ancestor: ") + ancestor_array1[i]);
 		for (j = 0; j < ancestor_array2.size(); j++) {

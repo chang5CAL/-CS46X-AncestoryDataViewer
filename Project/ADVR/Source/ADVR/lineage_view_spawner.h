@@ -36,6 +36,8 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Spawning")
 		TSubclassOf<ANodeBluePrintScript> Node;
 
+	UPROPERTY(EditAnywhere, BluePrintReadWrite)
+		FString fName;
 
 	struct Person {
 		FString id;
@@ -60,14 +62,11 @@ public:
 
 	int search_by_id(std::vector<Person> p, FString str);
 	std::vector<Person> parse(FString fileLocation);
-
 	void lineage_view(FString root);
-
-	void find_ancestors(std::vector<Person> p, FString root, std::vector<Person> l);
+	void find_ancestors(std::vector<Person> p, FString root, std::vector<Person> &l);
 	void setLevels(FString root, int level);
 	int setSpace(FString root);
 	void setPosition(FString root, float position);
 	void placeNodes(FString root, int middle);
-	
 	
 };

@@ -36,6 +36,9 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Spawning")
 		TSubclassOf<AtwoD_Node> Node;
 
+	UPROPERTY(EditAnywhere, BluePrintReadWrite)
+		FString fName;
+
 	struct Person {
 		FString id;
 		FString name;
@@ -56,8 +59,9 @@ public:
 	std::vector<std::vector<float>> levelMaxVal;
 	std::vector<Person> parsedData;
 	int xoffset;
-
+	
 	int search_by_id(std::vector<Person> p, FString str);
+	
 	std::vector<Person> parse(FString fileLocation);
 
 
@@ -71,6 +75,7 @@ public:
 	void placeNodes(FString sid, int middle);
 
 	void find_ancestors(std::vector<Person> p, FString root, std::vector<FString> &l);
-	void find_common_ancestor(FString p1, FString p2);
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Find Ancestory", CompactNodeTitle = "Ancestor", Keywords = "Find Nearest Common Ancestor"), Category = Game)
+		void find_common_ancestor(FString p1, FString p2);
 	
 };

@@ -90,7 +90,7 @@ void AtwoD_NodeSpawner::BeginPlay()
 			placeNodes(roots[i], middle); // calculate location of node, place node, and save location
 			middle = middle + maxSpace * xoffset / 2;
 		}
-		//find_common_ancestor(parsedData[20].id, parsedData[9].id);
+		find_common_ancestor(parsedData[20].id, parsedData[9].id);
 		find_common_ancestor(parsedData[0].id, parsedData[9].id);
 		find_common_ancestor(parsedData[0].id, parsedData[1].id);
 	}
@@ -100,7 +100,7 @@ void AtwoD_NodeSpawner::BeginPlay()
 void AtwoD_NodeSpawner::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
+	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Red, TEXT("Can't find file! File name: ") + fName);
 }
 /*
 static ULineBatchComponent* GetDebugLineBatcher(const UWorld* InWorld, bool bPersistentLines, float LifeTime, bool bDepthIsForeground)
