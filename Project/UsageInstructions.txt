@@ -1,0 +1,25 @@
+Start Menu:
+Type or paste in the path to a GEDCOM file. Then click the submit button in order to load the tree.
+A good way to get the path to a file location is to go their on your computer, then click the address bar above and copy the path via Ctrl-C, then going to the text
+bar and typing Ctrl-V, then typing the name of the GEDCOM file.
+If manually typed, please try to make sure the case is correct.
+
+2D View:
+Move the mouse to the borders of the screen in order to move the screen. Use the mouse wheel in order to zoom in and out.
+To use the Lineage View, type in the ID of a person (The number below their name on the tree) to the top text box, then press the Lineage View button
+To use the Common Ancestor Finder, type in the ID of a person in both text boxes, then press the Lineage View button.
+To switch to VR mode, perss the VR Mode button.
+
+Lineage View:
+To return to Normal View, press the Return to Normal button.
+Bug: Sometimes, if scrolling up, the camera will zoom in too much. In order fix this, simply zoom out.
+
+VR View:
+The instructions are on the corner of the screen.
+On the left controller, Y is to switch to Lineage View and X is for Find Common Ancestor.
+On the right controller, A and B quit the program.
+The shoulder buttons increment and decrement the current ID of Person1 and Person2, respectively.
+
+VR Lineage View:
+Press X or Y to return to normal VR view.
+Press A or B to quit the application.

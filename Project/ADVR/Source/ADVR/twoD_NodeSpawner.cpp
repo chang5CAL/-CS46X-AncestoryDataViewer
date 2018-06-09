@@ -12,6 +12,7 @@
 #include "Runtime/Core/Public/Misc/FileHelper.h"
 #include "UnrealString.h"
 #include "Vector.h"
+#include "Runtime/Engine/Classes/GameFramework/HUD.h"
 
 // Sets default values
 AtwoD_NodeSpawner::AtwoD_NodeSpawner()
@@ -30,7 +31,9 @@ void AtwoD_NodeSpawner::BeginPlay()
 
 
 	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("We are in TreeGen"));
-	FString file = "C:/Users/liyon/Desktop/cs/cs461/ged/s.ged";
+
+	FString file = fName;
+
 	if (!FPlatformFileManager::Get().GetPlatformFile().FileExists(*file)) {
 		//if(1){
 		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Red, TEXT("Can't find file! File name: ") + file);
@@ -41,7 +44,7 @@ void AtwoD_NodeSpawner::BeginPlay()
 		roots = findRoots(parsedData);
 
 
-
+		
 		/* Debugging messages
 		if (!parsedData.empty()) {
 		int i;
@@ -64,6 +67,7 @@ void AtwoD_NodeSpawner::BeginPlay()
 		//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("Root[1]: ") + n);
 		*/
 
+		
 		int id;
 
 		id = search_by_id(parsedData, roots[0]);
@@ -71,9 +75,11 @@ void AtwoD_NodeSpawner::BeginPlay()
 
 		//GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Green, TEXT("max level: ") + FString::FromInt(maxLevel));
 		//int maxLevel = 8;
-		float middle = 0;
+		middle = 0;
+		Screenlevel = findmaxLevel(parsedData, roots[0]);
+		//GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Green, TEXT("Screen level: ") + FString::FromInt(Screenlevel));
 		xoffset = 120;
-		GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Black, TEXT("roots: ") + FString::FromInt(roots.size()));
+		//GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Black, TEXT("roots: ") + FString::FromInt(roots.size()));
 		for (int i = 0; i < roots.size(); i++) {
 			id = search_by_id(parsedData, roots[i]); // find index of root
 			int maxLevel = findmaxLevel(parsedData, roots[i]);
@@ -90,9 +96,19 @@ void AtwoD_NodeSpawner::BeginPlay()
 			placeNodes(roots[i], middle); // calculate location of node, place node, and save location
 			middle = middle + maxSpace * xoffset / 2;
 		}
-		find_common_ancestor(parsedData[20].id, parsedData[9].id);
-		find_common_ancestor(parsedData[0].id, parsedData[9].id);
-		find_common_ancestor(parsedData[0].id, parsedData[1].id);
+		//GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Green, TEXT("Middle: ") + FString::FromInt(middle));
+		//find_common_ancestor(parsedData[20].id, parsedData[9].id);
+		middle = middle / 2;
+		//find_common_ancestor(parsedData[0].id, parsedData[9].id);
+		//find_common_ancestor(parsedData[0].id, parsedData[1].id);
+		//find_common_ancestor(parsedData[0].id, FString("-1"));
+		//APlayerController* pc = GetOwningPlayerController();
+		/*AActor *vt = pc->GetViewTarget();
+		ACameraActor* camera = Cast<ACameraActor>(vt);
+		if (camera) {
+		GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("Camera Found!!!"));
+		}*/
+		
 	}
 }
 
@@ -100,7 +116,7 @@ void AtwoD_NodeSpawner::BeginPlay()
 void AtwoD_NodeSpawner::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Red, TEXT("Can't find file! File name: ") + fName);
+
 }
 /*
 static ULineBatchComponent* GetDebugLineBatcher(const UWorld* InWorld, bool bPersistentLines, float LifeTime, bool bDepthIsForeground)
@@ -122,12 +138,14 @@ int AtwoD_NodeSpawner::search_by_id(std::vector<Person> p, FString str) {
 		}
 		i++;
 	}
+	//GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::White, TEXT("Can't find Person, return 0"));
 	return -1; //Return an impossible value if the id doesn't exist.
 }
 
 std::vector<AtwoD_NodeSpawner::Person> AtwoD_NodeSpawner::parse(FString fileLocation) {
 	std::vector<Person> p;
 	int i, j, k, z, husb, wife, chil, have_father, have_mother;
+	//  
 	FString str;
 	FString str2 = "0 @I";
 	FString str3 = "1 NAME";
@@ -162,17 +180,23 @@ std::vector<AtwoD_NodeSpawner::Person> AtwoD_NodeSpawner::parse(FString fileLoca
 			if (parsed[i].Contains(str2, ESearchCase::CaseSensitive, ESearchDir::FromStart))
 			{
 				p.push_back(Person());
-				parsed[i].RemoveAt(0, 3, true);
+				parsed[i].RemoveAt(0, 4, true);
 				while (parsed[i].Contains("@")) {
 					parsed[i] = parsed[i].LeftChop(1);
 				}
-				p[j].id = parsed[i];
+				//parsed[i] = parsed[i].RightChop(1);
+				//GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Black, parsed[i]);
+				//parsed[i] = parsed[i].LeftChop(1);
+				while (parsed[i].Mid(0, 1).Equals(TEXT("0"))) {
+					parsed[i] = parsed[i].RightChop(1);
+				}
+				p[j].id= parsed[i];
 				j++;
 				//parsed[i].RemoveAt(trimloc, parsed[i].Len() - trimloc, true);
 				//GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Black, parsed[i]);
 				//GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Black, TEXT("length: ") + FString::FromInt(parsed[i].Len()));
 			}
-
+			
 			if (parsed[i].Contains(str3, ESearchCase::CaseSensitive, ESearchDir::FromStart)) {
 				parsed[i].RemoveAt(0, 7, true);
 				for (z = 0; z < parsed[i].Len(); z++) {
@@ -194,16 +218,24 @@ std::vector<AtwoD_NodeSpawner::Person> AtwoD_NodeSpawner::parse(FString fileLoca
 				//GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Black, TEXT("name: ") + parsed[i]);
 
 			}
-
+			
 			if (parsed[i].Contains(str4, ESearchCase::CaseSensitive, ESearchDir::FromStart)) {
-				parsed[i].RemoveAt(0, 8, true);
+				parsed[i].RemoveAt(0, 9, true);
 				parsed[i].RemoveAt(parsed[i].Len() - 2, 2, true);
+				//parsed[i] = parsed[i].RightChop(1);
+				while (parsed[i].Mid(0, 1).Equals(TEXT("0"))) {
+					parsed[i] = parsed[i].RightChop(1);
+				}
 				husb = search_by_id(p, parsed[i]);
 				have_father = 1;
 			}
+			
 			if (parsed[i].Contains(str5, ESearchCase::CaseSensitive, ESearchDir::FromStart)) {
-				parsed[i].RemoveAt(0, 8, true);
+				parsed[i].RemoveAt(0, 9, true);
 				parsed[i].RemoveAt(parsed[i].Len() - 2, 2, true);
+				while (parsed[i].Mid(0, 1).Equals(TEXT("0"))) {
+					parsed[i] = parsed[i].RightChop(1);
+				}
 				wife = search_by_id(p, parsed[i]);
 				have_mother = 1;
 				if (have_father == 1) {
@@ -211,9 +243,13 @@ std::vector<AtwoD_NodeSpawner::Person> AtwoD_NodeSpawner::parse(FString fileLoca
 					p[husb].spouse = p[wife].id;
 				}
 			}
+			
 			if (parsed[i].Contains(str6, ESearchCase::CaseSensitive, ESearchDir::FromStart)) {
-				parsed[i].RemoveAt(0, 8, true);
+				parsed[i].RemoveAt(0, 9, true);
 				parsed[i].RemoveAt(parsed[i].Len() - 2, 2, true);
+				while (parsed[i].Mid(0, 1).Equals(TEXT("0"))) {
+					parsed[i] = parsed[i].RightChop(1);
+				}
 				chil = search_by_id(p, parsed[i]);
 				if (have_father == 1 && have_mother == 1) {
 					p[wife].children.push_back(p[chil].id);
@@ -234,6 +270,7 @@ std::vector<AtwoD_NodeSpawner::Person> AtwoD_NodeSpawner::parse(FString fileLoca
 				have_father = 0;
 				have_mother = 0;
 			}
+			
 		}
 
 
@@ -413,6 +450,8 @@ void AtwoD_NodeSpawner::placeNodes(FString sid, int middle) {
 		newNode->FindComponentByClass<UTextRenderComponent>()->SetVerticalAlignment(EVRTA_TextCenter);
 
 		ULineBatchComponent* const LineBatcher = GetWorld()->PersistentLineBatcher;
+		location.Y = -10;
+		location2.Y = -10;
 		LineBatcher->DrawLine(location, location2, FColor::Red, 0, 10.0f);
 
 		parsedData[spouseid].placed = true;
@@ -437,12 +476,16 @@ void AtwoD_NodeSpawner::placeNodes(FString sid, int middle) {
 				placeNodes(parsedData[id].children[i], childMiddle + 120); // place the child node
 				ULineBatchComponent* const LineBatcher = GetWorld()->PersistentLineBatcher;
 				location2.X = location2.X;// +120;  // change x to 240 to point to the middle of the couple  // 120 to the child of the parent
+				location.Y = -10;
+				location2.Y = -10;
 				LineBatcher->DrawLine(location, location2, FColor::Red, 0, 10.0f);
 			}
 			else {
 				placeNodes(parsedData[id].children[i], childMiddle + 240); // place the child node
 				location2.X = location2.X + 120;  // change x to point to the child
 				ULineBatchComponent* const LineBatcher = GetWorld()->PersistentLineBatcher; // create line
+				location.Y = -10;
+				location2.Y = -10;
 				LineBatcher->DrawLine(location, location2, FColor::Red, 0, 10.0f);
 			}
 		}
@@ -454,6 +497,8 @@ void AtwoD_NodeSpawner::placeNodes(FString sid, int middle) {
 				location.X = middle - 120;
 			}
 			ULineBatchComponent* const LineBatcher = GetWorld()->PersistentLineBatcher; // create line
+			location.Y = -10;
+			location2.Y = -10;
 			LineBatcher->DrawLine(location, parsedData[cid].p_location, FColor::Red, 0, 10.0f);
 		}
 	}
@@ -551,48 +596,76 @@ void AtwoD_NodeSpawner::find_ancestors(std::vector<Person> p, FString root, std:
 	}
 }
 
-void AtwoD_NodeSpawner::find_common_ancestor(FString p1, FString p2) {
+FString AtwoD_NodeSpawner::find_common_ancestor(FString p1, FString p2) {
 	std::vector<FString> ancestor_array1, ancestor_array2;
 	int i, j, id1, id2, id;
 	Person common_ancestor;
-	find_ancestors(parsedData, p1, ancestor_array1);
-	find_ancestors(parsedData, p2, ancestor_array2);
-	//GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Black, TEXT("Person1 ancestor size: ") + FString::FromInt(ancestor_array1.size()));
-	//GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Black, TEXT("Person2 ancestor size: ") + FString::FromInt(ancestor_array2.size()));
-	/*
-	for (i = 0; i < ancestor_array1.size(); i++) {
-	GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Black, TEXT("Person1 ancestor: ") + ancestor_array1[i]);;
+
+	int valid1 = search_by_id(parsedData, p1);
+	int valid2 = search_by_id(parsedData, p2);
+	FString result;
+
+	if (valid1 == -1) {
+		//GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Black, TEXT("Error: Person1's ID: ") + p1 + TEXT(" does not exist."));
+		result = FString(TEXT("Error: Person 1, ") + p1 + TEXT(", does not exist."));
 	}
-	for (i = 0; i < ancestor_array2.size(); i++) {
-	GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Black, TEXT("Person2 ancestor: ") + ancestor_array2[i]);;
-	}
-	*/
-	for (i = 0; i < ancestor_array1.size(); i++) {
-		//GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Black, TEXT("Person1 ancestor: ") + ancestor_array1[i]);
-		for (j = 0; j < ancestor_array2.size(); j++) {
-			//GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Black, TEXT("Person2 ancestor: ") + ancestor_array2[j]);
-			if (ancestor_array1[i].Contains(ancestor_array2[j], ESearchCase::CaseSensitive, ESearchDir::FromStart)) {
-				//GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Black, TEXT("common ancestor id: ") + ancestor_array2[j]);
-				id = search_by_id(parsedData, ancestor_array1[i]);
-				//GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Black, TEXT("common ancestor name: ") + parsedData[id].name);
-				common_ancestor = parsedData[id];
-				j = ancestor_array2.size();
-				i = ancestor_array1.size();
-			}
-		}
-	}
-	id1 = search_by_id(parsedData, p1);
-	id2 = search_by_id(parsedData, p2);
-	//GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Black, TEXT("Person2 spouse: ") + parsedData[id2].spouse);
-	if (common_ancestor.id.IsEmpty()) {
-		GEngine->AddOnScreenDebugMessage(-1, 400.f, FColor::Black, TEXT("These people don't have a common ancestor"));
-		GEngine->AddOnScreenDebugMessage(-1, 400.f, FColor::Black, TEXT("Person2: ") + parsedData[id2].name);
-		GEngine->AddOnScreenDebugMessage(-1, 400.f, FColor::Black, TEXT("Person1: ") + parsedData[id1].name);
+	else if (valid2 == -1) {
+		//GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Black, TEXT("Error: Person2's ID does not exist."));
+		result = FString(TEXT("Error: Person 2, ") + p2 + TEXT(", does not exist."));
 	}
 	else {
-		GEngine->AddOnScreenDebugMessage(-1, 400.f, FColor::Black, TEXT("Common Ancestor: ") + common_ancestor.name);
-		GEngine->AddOnScreenDebugMessage(-1, 400.f, FColor::Black, TEXT("Person2: ") + parsedData[id2].name);
-		GEngine->AddOnScreenDebugMessage(-1, 400.f, FColor::Black, TEXT("Person1: ") + parsedData[id1].name);
-	}
 
+		find_ancestors(parsedData, p1, ancestor_array1);
+		find_ancestors(parsedData, p2, ancestor_array2);
+
+
+		//GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Black, TEXT("Person1 ancestor size: ") + FString::FromInt(ancestor_array1.size()));
+		//GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Black, TEXT("Person2 ancestor size: ") + FString::FromInt(ancestor_array2.size()));
+		/*
+		for (i = 0; i < ancestor_array1.size(); i++) {
+		GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Black, TEXT("Person1 ancestor: ") + ancestor_array1[i]);;
+		}
+		for (i = 0; i < ancestor_array2.size(); i++) {
+		GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Black, TEXT("Person2 ancestor: ") + ancestor_array2[i]);;
+		}
+		*/
+		for (i = 0; i < ancestor_array1.size(); i++) {
+			//GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Black, TEXT("Person1 ancestor: ") + ancestor_array1[i]);
+			for (j = 0; j < ancestor_array2.size(); j++) {
+				//GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Black, TEXT("Person2 ancestor: ") + ancestor_array2[j]);
+				if (ancestor_array1[i].Contains(ancestor_array2[j], ESearchCase::CaseSensitive, ESearchDir::FromStart)) {
+					//GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Black, TEXT("common ancestor id: ") + ancestor_array2[j]);
+					id = search_by_id(parsedData, ancestor_array1[i]);
+					//GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Black, TEXT("common ancestor name: ") + parsedData[id].name);
+					common_ancestor = parsedData[id];
+					j = ancestor_array2.size();
+					i = ancestor_array1.size();
+				}
+			}
+		}
+		id1 = search_by_id(parsedData, p1);
+		id2 = search_by_id(parsedData, p2);
+		//GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Black, TEXT("Person2 spouse: ") + parsedData[id2].spouse);
+		if (common_ancestor.id.IsEmpty()) {
+			//GEngine->AddOnScreenDebugMessage(-1, 400.f, FColor::Black, TEXT("These people don't have a common ancestor"));
+			//GEngine->AddOnScreenDebugMessage(-1, 400.f, FColor::Black, TEXT("Person2: ") + parsedData[id2].name);
+			//GEngine->AddOnScreenDebugMessage(-1, 400.f, FColor::Black, TEXT("Person1: ") + parsedData[id1].name);
+			result = FString("No common ancestor");
+		}
+		else {
+			//GEngine->AddOnScreenDebugMessage(-1, 400.f, FColor::Black, TEXT("Common Ancestor: ") + common_ancestor.name);
+			//GEngine->AddOnScreenDebugMessage(-1, 400.f, FColor::Black, TEXT("Person2: ") + parsedData[id2].name);
+			//GEngine->AddOnScreenDebugMessage(-1, 400.f, FColor::Black, TEXT("Person1: ") + parsedData[id1].name);
+			result = FString(common_ancestor.name);
+		}
+	}
+	//GEngine->AddOnScreenDebugMessage(-1, 400.f, FColor::Black, result);
+	return result;
+}
+
+bool AtwoD_NodeSpawner::checkValidPerson(FString p1) {
+	if (search_by_id(parsedData, p1) == -1) {
+		return false;
+	}
+	return true;
 }

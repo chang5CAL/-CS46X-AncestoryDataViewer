@@ -10,8 +10,8 @@ UCLASS()
 class ADVR_API ANodeBluePrintScript : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	ANodeBluePrintScript();
 
@@ -21,6 +21,6 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	
-	
+
+
 };

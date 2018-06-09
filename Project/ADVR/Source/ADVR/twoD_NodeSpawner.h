@@ -22,14 +22,14 @@ UCLASS()
 class ADVR_API AtwoD_NodeSpawner : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	AtwoD_NodeSpawner();
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-	
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
@@ -38,6 +38,13 @@ public:
 
 	UPROPERTY(EditAnywhere, BluePrintReadWrite)
 		FString fName;
+
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "ScreenLocationForLevel")
+		float middle = 0.0;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "ScreenLocationForLevel")
+		float Screenlevel = 0.0;
 
 	struct Person {
 		FString id;
@@ -59,9 +66,8 @@ public:
 	std::vector<std::vector<float>> levelMaxVal;
 	std::vector<Person> parsedData;
 	int xoffset;
-	
+
 	int search_by_id(std::vector<Person> p, FString str);
-	
 	std::vector<Person> parse(FString fileLocation);
 
 
@@ -75,7 +81,10 @@ public:
 	void placeNodes(FString sid, int middle);
 
 	void find_ancestors(std::vector<Person> p, FString root, std::vector<FString> &l);
+
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Find Ancestory", CompactNodeTitle = "Ancestor", Keywords = "Find Nearest Common Ancestor"), Category = Game)
-		void find_common_ancestor(FString p1, FString p2);
-	
+		FString	 find_common_ancestor(FString p1, FString p2);
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Check Valid First", CompactNodeTitle = "validperson", Keywords = "Find valid person"), Category = Game)
+		bool checkValidPerson(FString p1);
 };

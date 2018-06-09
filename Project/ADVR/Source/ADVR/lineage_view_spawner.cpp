@@ -17,7 +17,7 @@
 // Sets default values
 Alineage_view_spawner::Alineage_view_spawner()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 }
@@ -27,7 +27,9 @@ void Alineage_view_spawner::BeginPlay()
 {
 	Super::BeginPlay();
 
-	FString file = "C:/Users/liyon/Desktop/cs/cs461/ged/c.ged";
+	FString file = fName;
+
+	FString pLineage = personLineage;
 
 	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::White, TEXT("We are parsing"));
 	if (!FPlatformFileManager::Get().GetPlatformFile().FileExists(*file)) {
@@ -39,9 +41,9 @@ void Alineage_view_spawner::BeginPlay()
 
 		int id;
 
-		id = search_by_id(parsedData, parsedData[0].id);
+		id = search_by_id(parsedData, pLineage);
 
-		lineage_view(parsedData[20].id);
+		lineage_view(parsedData[id].id);
 	}
 }
 
@@ -102,9 +104,12 @@ std::vector<Alineage_view_spawner::Person> Alineage_view_spawner::parse(FString 
 			if (parsed[i].Contains(str2, ESearchCase::CaseSensitive, ESearchDir::FromStart))
 			{
 				p.push_back(Person());
-				parsed[i].RemoveAt(0, 3, true);
+				parsed[i].RemoveAt(0, 4, true);
 				while (parsed[i].Contains("@")) {
 					parsed[i] = parsed[i].LeftChop(1);
+				}
+				while (parsed[i].Mid(0, 1).Equals(TEXT("0"))) {
+					parsed[i] = parsed[i].RightChop(1);
 				}
 				p[j].id = parsed[i];
 				j++;
@@ -136,14 +141,20 @@ std::vector<Alineage_view_spawner::Person> Alineage_view_spawner::parse(FString 
 			}
 
 			if (parsed[i].Contains(str4, ESearchCase::CaseSensitive, ESearchDir::FromStart)) {
-				parsed[i].RemoveAt(0, 8, true);
+				parsed[i].RemoveAt(0, 9, true);
 				parsed[i].RemoveAt(parsed[i].Len() - 2, 2, true);
+				while (parsed[i].Mid(0, 1).Equals(TEXT("0"))) {
+					parsed[i] = parsed[i].RightChop(1);
+				}
 				husb = search_by_id(p, parsed[i]);
 				have_father = 1;
 			}
 			if (parsed[i].Contains(str5, ESearchCase::CaseSensitive, ESearchDir::FromStart)) {
-				parsed[i].RemoveAt(0, 8, true);
+				parsed[i].RemoveAt(0, 9, true);
 				parsed[i].RemoveAt(parsed[i].Len() - 2, 2, true);
+				while (parsed[i].Mid(0, 1).Equals(TEXT("0"))) {
+					parsed[i] = parsed[i].RightChop(1);
+				}
 				wife = search_by_id(p, parsed[i]);
 				have_mother = 1;
 				if (have_father == 1) {
@@ -152,8 +163,11 @@ std::vector<Alineage_view_spawner::Person> Alineage_view_spawner::parse(FString 
 				}
 			}
 			if (parsed[i].Contains(str6, ESearchCase::CaseSensitive, ESearchDir::FromStart)) {
-				parsed[i].RemoveAt(0, 8, true);
+				parsed[i].RemoveAt(0, 9, true);
 				parsed[i].RemoveAt(parsed[i].Len() - 2, 2, true);
+				while (parsed[i].Mid(0, 1).Equals(TEXT("0"))) {
+					parsed[i] = parsed[i].RightChop(1);
+				}
 				chil = search_by_id(p, parsed[i]);
 				if (have_father == 1 && have_mother == 1) {
 					p[wife].children.push_back(p[chil].id);
@@ -183,7 +197,7 @@ std::vector<Alineage_view_spawner::Person> Alineage_view_spawner::parse(FString 
 	return p;
 }
 
-void Alineage_view_spawner::find_ancestors(std::vector<Person> p, FString root, std::vector<Person> &l) {
+void Alineage_view_spawner::find_ancestors(std::vector<Person> p, FString root, std::vector<Person> l) {
 	//int i;
 	Person p_mother, p_father, p_spouse;
 	int id;
@@ -234,7 +248,7 @@ void Alineage_view_spawner::setLevels(FString root, int level) {
 	int spouseid;
 	int id = search_by_id(parsedData, root);
 	parsedData[id].level = level;
-	if(!parsedData[id].father.IsEmpty()) {
+	if (!parsedData[id].father.IsEmpty()) {
 		setLevels(parsedData[id].father, level + 1);
 	}
 	else {
@@ -266,11 +280,11 @@ int Alineage_view_spawner::setSpace(FString root) {
 		if (parsedData[spouse_id].father.IsEmpty() && parsedData[spouse_id].mother.IsEmpty()) { //spouse = no parents
 			totalSpace = totalSpace + 0; // total space needed plus 0 because spouse has no parents
 			if (parsedData[id].father.IsEmpty() && parsedData[id].mother.IsEmpty()) { // if current person and their spouse doesn't have parent return 5
-				parsedData[id].totalspace = 5; 
+				parsedData[id].totalspace = 5;
 				parsedData[spouse_id].totalspace = 5;
-				GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("level1: ") + FString::FromInt(parsedData[id].level));
-				GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("id: ") + parsedData[id].id);
-				GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("space1: ") + FString::FromInt(parsedData[id].totalspace));
+				//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("level1: ") + FString::FromInt(parsedData[id].level));
+				//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("id: ") + parsedData[id].id);
+				//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("space1: ") + FString::FromInt(parsedData[id].totalspace));
 				return 5;
 			}
 			else {
@@ -279,9 +293,9 @@ int Alineage_view_spawner::setSpace(FString root) {
 					totalSpace = totalSpace + curSpace;
 					parsedData[id].totalspace = totalSpace;
 					parsedData[spouse_id].totalspace = totalSpace;
-					GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("level1: ") + FString::FromInt(parsedData[id].level));
-					GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("id: ") + parsedData[id].id);
-					GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("space1: ") + FString::FromInt(parsedData[id].totalspace));
+					//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("level1: ") + FString::FromInt(parsedData[id].level));
+					//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("id: ") + parsedData[id].id);
+					//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("space1: ") + FString::FromInt(parsedData[id].totalspace));
 					return totalSpace;
 				}
 				else {
@@ -289,9 +303,9 @@ int Alineage_view_spawner::setSpace(FString root) {
 					totalSpace = totalSpace + curSpace;
 					parsedData[id].totalspace = totalSpace;
 					parsedData[spouse_id].totalspace = totalSpace;
-					GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("level1: ") + FString::FromInt(parsedData[id].level));
-					GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("id: ") + parsedData[id].id);
-					GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("space1: ") + FString::FromInt(parsedData[id].totalspace));
+					//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("level1: ") + FString::FromInt(parsedData[id].level));
+					//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("id: ") + parsedData[id].id);
+					//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("space1: ") + FString::FromInt(parsedData[id].totalspace));
 					return totalSpace;
 				}
 			}
@@ -308,19 +322,20 @@ int Alineage_view_spawner::setSpace(FString root) {
 			if (parsedData[id].father.IsEmpty() && parsedData[id].mother.IsEmpty()) { // spouse have parent, current person = no parent
 				parsedData[id].totalspace = totalSpace;
 				parsedData[spouse_id].totalspace = totalSpace;
-				GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("level1: ") + FString::FromInt(parsedData[id].level));
-				GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("id: ") + parsedData[id].id);
-				GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("space1: ") + FString::FromInt(parsedData[id].totalspace));
+				//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("level1: ") + FString::FromInt(parsedData[id].level));
+				//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("id: ") + parsedData[id].id);
+				//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("space1: ") + FString::FromInt(parsedData[id].totalspace));
 				return totalSpace;
-			} else {
+			}
+			else {
 				if (!parsedData[id].father.IsEmpty()) {
 					curSpace = setSpace(parsedData[id].father); // spouse have parents, current person have parents
 					totalSpace = totalSpace + curSpace;
 					parsedData[id].totalspace = totalSpace;
 					parsedData[spouse_id].totalspace = totalSpace;
-					GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("level1: ") + FString::FromInt(parsedData[id].level));
-					GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("id: ") + parsedData[id].id);
-					GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("space1: ") + FString::FromInt(parsedData[id].totalspace));
+					//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("level1: ") + FString::FromInt(parsedData[id].level));
+					//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("id: ") + parsedData[id].id);
+					//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("space1: ") + FString::FromInt(parsedData[id].totalspace));
 					return totalSpace;
 				}
 				else {
@@ -328,9 +343,9 @@ int Alineage_view_spawner::setSpace(FString root) {
 					totalSpace = totalSpace + curSpace;
 					parsedData[id].totalspace = totalSpace;
 					parsedData[spouse_id].totalspace = totalSpace;
-					GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("level1: ") + FString::FromInt(parsedData[id].level));
-					GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("id: ") + parsedData[id].id);
-					GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("space1: ") + FString::FromInt(parsedData[id].totalspace));
+					//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("level1: ") + FString::FromInt(parsedData[id].level));
+					//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("id: ") + parsedData[id].id);
+					//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("space1: ") + FString::FromInt(parsedData[id].totalspace));
 					return totalSpace;
 				}
 			}
@@ -339,28 +354,28 @@ int Alineage_view_spawner::setSpace(FString root) {
 	else { // no spouse
 		if (parsedData[id].father.IsEmpty() && parsedData[id].mother.IsEmpty()) { // no spouse, current person = no parent
 			parsedData[id].totalspace = 3;
-			GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("level1: ") + FString::FromInt(parsedData[id].level));
-			GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("id: ") + parsedData[id].id);
-			GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("space1: ") + FString::FromInt(parsedData[id].totalspace));
+			//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("level1: ") + FString::FromInt(parsedData[id].level));
+			//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("id: ") + parsedData[id].id);
+			//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("space1: ") + FString::FromInt(parsedData[id].totalspace));
 			return 3;
 		}
 		else {//current person have parents
 			if (!parsedData[id].father.IsEmpty()) {
-				curSpace = setSpace(parsedData[id].father); 
+				curSpace = setSpace(parsedData[id].father);
 				totalSpace = totalSpace + curSpace;
 				parsedData[id].totalspace = totalSpace;
-				GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("level1: ") + FString::FromInt(parsedData[id].level));
-				GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("id: ") + parsedData[id].id);
-				GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("space1: ") + FString::FromInt(parsedData[id].totalspace));
+				//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("level1: ") + FString::FromInt(parsedData[id].level));
+				//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("id: ") + parsedData[id].id);
+				//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("space1: ") + FString::FromInt(parsedData[id].totalspace));
 				return totalSpace;
 			}
 			else {
 				curSpace = setSpace(parsedData[id].mother);
 				totalSpace = totalSpace + curSpace;
 				parsedData[id].totalspace = totalSpace;
-				GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("level1: ") + FString::FromInt(parsedData[id].level));
-				GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("id: ") + parsedData[id].id);
-				GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("space1: ") + FString::FromInt(parsedData[id].totalspace));
+				//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("level1: ") + FString::FromInt(parsedData[id].level));
+				//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("id: ") + parsedData[id].id);
+				//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("space1: ") + FString::FromInt(parsedData[id].totalspace));
 				return totalSpace;
 			}
 		}
@@ -375,49 +390,49 @@ void Alineage_view_spawner::setPosition(FString root, float position) {
 	float temp_position;
 	parsedData[id].pos = position;
 	/*if (!parsedData[id].spouse.IsEmpty()) {
-		int spouseid = search_by_id(parsedData, parsedData[id].spouse);
-		parsedData[spouseid].pos = position;
-		GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("individual1: id: ") + parsedData[id].id);
-		GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("spouse1: id: ") + parsedData[spouseid].id);
-		//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("level: ") + FString::FromInt(parsedData[id].level));
-		//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("space: ") + FString::FromInt(parsedData[id].totalspace));
-		GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("position: ") + FString::FromInt(parsedData[id].pos));
-		//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("spouse level: ") + FString::FromInt(parsedData[spouseid].level));
-		//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("spouse space: ") + FString::FromInt(parsedData[spouseid].totalspace));
-		GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("spouse position: ") + FString::FromInt(parsedData[spouseid].pos));
-		if (!parsedData[id].father.IsEmpty()) { // current individual have parent
-			if (!parsedData[spouseid].father.IsEmpty()) {// spouse have parent
-				setPosition(parsedData[id].father, position - 2);
-				setPosition(parsedData[spouseid].father, position + 2);
-			}
-			else { // spouse don't have parent
-				setPosition(parsedData[id].father, position);
-			}
-		}
-		else { // individual don't have parent
-			if (!parsedData[spouseid].father.IsEmpty()) { // spouse have parent
-				setPosition(parsedData[spouseid].father, position);
-			}
-		}
+	int spouseid = search_by_id(parsedData, parsedData[id].spouse);
+	parsedData[spouseid].pos = position;
+	GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("individual1: id: ") + parsedData[id].id);
+	GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("spouse1: id: ") + parsedData[spouseid].id);
+	//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("level: ") + FString::FromInt(parsedData[id].level));
+	//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("space: ") + FString::FromInt(parsedData[id].totalspace));
+	GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("position: ") + FString::FromInt(parsedData[id].pos));
+	//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("spouse level: ") + FString::FromInt(parsedData[spouseid].level));
+	//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("spouse space: ") + FString::FromInt(parsedData[spouseid].totalspace));
+	GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("spouse position: ") + FString::FromInt(parsedData[spouseid].pos));
+	if (!parsedData[id].father.IsEmpty()) { // current individual have parent
+	if (!parsedData[spouseid].father.IsEmpty()) {// spouse have parent
+	setPosition(parsedData[id].father, position - 2);
+	setPosition(parsedData[spouseid].father, position + 2);
 	}
-	else { // no spouse = parent 
-		if (!parsedData[id].father.IsEmpty()) {
-			setPosition(parsedData[id].father, position);
-		}
-		else if (!parsedData[id].mother.IsEmpty()) {
-			setPosition(parsedData[id].mother, position);
-		}
+	else { // spouse don't have parent
+	setPosition(parsedData[id].father, position);
+	}
+	}
+	else { // individual don't have parent
+	if (!parsedData[spouseid].father.IsEmpty()) { // spouse have parent
+	setPosition(parsedData[spouseid].father, position);
+	}
+	}
+	}
+	else { // no spouse = parent
+	if (!parsedData[id].father.IsEmpty()) {
+	setPosition(parsedData[id].father, position);
+	}
+	else if (!parsedData[id].mother.IsEmpty()) {
+	setPosition(parsedData[id].mother, position);
+	}
 	}*/
-	
+
 	if (!parsedData[id].spouse.IsEmpty()) { // has spouse
 		int spouseid = search_by_id(parsedData, parsedData[id].spouse);
 		parsedData[id].pos = position - 1;
 		parsedData[spouseid].pos = position + 1;
-		GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("individual1: id: ") + parsedData[id].id);
+		//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("individual1: id: ") + parsedData[id].id);
 		//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("spouse1: id: ") + parsedData[spouseid].id);
-		GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("level: ") + FString::FromInt(parsedData[id].level));
+		//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("level: ") + FString::FromInt(parsedData[id].level));
 		//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("space: ") + FString::FromInt(parsedData[id].totalspace));
-		GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("position: ") + FString::FromInt(parsedData[id].pos));
+		//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("position: ") + FString::FromInt(parsedData[id].pos));
 		//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("spouse level: ") + FString::FromInt(parsedData[spouseid].level));
 		//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("spouse space: ") + FString::FromInt(parsedData[spouseid].totalspace));
 		//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("spouse position: ") + FString::FromInt(parsedData[spouseid].pos));
@@ -461,7 +476,8 @@ void Alineage_view_spawner::setPosition(FString root, float position) {
 				temp_position = temp_position + (parsedData[mother_id].totalspace / 2);
 				setPosition(parsedData[spouseid].mother, temp_position);
 			}
-		} else {
+		}
+		else {
 			if (!parsedData[spouseid].father.IsEmpty()) {
 				father_id = search_by_id(parsedData, parsedData[spouseid].father);
 				//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("level2: ") + FString::FromInt(parsedData[father_id].level));
@@ -483,7 +499,7 @@ void Alineage_view_spawner::setPosition(FString root, float position) {
 		if (!parsedData[id].father.IsEmpty()) {
 			setPosition(parsedData[id].father, position);
 		}
-		else if (!parsedData[id].mother.IsEmpty()){
+		else if (!parsedData[id].mother.IsEmpty()) {
 			setPosition(parsedData[id].mother, position);
 		}
 	}
@@ -496,7 +512,7 @@ void Alineage_view_spawner::placeNodes(FString root, int middle) {
 	float z = parsedData[id].level * 300;
 	FVector location;
 	FVector location2;
-	location.X = x-120;
+	location.X = x - 120;
 	location.Y = 0.0f;
 	location.Z = z;
 	int spouseid;
@@ -539,7 +555,7 @@ void Alineage_view_spawner::placeNodes(FString root, int middle) {
 		//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("Parent1: id: ") + parsedData[parent_id].id);
 		//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("Parent1: position: ") + FString::FromInt(parsedData[parent_id].pos));
 		int parent_middle = middle + parsedData[parent_id].pos * 120;
-		location.X = middle-120;// +120;	// middle between the parents
+		location.X = middle - 120;// +120;	// middle between the parents
 		location2.X = parent_middle;
 		location2.Z = z + 300;
 		placeNodes(parsedData[id].father, parent_middle); // place the child node
@@ -552,11 +568,11 @@ void Alineage_view_spawner::placeNodes(FString root, int middle) {
 		}
 		LineBatcher->DrawLine(location, location2, FColor::Red, 0, 10.0f);
 		//GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Black, TEXT("Parent1: middle: ") + FString::FromInt(parent_middle));
-	} 
+	}
 	else if (!parsedData[id].mother.IsEmpty()) {
 		int parent_id = search_by_id(parsedData, parsedData[id].mother);
 		int parent_middle = middle + parsedData[parent_id].pos * 120;
-		location.X = middle-120;// +120;	// middle between the parents
+		location.X = middle - 120;// +120;	// middle between the parents
 		location2.X = parent_middle;
 		location2.Z = z + 300;
 		placeNodes(parsedData[id].mother, parent_middle); // place the child node
@@ -608,27 +624,30 @@ void Alineage_view_spawner::placeNodes(FString root, int middle) {
 
 
 void Alineage_view_spawner::lineage_view(FString root) {
-	int id , spouse_id;
+	int id, spouse_id;
 	//Person root_person;
 	id = search_by_id(parsedData, root);	// get root person
 	parsedData.push_back(parsedData[id]);
-	
+
 	//root_person = parsedData[id];
 	if (!parsedData[id].spouse.IsEmpty()) {	// if root has spouse, add spouse
 		spouse_id = search_by_id(parsedData, parsedData[id].spouse);
 		parsedData.push_back(parsedData[spouse_id]);
 	}
-	
+
 	//find_ancestors(parsedData, root, parsedData); // find ancestors
 
 	setLevels(root, 0);
 
 	int maxSpace = setSpace(root);
-	GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Red, TEXT("Maxspace: ") + FString::FromInt(maxSpace));
+	//GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Red, TEXT("Maxspace: ") + FString::FromInt(maxSpace));
 	int middle = maxSpace / 2 * 120;
-	GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Red, TEXT("middle: ") + FString::FromInt(middle));
+	//GEngine->AddOnScreenDebugMessage(-1, 20.f, FColor::Red, TEXT("middle: ") + FString::FromInt(middle));
 	setPosition(root, 0);
 
 	placeNodes(root, middle);
-	
+
 }
+
+
+	

@@ -22,8 +22,8 @@ UCLASS()
 class ADVR_API ANodeSpawner : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	ANodeSpawner();
 
@@ -36,8 +36,17 @@ public:
 	void CreateNode(FVector location);
 
 	UPROPERTY(EditDefaultsOnly, Category = "Spawning")
-	TSubclassOf<ANodeBluePrintScript> Node;
-	
+		TSubclassOf<ANodeBluePrintScript> Node;
+
+	UPROPERTY(EditAnywhere, BluePrintReadWrite)
+		FString fName;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "ScreenLocationForLevel")
+		float middle = 0.0;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "ScreenLocationForLevel")
+		float Screenlevel = 0.0;
+
 
 	struct Person {
 		FString id;
@@ -50,7 +59,7 @@ public:
 		int totalspace; //space need for child nodes
 		int largestchildnode; // the spaces that the largest node takes up
 		int level; //This is the Y level. It goes up as the range
-		//int treeLevel;
+				   //int treeLevel;
 		FVector p_location;
 		bool placed = false;
 	};
